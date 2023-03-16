@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/16 16:28:18 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/16 17:06:51 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ typedef enum e_bool {
 }				t_bool;
 
 typedef struct s_coord {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }				t_coord;
 
 typedef struct s_img {
