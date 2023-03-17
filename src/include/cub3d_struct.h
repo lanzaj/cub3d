@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/16 17:06:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:49:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ typedef struct s_coord {
 	double	x;
 	double	y;
 }				t_coord;
+
+typedef struct s_point {
+	int	x;
+	int	y;
+	int	color;
+}				t_point;
+
+typedef struct s_seg {
+	t_point	start;
+	t_point	end;
+}				t_seg;
 
 typedef struct s_img {
 	void	*img;
@@ -53,12 +64,22 @@ typedef struct s_garb
 	struct s_garb	*next;
 }					t_garb;
 
+typedef struct s_map
+{
+	char			**map;
+	int				map_width;
+	int				map_height;
+	t_coord			pos_player;
+	t_coord			view_dir;
+}					t_map;
+
 typedef struct s_param {
 	void		*mlx;
 	void		*win;
 	int			width;
 	int			height;
 	t_direction	dir;
+	t_map		map;
 	t_garb		*garb;
 }				t_param;
 

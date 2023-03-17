@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
+#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/16 15:36:28 by jlanza           ###   ########.fr        #
+#    Updated: 2023/03/17 12:09:07 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,17 @@ SOURCES_DIR = ./src/
 
 BUILD_DIR = ./build/
 
-SOURCES =	main.c
+SOURCES =	alloc_garbage/ft_alloc_gc.c \
+			alloc_garbage/garbage_2.c \
+			alloc_garbage/garbage.c \
+			maths/matrix_vector_calc.c \
+			mlx_functions/mlx_print_seg.c \
+			mlx_functions/mlx_utils.c \
+			mlx_functions/mlx_color.c \
+			parsing/parsing_map.c \
+			utils/ft_exit.c \
+			utils/utils.c \
+			main.c
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.c=.o})
 
