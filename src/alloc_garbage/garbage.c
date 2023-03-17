@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:29:45 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/16 16:31:28 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/17 16:26:13 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	print_garbage(t_param *prm)
 		ft_printf("Garbage empty...\n");
 	while (elem)
 	{
-		ft_printf("%d - %p\n", elem->id, elem->ptr);
+		printf("%d - %p\n", elem->id, elem->ptr);
 		elem = elem->next;
 	}
 }

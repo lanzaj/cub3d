@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_alloc_gc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 13:48:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/08 12:56:32 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/17 15:45:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/cub3d.h"
 
 void	*ft_malloc_gc(t_param *prm, int id, size_t size)
 {
@@ -49,8 +49,7 @@ char	*ft_substr_gc(t_param *prm, char *s, unsigned int start, size_t len)
 	}
 	else if (start > ft_strlen(s))
 		len_max = 0;
-	result_str = (char *)ft_calloc_gc(prm, prm->source.id,
-			(len_max + 1), sizeof(char));
+	result_str = (char *)ft_calloc_gc(prm, 0, (len_max + 1), sizeof(char));
 	if (result_str == NULL)
 		return (NULL);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:59:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/17 11:59:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:12:26 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,32 @@ int	get_nb_str(char **strs)
 	while (strs[i])
 		i++;
 	return (i);
+}
+
+void	ft_swap(int *a, int *b)
+{
+	int	new_value_a;
+
+	new_value_a = *b;
+	*b = *a;
+	*a = new_value_a;
+}
+
+void	print_map(t_param *prm)
+{
+	int row;
+	int col;
+
+	row = 0;
+	while (prm->map.map && prm->map.map[row])
+	{
+		col = 0;
+		while (prm->map.map[row][col])
+		{
+			ft_printf("%c ", prm->map.map[row][col]);
+			col++;
+		}
+		ft_printf("\n");
+		row++;
+	}
 }

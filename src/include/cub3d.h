@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/17 12:11:01 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:42:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 # define CUB3D_H
 
 # include "../../libft/src/libft.h"
-# include "../../minilibx-linux/mlx.h"
+# include "../../mlx_linux/mlx.h"
 # include "cub3d_struct.h"
-
 # include <math.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# define KEY_LEFT_ARROW 65361
+# define KEY_RIGHT_ARROW 65363
+# define KEY_A 97
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 0xFF1B
+# define MOUSE_ROLL_ZOOM 4
+# define MOUSE_ROLL_UNZOOM 5
+# define PI 3.14159f
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */
@@ -47,14 +56,21 @@ void			remove_from_garb(t_param *prm, void *ptr);
 t_coord			rotate(double angle, t_coord coord);
 double			prod_scal(t_coord vect_1, t_coord vect_2);
 t_coord			sum_vect(t_coord vect_1, t_coord vect_2);
+int				va_abs(int i);
+
+/*	minimap	*/
+/*	minimap -> print_minimap.c */
+void	initiate_img_minimap(t_param *prm);
+void	print_mini_map_grid(t_param *prm);
+void	print_minimap(t_param *prm);
+void	init_player_pos(t_param *prm);
+void	print_player(t_param *prm);
 
 /*	mlx_functions	*/
-/*	mlx_functions -> mlx_print_seg.c */
-void			put_segment_img(t_img *img, t_seg seg);
-
-/*	mlx_functions -> mlx_utils.c */
-void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void			ft_swap_seg(t_seg *seg, t_point *delt);
+/*	mlx_functions -> event_handle.c */
+int				handle_key(int key, void *p);
+void			move_player(t_param *prm, int key);
+void			rotate_player(t_param *prm, int key);
 
 /*	mlx_functions -> mlx_color.c */
 int				create_trgb(unsigned char t, unsigned char r,
@@ -63,5 +79,27 @@ unsigned char	get_t(int trgb);
 unsigned char	get_r(int trgb);
 unsigned char	get_g(int trgb);
 unsigned char	get_b(int trgb);
+
+/*	mlx_functions -> mlx_print_seg.c */
+void			put_segment_img(t_img *img, t_seg seg);
+
+/*	mlx_functions -> mlx_utils.c */
+void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			ft_swap_seg(t_seg *seg, t_point *delt);
+int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
+
+/*	parsing	*/
+/*	parsing -> parsing_map.c */
+int				parsing_map(t_param *prm, char *file_name);
+
+/*	utils	*/
+/*	utils -> ft_exit.c */
+int				close_win(void *p);
+int				ft_exit(t_param *prm, int exit_code);
+
+/*	utils -> utils.c */
+int				get_nb_str(char **strs);
+void			ft_swap(int *a, int *b);
+void			print_map(t_param *prm);
 
 #endif

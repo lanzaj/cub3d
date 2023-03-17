@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/17 12:11:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:45:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,18 @@ int	main(int argc, char *argv[])
 {
 	t_param prm;
 
-	if (argc != 2 && ft_printf_fd(2, "Error: wrong number of arguments"))
+	if (argc != 2 && ft_printf_fd(2, "Error: wrong number of arguments\n"))
 		return (1);
-	if (initiate_mlx(&prm, 640, 480) || parsing_map(&prm, argv[1]))
+	ft_memset(&prm, 0, sizeof(t_param));
+	if ((initiate_mlx(&prm, 480, 480) || parsing_map(&prm, argv[1]))
+		&& ft_printf_fd(2, "Error\n"))
 		return (ft_exit(&prm, EXIT_FAILURE));
-
-	return ('0');
+	initiate_img_minimap(&prm);
+	print_minimap(&prm);
+	init_player_pos(&prm);
+	print_player(&prm);
+	mlx_hook(prm.win, 17, (1L << 0), close_win, &prm);
+	mlx_key_hook(prm.win, handle_key, &prm);
+	mlx_loop(prm.mlx);
+	return (0);
 }

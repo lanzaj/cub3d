@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/17 11:49:18 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:56:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ typedef struct s_map
 	char			**map;
 	int				map_width;
 	int				map_height;
-	t_coord			pos_player;
-	t_coord			view_dir;
 }					t_map;
 
 typedef struct s_param {
@@ -80,7 +78,13 @@ typedef struct s_param {
 	int			height;
 	t_direction	dir;
 	t_map		map;
+	t_coord		pos_player;
+	t_coord		view_dir;
+	float		rot_ang;
 	t_garb		*garb;
+	t_img		mini_map;
+	int			mm_res_x;
+	int			mm_res_y;
 }				t_param;
 
 
