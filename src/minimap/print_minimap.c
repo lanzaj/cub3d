@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 12:23:49 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:28:10 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	initiate_img_minimap(t_param *prm)
 {
+	prm->mini_map.width = 480;
+	prm->mini_map.height = 480;
 	prm->mini_map.img = mlx_new_image(prm->mlx, prm->mini_map.width,
 			prm->mini_map.height);
 	prm->mini_map.addr = mlx_get_data_addr(prm->mini_map.img,
