@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:59:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/17 16:12:26 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:39:51 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_swap(int *a, int *b)
 
 void	print_map(t_param *prm)
 {
-	int row;
-	int col;
+	int	row;
+	int	col;
 
 	row = 0;
 	while (prm->map.map && prm->map.map[row])

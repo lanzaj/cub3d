@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/18 11:45:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:38:02 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ typedef struct s_param {
 	int			mm_res_x;
 	int			mm_res_y;
 }				t_param;
-
 
 #endif

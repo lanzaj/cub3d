@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/18 12:23:12 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:37:51 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ t_coord			prod_vect(double factor, t_coord vect);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */
-void	initiate_img_minimap(t_param *prm);
-void	print_mini_map_grid(t_param *prm);
-void	print_minimap(t_param *prm);
-void	print_player(t_param *prm);
+void			initiate_img_minimap(t_param *prm);
+void			print_mini_map_grid(t_param *prm);
+void			print_minimap(t_param *prm);
+void			print_player(t_param *prm);
 
 /*	mlx_functions	*/
 /*	mlx_functions -> event_handle.c */

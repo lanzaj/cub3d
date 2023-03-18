@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 12:28:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:38:42 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_mini_map_grid(t_param *prm)
 {
 	t_point	p;
 	int		color;
-	
+
 	p.x = 0;
 	color = create_trgb(0, 125, 125, 125);
 	while (p.x < prm->mini_map.width)
@@ -51,7 +51,7 @@ void	print_minimap(t_param *prm)
 {
 	t_point	p;
 	int		color;
-	
+
 	p.x = 0;
 	p.y = 0;
 	color = create_trgb(0, 255, 255, 255);
@@ -89,9 +89,10 @@ void	print_player(t_param *prm)
 	while (del.x <= p.x + 3)
 	{
 		del.y = p.y - 3;
-		while (del.y <= p.y + 3 )
+		while (del.y <= p.y + 3)
 		{
-			if (del.x >= 0 && del.x < prm->mini_map.width && del.y >= 0 && del.y < prm->mini_map.height)
+			if (del.x >= 0 && del.x < prm->mini_map.width && del.y >= 0
+				&& del.y < prm->mini_map.height)
 				my_mlx_pixel_put(&(prm->mini_map), del.x, del.y, p.color);
 			del.y++;
 		}

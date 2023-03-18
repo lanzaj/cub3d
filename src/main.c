@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/17 18:45:18 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:37:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	initiate_mlx(t_param *prm, int width, int height)
 
 int	main(int argc, char *argv[])
 {
-	t_param prm;
+	t_param	prm;
 
 	if (argc != 2 && ft_printf_fd(2, "Error: wrong number of arguments\n"))
 		return (1);

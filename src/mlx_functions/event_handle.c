@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 12:13:37 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:39:26 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	is_valid_move(t_param *prm, t_coord pos)
 
 void	move_player(t_param *prm, int key)
 {
-	t_coord new_pos;
-	
+	t_coord	new_pos;
+
 	if (key == KEY_W)
 		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->view_dir));
 	if (key == KEY_S)
