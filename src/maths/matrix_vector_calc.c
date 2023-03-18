@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:55:32 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/17 15:45:44 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 11:49:02 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ t_coord	sum_vect(t_coord vect_1, t_coord vect_2)
 
 	res.x = vect_1.x + vect_2.x;
 	res.y = vect_1.y + vect_2.y;
+	return (res);
+}
+
+t_coord	prod_vect(double factor, t_coord vect)
+{
+	t_coord	res;
+
+	res.x = factor * vect.x;
+	res.y = factor * vect.y;
 	return (res);
 }
 

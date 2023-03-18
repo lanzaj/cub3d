@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/17 18:42:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 11:49:29 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_coord			rotate(double angle, t_coord coord);
 double			prod_scal(t_coord vect_1, t_coord vect_2);
 t_coord			sum_vect(t_coord vect_1, t_coord vect_2);
 int				va_abs(int i);
+t_coord			prod_vect(double factor, t_coord vect);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */

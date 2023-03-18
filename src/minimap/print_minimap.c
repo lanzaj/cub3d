@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/17 18:36:41 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:17:36 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,15 @@ void	print_minimap(t_param *prm)
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
 }
 
+//Fonction temp pour les test. 
 void	init_player_pos(t_param *prm)
 {
 	prm->pos_player.x = 3.5;
 	prm->pos_player.y = 2.5;
 	prm->view_dir.x = 0;
 	prm->view_dir.y = 2;
+	prm->screen.x = 2;
+	prm->screen.y = 0;
 }
 
 void	print_player(t_param *prm)
@@ -105,11 +108,11 @@ void	print_player(t_param *prm)
 		}
 		del.x++;
 	}
-	dir_end = sum_vect(prm->pos_player, prm->view_dir);
+	dir_end = sum_vect(prm->pos_player, prod_vect(2, prm->view_dir));
 	seg.start = p;
 	seg.end.x = dir_end.x * prm->mm_res_x;
 	seg.end.y = dir_end.y * prm->mm_res_y;
-	seg.end.color = p.color;
+	seg.end.color = create_trgb(1, 255, 0, 0);
 	put_segment_img(&(prm->mini_map), seg);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
 }

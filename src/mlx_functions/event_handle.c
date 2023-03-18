@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/17 18:44:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:13:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,32 @@ int	handle_key(int key, void *p)
 	return (0);
 }
 
+int	is_valid_move(t_param *prm, t_coord pos)
+{
+	int	x;
+	int	y;
+
+	x = (int)pos.x;
+	y = (int)pos.y;
+	if (prm->map.map[y][x] == '0')
+		return (1);
+	return (0);
+}
+
 void	move_player(t_param *prm, int key)
 {
-	if (key == KEY_A)
-		prm->pos_player.x -= 0.1;
-	if (key == KEY_D)
-		prm->pos_player.x += 0.1;
+	t_coord new_pos;
+	
 	if (key == KEY_W)
-		prm->pos_player.y -= 0.1;
+		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->view_dir));
 	if (key == KEY_S)
-		prm->pos_player.y += 0.1;
-	if (prm->pos_player.x < 0)
-		prm->pos_player.x = 0;
-	if (prm->pos_player.y < 0)
-		prm->pos_player.y = 0;
-	if (prm->pos_player.x > prm->map.map_width - 1)
-		prm->pos_player.x = prm->map.map_width - 1;
-	if (prm->pos_player.y > prm->map.map_height - 1)
-		prm->pos_player.y = prm->map.map_height - 1;
+		new_pos = sum_vect(prm->pos_player, prod_vect(-0.1, prm->view_dir));
+	if (key == KEY_A)
+		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->screen));
+	if (key == KEY_D)
+		new_pos = sum_vect(prm->pos_player, prod_vect(-0.1, prm->screen));
+	if (is_valid_move(prm, new_pos))
+		prm->pos_player = new_pos;
 	print_minimap(prm);
 	print_player(prm);
 }
@@ -52,9 +60,15 @@ void	move_player(t_param *prm, int key)
 void	rotate_player(t_param *prm, int key)
 {
 	if (key == KEY_RIGHT_ARROW)
+	{
 		prm->view_dir = rotate((double)PI / 24, prm->view_dir);
+		prm->screen = rotate((double)PI / 24, prm->screen);
+	}
 	if (key == KEY_LEFT_ARROW)
+	{
 		prm->view_dir = rotate((double)(-PI / 24), prm->view_dir);
+		prm->screen = rotate((double)(-PI / 24), prm->screen);
+	}
 	print_minimap(prm);
 	print_player(prm);
 }
