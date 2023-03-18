@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 12:17:36 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:19:28 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	print_player(t_param *prm)
 	seg.start = p;
 	seg.end.x = dir_end.x * prm->mm_res_x;
 	seg.end.y = dir_end.y * prm->mm_res_y;
-	seg.end.color = create_trgb(1, 255, 0, 0);
+	seg.end.color = create_trgb(0, 255, 0, 0);
 	put_segment_img(&(prm->mini_map), seg);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
 }
