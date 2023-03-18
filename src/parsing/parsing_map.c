@@ -6,13 +6,25 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/17 16:37:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:24:04 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 /*Juste pour faire des tests*/
+//Fonction temp pour les test. 
+void	init_player_pos(t_param *prm)
+{
+	prm->pos_player.x = 3.5;
+	prm->pos_player.y = 2.5;
+	prm->view_dir.x = 0;
+	prm->view_dir.y = 2;
+	prm->screen.x = 2;
+	prm->screen.y = 0;
+	prm->mini_map.width = 480;
+	prm->mini_map.height = 480;
+}
 
 int	parsing_map(t_param *prm, char *file_name)
 {

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 12:19:28 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/18 12:23:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	initiate_img_minimap(t_param *prm)
 {
-	prm->mini_map.width = 480;
-	prm->mini_map.height = 480;
 	prm->mini_map.img = mlx_new_image(prm->mlx, prm->mini_map.width,
 			prm->mini_map.height);
 	prm->mini_map.addr = mlx_get_data_addr(prm->mini_map.img,
@@ -73,17 +71,6 @@ void	print_minimap(t_param *prm)
 	}
 	print_mini_map_grid(prm);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
-}
-
-//Fonction temp pour les test. 
-void	init_player_pos(t_param *prm)
-{
-	prm->pos_player.x = 3.5;
-	prm->pos_player.y = 2.5;
-	prm->view_dir.x = 0;
-	prm->view_dir.y = 2;
-	prm->screen.x = 2;
-	prm->screen.y = 0;
 }
 
 void	print_player(t_param *prm)
