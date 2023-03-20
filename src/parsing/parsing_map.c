@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 12:28:25 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:54:20 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 /*Juste pour faire des tests*/
-//Fonction temp pour les test. 
+//Fonction temp pour les test.
 void	init_player_pos(t_param *prm)
 {
 	prm->pos_player.x = 3.5;
@@ -25,6 +25,11 @@ void	init_player_pos(t_param *prm)
 }
 
 int	parsing_map(t_param *prm, char *file_name)
+{
+	
+}
+
+/* int	parsing_map(t_param *prm, char *file_name)
 {
 	(void)file_name;
 	prm->map.map = ft_calloc_gc(prm, 0, 25, sizeof(char *));
@@ -59,4 +64,4 @@ int	parsing_map(t_param *prm, char *file_name)
 	if (get_nb_str(prm->map.map) != 24)
 		return (1);
 	return (0);
-}
+} */
