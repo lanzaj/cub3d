@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:55:32 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 11:49:02 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:02:56 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_coord	rotate(double angle, t_coord coord)
 {
 	t_coord	rot;
 
-	rot.x = cos(angle) * coord.x - sin(angle) * coord.y;
-	rot.y = sin(angle) * coord.x + cos(angle) * coord.y;
+	rot.x = cos(angle) * coord.x + sin(angle) * coord.y;
+	rot.y = cos(angle) * coord.y - sin(angle) * coord.x;
 	return (rot);
 }
 

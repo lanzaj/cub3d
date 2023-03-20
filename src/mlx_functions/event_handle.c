@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 16:39:26 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:00:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	move_player(t_param *prm, int key)
 	if (key == KEY_S)
 		new_pos = sum_vect(prm->pos_player, prod_vect(-0.1, prm->view_dir));
 	if (key == KEY_A)
-		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->screen));
+		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->screen_dir));
 	if (key == KEY_D)
-		new_pos = sum_vect(prm->pos_player, prod_vect(-0.1, prm->screen));
+		new_pos = sum_vect(prm->pos_player, prod_vect(-0.1, prm->screen_dir));
 	if (is_valid_move(prm, new_pos))
 		prm->pos_player = new_pos;
 	print_minimap(prm);
@@ -59,16 +59,27 @@ void	move_player(t_param *prm, int key)
 
 void	rotate_player(t_param *prm, int key)
 {
-	if (key == KEY_RIGHT_ARROW)
-	{
-		prm->view_dir = rotate((double)PI / 24, prm->view_dir);
-		prm->screen = rotate((double)PI / 24, prm->screen);
-	}
 	if (key == KEY_LEFT_ARROW)
 	{
-		prm->view_dir = rotate((double)(-PI / 24), prm->view_dir);
-		prm->screen = rotate((double)(-PI / 24), prm->screen);
+		if (prm->view_ang == 2 * PI)
+			prm->view_ang = 0;
+		prm->view_dir = rotate((double)PI / 16, prm->view_dir);
+		prm->screen_dir = rotate((double)PI / 16, prm->screen_dir);
+		prm->view_ang += (double)PI / 16;
+		if (prm->view_ang == 2 * PI)
+			prm->view_ang = 0;
 	}
+	if (key == KEY_RIGHT_ARROW)
+	{
+		if (prm->view_ang == 0)
+			prm->view_ang = 2 * PI;
+		prm->view_dir = rotate((double)(-PI / 16), prm->view_dir);
+		prm->screen_dir = rotate((double)(-PI / 16), prm->screen_dir);
+		prm->view_ang -= (double)PI / 16;
+		if (prm->view_ang == 0)
+			prm->view_ang = 2 * PI;
+	}
+	printf("rot angle = %f\n", prm->view_ang);
 	print_minimap(prm);
 	print_player(prm);
 }

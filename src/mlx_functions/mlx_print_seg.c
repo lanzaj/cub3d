@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:29:38 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/17 12:05:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:36:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,13 @@ static void	put_segment_img_cas2(t_img *img, t_seg seg)
 	}
 }
 
-void	put_segment_img(t_img *img, t_seg seg)
+void	put_segment_img(t_img *img, t_point start, t_point end)
 {
 	t_point	delt;
+	t_seg	seg;
 
+	seg.start = start;
+	seg.end = end;
 	delt.x = seg.end.x - seg.start.x;
 	delt.y = seg.end.y - seg.start.y;
 	if (va_abs(delt.x) > va_abs(delt.y))

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 16:38:42 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:05:03 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	print_player(t_param *prm)
 {
 	t_point	del;
 	t_point	p;
-	t_seg	seg;
+	t_point	end;
 	t_coord	dir_end;
 
 	p.x = prm->pos_player.x * prm->mm_res_x;
@@ -98,11 +98,15 @@ void	print_player(t_param *prm)
 		}
 		del.x++;
 	}
-	dir_end = sum_vect(prm->pos_player, prod_vect(2, prm->view_dir));
-	seg.start = p;
-	seg.end.x = dir_end.x * prm->mm_res_x;
-	seg.end.y = dir_end.y * prm->mm_res_y;
-	seg.end.color = create_trgb(0, 255, 0, 0);
-	put_segment_img(&(prm->mini_map), seg);
+	/*dir_end = sum_vect(prm->pos_player, prod_vect(2, prm->view_dir));
+	//end.x = dir_end.x * prm->mm_res_x;
+	//end.y = dir_end.y * prm->mm_res_y;
+	//end.color = create_trgb(0, 255, 0, 0);
+	//put_segment_img(&(prm->mini_map), p, end);*/
+	dir_end = find_wall(prm, prm->view_ang);
+	end.x = dir_end.x * prm->mm_res_x;
+	end.y = dir_end.y * prm->mm_res_y;
+	end.color = create_trgb(0, 255, 0, 0);
+	put_segment_img(&(prm->mini_map), p, end);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
 }

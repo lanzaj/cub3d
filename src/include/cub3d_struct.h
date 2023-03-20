@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/18 16:38:02 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:45:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ typedef struct s_param {
 	t_map		map;
 	t_coord		pos_player;
 	t_coord		view_dir;
-	t_coord		screen;
+	t_coord		screen_dir;
+	double		view_ang;
 	t_garb		*garb;
 	t_img		mini_map;
 	int			mm_res_x;

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/18 16:37:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:04:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ unsigned char	get_g(int trgb);
 unsigned char	get_b(int trgb);
 
 /*	mlx_functions -> mlx_print_seg.c */
-void			put_segment_img(t_img *img, t_seg seg);
+void			put_segment_img(t_img *img, t_point start, t_point end);
 
 /*	mlx_functions -> mlx_utils.c */
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
@@ -92,6 +92,10 @@ int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 /*	parsing -> parsing_map.c */
 void			init_player_pos(t_param *prm);
 int				parsing_map(t_param *prm, char *file_name);
+
+/*	rayracing */
+/*	rayracing -> rayracing.c */
+t_coord			find_wall(t_param *prm, double ray_ang);
 
 /*	utils	*/
 /*	utils -> ft_exit.c */

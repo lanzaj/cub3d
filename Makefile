@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/17 18:37:43 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/20 18:10:02 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			mlx_functions/mlx_print_seg.c \
 			mlx_functions/mlx_utils.c \
 			mlx_functions/mlx_color.c \
+			raytracing/raytracing.c \
 			parsing/parsing_map.c \
 			utils/ft_exit.c \
 			utils/utils.c \
