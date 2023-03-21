@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/20 20:05:03 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:06:12 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	print_minimap(t_param *prm)
 		}
 		p.x++;
 	}
-	print_mini_map_grid(prm);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
 }
 
@@ -79,12 +78,11 @@ void	print_player(t_param *prm)
 {
 	t_point	del;
 	t_point	p;
-	t_point	end;
-	t_coord	dir_end;
 
+	print_raytracing(prm);
 	p.x = prm->pos_player.x * prm->mm_res_x;
 	p.y = prm->pos_player.y * prm->mm_res_y;
-	p.color = create_trgb(0, 255, 0, 0);
+	p.color = create_trgb(0, 0, 0, 255);
 	del.x = p.x - 3;
 	while (del.x <= p.x + 3)
 	{
@@ -98,15 +96,22 @@ void	print_player(t_param *prm)
 		}
 		del.x++;
 	}
-	/*dir_end = sum_vect(prm->pos_player, prod_vect(2, prm->view_dir));
-	//end.x = dir_end.x * prm->mm_res_x;
-	//end.y = dir_end.y * prm->mm_res_y;
-	//end.color = create_trgb(0, 255, 0, 0);
-	//put_segment_img(&(prm->mini_map), p, end);*/
-	dir_end = find_wall(prm, prm->view_ang);
-	end.x = dir_end.x * prm->mm_res_x;
-	end.y = dir_end.y * prm->mm_res_y;
-	end.color = create_trgb(0, 255, 0, 0);
-	put_segment_img(&(prm->mini_map), p, end);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
+}
+
+void	print_raytracing(t_param *prm)
+{
+	double	ray_ang;
+	int		color;
+
+	color = create_trgb(0, 255, 0, 0);
+	ray_ang = prm->view_ang - 30 * ((2 * PI) / 360);
+	while (ray_ang < prm->view_ang + 30 * ((2 * PI) / 360))
+	{
+		put_segment_img(&(prm->mini_map),
+			get_minimap_pos(prm, prm->pos_player, color),
+			get_minimap_pos(prm,
+				find_wall(prm, convert_angle(ray_ang)), color));
+		ray_ang += (2 * PI) / 360;
+	}
 }

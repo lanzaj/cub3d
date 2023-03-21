@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   projection_minimap.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 11:37:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/21 17:30:13 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/03/21 10:59:37 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/03/21 16:00:39 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	close_win(void *p)
+t_point	get_minimap_pos(t_param *prm, t_coord coord, int color)
 {
-	t_param	*prm;
+	t_point	proj;
 
-	prm = (t_param *)p;
-	mlx_destroy_image(prm->mlx, prm->layer.front.img);
-	mlx_destroy_window(prm->mlx, prm->win);
-	mlx_destroy_display(prm->mlx);
-	ft_printf("---- Goodbye, see you latter ! ----\n");
-	return (ft_exit(prm, 0));
+	proj.x = coord.x * prm->mm_res_x;
+	proj.y = coord.y * prm->mm_res_y;
+	proj.color = color;
+	return (proj);
 }
 
-int	ft_exit(t_param *prm, int exit_code)
+double	convert_angle(double angle)
 {
-	empty_garbage(prm, -1);
-	exit(exit_code);
+	if (angle < 0)
+		return (convert_angle(2 * PI + angle));
+	else if (angle >= 2 * PI)
+		return (convert_angle(angle - 2 * PI));
+	else
+		return (angle);
 }

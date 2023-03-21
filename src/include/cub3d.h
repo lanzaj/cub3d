@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/20 20:04:15 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:37:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "cub3d_struct.h"
 # include <math.h>
 # include <sys/stat.h>
+# include <limits.h>
 # include <fcntl.h>
 # define KEY_LEFT_ARROW 65361
 # define KEY_RIGHT_ARROW 65363
@@ -51,13 +52,10 @@ void			empty_garbage(t_param *prm, int id);
 void			print_garbage(t_param *prm);
 void			remove_from_garb(t_param *prm, void *ptr);
 
-/*	maths	*/
-/*	maths -> matrix_vector_calc.c */
-t_coord			rotate(double angle, t_coord coord);
-double			prod_scal(t_coord vect_1, t_coord vect_2);
-t_coord			sum_vect(t_coord vect_1, t_coord vect_2);
-int				va_abs(int i);
-t_coord			prod_vect(double factor, t_coord vect);
+/*	game */
+/*	game ->	initiate_game.c */
+void			initiate_img_game(t_param *prm);
+void			print_game(t_param *prm);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */
@@ -65,6 +63,7 @@ void			initiate_img_minimap(t_param *prm);
 void			print_mini_map_grid(t_param *prm);
 void			print_minimap(t_param *prm);
 void			print_player(t_param *prm);
+void			print_raytracing(t_param *prm);
 
 /*	mlx_functions	*/
 /*	mlx_functions -> event_handle.c */
@@ -94,8 +93,24 @@ void			init_player_pos(t_param *prm);
 int				parsing_map(t_param *prm, char *file_name);
 
 /*	rayracing */
-/*	rayracing -> rayracing.c */
+/*	rayracing -> find_first.c */
+t_coord			find_first_h(t_param *prm, double ray_ang);
+t_coord			find_first_h_part_2(t_param *prm, double ray_ang);
+t_coord			find_first_v(t_param *prm, double ray_ang);
+t_coord			find_first_v_part_2(t_param *prm, double ray_ang);
+
+/*	rayracing -> find_wall.c */
+t_coord			find_wall_h(t_param *prm, double ray_ang, t_coord first_h);
+void			find_wall_h_part_2(t_param *prm,
+					double ray_ang, t_coord *delt_h);
+t_coord			find_wall_v(t_param *prm, double ray_ang, t_coord first_v);
+void			find_wall_v_part_2(t_param *prm,
+					double ray_ang, t_coord *delt_v);
 t_coord			find_wall(t_param *prm, double ray_ang);
+
+/*	rayracing -> hit_a_wall.c */
+int				is_valid_coord(t_param *prm, t_coord coord);
+int				has_hit_a_wall(t_param *prm, t_coord point);
 
 /*	utils	*/
 /*	utils -> ft_exit.c */
@@ -106,5 +121,20 @@ int				ft_exit(t_param *prm, int exit_code);
 int				get_nb_str(char **strs);
 void			ft_swap(int *a, int *b);
 void			print_map(t_param *prm);
+
+/*	vector_manipulation	*/
+/*	vector_manipulation -> get_distance.c */
+double			get_distance(t_coord a, t_coord b);
+
+/*	vector_manipulation -> matrix_vector_calc.c */
+t_coord			rotate(double angle, t_coord coord);
+double			prod_scal(t_coord vect_1, t_coord vect_2);
+t_coord			sum_vect(t_coord vect_1, t_coord vect_2);
+int				va_abs(int i);
+t_coord			prod_vect(double factor, t_coord vect);
+
+/* vector_manipulation -> projection_minimap.c */
+t_point			get_minimap_pos(t_param *prm, t_coord coord, int color);
+double			convert_angle(double angle);
 
 #endif

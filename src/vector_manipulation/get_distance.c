@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   get_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 11:37:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/21 17:30:13 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/03/21 11:05:38 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/03/21 11:14:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	close_win(void *p)
+double	get_distance(t_coord a, t_coord b)
 {
-	t_param	*prm;
+	double	result;
 
-	prm = (t_param *)p;
-	mlx_destroy_image(prm->mlx, prm->layer.front.img);
-	mlx_destroy_window(prm->mlx, prm->win);
-	mlx_destroy_display(prm->mlx);
-	ft_printf("---- Goodbye, see you latter ! ----\n");
-	return (ft_exit(prm, 0));
-}
-
-int	ft_exit(t_param *prm, int exit_code)
-{
-	empty_garbage(prm, -1);
-	exit(exit_code);
+	result = sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+	return (result);
 }

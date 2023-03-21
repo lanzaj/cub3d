@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/20 18:10:02 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/21 17:16:21 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,21 @@ BUILD_DIR = ./build/
 SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			alloc_garbage/garbage_2.c \
 			alloc_garbage/garbage.c \
-			maths/matrix_vector_calc.c \
+			game/initiate_game.c \
 			minimap/print_minimap.c \
 			mlx_functions/event_handle.c \
 			mlx_functions/mlx_print_seg.c \
 			mlx_functions/mlx_utils.c \
 			mlx_functions/mlx_color.c \
-			raytracing/raytracing.c \
+			raytracing/find_first.c \
+			raytracing/find_wall.c \
+			raytracing/hit_a_wall.c \
 			parsing/parsing_map.c \
 			utils/ft_exit.c \
 			utils/utils.c \
+			vector_manipulation/matrix_vector_calc.c \
+			vector_manipulation/projection_minimap.c \
+			vector_manipulation/get_distance.c \
 			main.c
 
 OBJECTS		= $(addprefix ${BUILD_DIR}, ${SOURCES:.c=.o})
@@ -37,7 +42,7 @@ DEPS := $(OBJECTS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3
 
 RM = rm -rf
 

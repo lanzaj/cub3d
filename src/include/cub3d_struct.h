@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/20 17:45:06 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:18:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_param {
 	void		*win;
 	int			width;
 	int			height;
+	t_layer		layer;
 	t_direction	dir;
 	t_map		map;
 	t_coord		pos_player;

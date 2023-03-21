@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/20 19:00:24 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:45:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,13 @@ void	move_player(t_param *prm, int key)
 		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->view_dir));
 	if (key == KEY_S)
 		new_pos = sum_vect(prm->pos_player, prod_vect(-0.1, prm->view_dir));
-	if (key == KEY_A)
-		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->screen_dir));
 	if (key == KEY_D)
+		new_pos = sum_vect(prm->pos_player, prod_vect(0.1, prm->screen_dir));
+	if (key == KEY_A)
 		new_pos = sum_vect(prm->pos_player, prod_vect(-0.1, prm->screen_dir));
 	if (is_valid_move(prm, new_pos))
 		prm->pos_player = new_pos;
-	print_minimap(prm);
-	print_player(prm);
+	print_game(prm);
 }
 
 void	rotate_player(t_param *prm, int key)
@@ -79,7 +78,5 @@ void	rotate_player(t_param *prm, int key)
 		if (prm->view_ang == 0)
 			prm->view_ang = 2 * PI;
 	}
-	printf("rot angle = %f\n", prm->view_ang);
-	print_minimap(prm);
-	print_player(prm);
+	print_game(prm);
 }
