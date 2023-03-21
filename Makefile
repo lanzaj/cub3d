@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/17 18:37:43 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/21 16:17:12 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			mlx_functions/mlx_utils.c \
 			mlx_functions/mlx_color.c \
 			parsing/parsing_map.c \
+			parsing/import_img.c \
 			utils/ft_exit.c \
 			utils/utils.c \
 			main.c

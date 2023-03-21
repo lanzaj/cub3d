@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/18 16:37:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:36:50 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ void			ft_swap_seg(t_seg *seg, t_point *delt);
 int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 
 /*	parsing	*/
+/*	parsing -> import_img.c*/
+int				import_img(t_param *prm, t_img *xpm, char *path);
+
 /*	parsing -> parsing_map.c */
 void			init_player_pos(t_param *prm);
 int				parsing_map(t_param *prm, char *file_name);

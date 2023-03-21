@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/18 16:38:02 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:05:56 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,15 @@ typedef struct s_garb
 
 typedef struct s_map
 {
-	char			**map;
-	int				map_width;
-	int				map_height;
+	char	**map;
+	int		map_width;
+	int		map_height;
+	t_img	north_texture;
+	t_img	south_texture;
+	t_img	west_texture;
+	t_img	east_texture;
+	int		floor_color;
+	int		ceiling_color;
 }					t_map;
 
 typedef struct s_param {
