@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 18:34:34 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:40:02 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ typedef enum e_bool {
 	TRUE = 1,
 	FALSE = 0
 }				t_bool;
+
+typedef enum e_dir {
+	SOUTH = 1,
+	NORTH,
+	EAST,
+	WEST
+}				t_dir;
 
 typedef struct s_coord {
 	double	x;

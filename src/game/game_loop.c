@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 16:17:03 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:37:03 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,27 @@ int	game_loop(t_param *prm)
 
 void	move_player(t_param *prm)
 {
-	t_coord	new_pos;
 	float	speed;
 
 	speed = 0.1;
-	new_pos = prm->pos_player;
 	if (prm->key.key_w != prm->key.key_s && prm->key.key_a != prm->key.key_d)
-		speed *= 0.95 * speed;
-	if (prm->key.key_w && !prm->key.key_s)
-		new_pos = sum_vect(new_pos, prod_vect(speed, prm->view_dir));
-	if (!prm->key.key_w && prm->key.key_s)
-		new_pos = sum_vect(new_pos, prod_vect(-speed, prm->view_dir));
-	if (prm->key.key_d && !prm->key.key_a)
-		new_pos = sum_vect(new_pos, prod_vect(speed, prm->screen_dir));
-	if (prm->key.key_a && !prm->key.key_d)
-		new_pos = sum_vect(new_pos, prod_vect(-speed, prm->screen_dir));
-	if (is_valid_move(prm, new_pos))
-		prm->pos_player = new_pos;
+		speed = 0.707106 * speed;
+	if (prm->key.key_w && !prm->key.key_s && is_valid_move(prm,
+			sum_vect(prm->pos_player, prod_vect(speed, prm->view_dir))))
+		prm->pos_player = sum_vect(prm->pos_player,
+				prod_vect(speed, prm->view_dir));
+	if (!prm->key.key_w && prm->key.key_s && is_valid_move(prm,
+			sum_vect(prm->pos_player, prod_vect(-speed, prm->view_dir))))
+		prm->pos_player = sum_vect(prm->pos_player,
+				prod_vect(-speed, prm->view_dir));
+	if (prm->key.key_d && !prm->key.key_a && is_valid_move(prm,
+			sum_vect(prm->pos_player, prod_vect(speed, prm->screen_dir))))
+		prm->pos_player = sum_vect(prm->pos_player,
+				prod_vect(speed, prm->screen_dir));
+	if (prm->key.key_a && !prm->key.key_d && is_valid_move(prm,
+			sum_vect(prm->pos_player, prod_vect(-speed, prm->screen_dir))))
+		prm->pos_player = sum_vect(prm->pos_player,
+				prod_vect(-speed, prm->screen_dir));
 }
 
 void	rotate_player(t_param *prm)

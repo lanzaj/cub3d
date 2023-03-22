@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 18:20:55 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:52:43 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ int	fd_to_map(t_param *prm, int fd)
 		return (1);
 	lst = fd_to_lst(fd);
 	prm->map.map = lst_to_tab(lst, fd);
-
 	return (0);
 }
 

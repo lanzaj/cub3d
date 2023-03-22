@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:26:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/21 15:44:07 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:41:57 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ int	has_hit_a_wall(t_param *prm, t_coord point)
 		return (-1);
 	if (point.y == (int)point.y
 		&& prm->map.map[(int)point.y][(int)point.x] == '1')
-		return (1);
+		return (SOUTH);
 	if (point.y == (int)point.y
 		&& ((int)point.y - 1 >= 0
 			&& prm->map.map[(int)point.y - 1][(int)point.x] == '1'))
-		return (2);
+		return (NORTH);
 	if (point.x == (int)point.x
 		&& prm->map.map[(int)point.y][(int)point.x] == '1')
-		return (3);
+		return (EAST);
 	if (point.x == (int)point.x
 		&& ((int)point.x - 1 >= 0
 			&& prm->map.map[(int)point.y][(int)point.x - 1] == '1'))
-		return (4);
+		return (WEST);
 	return (0);
 }
