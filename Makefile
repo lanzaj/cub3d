@@ -6,7 +6,7 @@
 #    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/21 16:17:12 by jlanza           ###   ########.fr        #
+#    Updated: 2023/03/22 16:31:11 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			mlx_functions/mlx_print_seg.c \
 			mlx_functions/mlx_utils.c \
 			mlx_functions/mlx_color.c \
+			parsing/fd_to_map.c \
 			parsing/parsing_map.c \
 			parsing/import_img.c \
 			utils/ft_exit.c \
@@ -37,7 +38,7 @@ DEPS := $(OBJECTS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3
 
 RM = rm -rf
 

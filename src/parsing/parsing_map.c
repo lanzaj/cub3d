@@ -6,17 +6,15 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/21 18:29:55 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/22 18:07:50 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/*Juste pour faire des tests*/
-//Fonction temp pour les test.
 void	init_player_pos(t_param *prm)
 {
-	prm->pos_player.x = 3.5;
+	prm->pos_player.x = 4.5;
 	prm->pos_player.y = 2.5;
 	prm->view_dir.x = 0;
 	prm->view_dir.y = 2;
@@ -58,7 +56,8 @@ int	fd_to_card(t_param *prm, int fd, t_img *card_texture, char *card)
 	char	*str;
 
 	str = get_next_nonnull_line(fd);
-	if (str || (ft_strncmp(str, card, 3) && ft_strlen(str) < 4)
+	trim_backslash_n(str);
+	if (!str || ft_strncmp(str, card, 3) || ft_strlen(str) < 4
 		|| import_img(prm, card_texture, &str[3]))
 	{
 		ft_printf_fd(2, "Error\nInvalid %s\n", card);
@@ -76,27 +75,29 @@ int	fd_to_card(t_param *prm, int fd, t_img *card_texture, char *card)
 	return (0);
 }
 
-int	get_number(int *r, int i, char *str)
+int	get_number(int *n, int i, char *str)
 {
 	if (ft_isint(&str[i]))
-		r = ft_atoi(&str[i]);
+		*n = ft_atoi(&str[i]);
 	else
 		return (1);
-	if (r > 255 || r < 0)
+	if (*n > 255 || *n < 0)
 		return (1);
+	return (0);
 }
 
 int	get_next_number_pos(int *i, char *str)
 {
 	while (ft_isdigit((int)str[*i]))
-		*i++;
-	if (str[*i] == ",")
-		*i++;
+		(*i)++;
+	if (str[*i] == ',')
+		(*i)++;
 	else
 		return (1);
+	return (0);
 }
 
-int	import_color(t_param *prm, int *color_element, char *str)
+int	import_color(int *color_element, char *str)
 {
 	int	r;
 	int	g;
@@ -111,7 +112,7 @@ int	import_color(t_param *prm, int *color_element, char *str)
 	if (get_number(&b, i, str))
 		return (1);
 	*color_element = create_trgb(0, (unsigned char)r, (unsigned char)g,
-		(unsigned char)b);
+			(unsigned char)b);
 	return (0);
 }
 
@@ -120,8 +121,9 @@ int	fd_to_color(t_param *prm, int fd, int *color_element, char *color)
 	char	*str;
 
 	str = get_next_nonnull_line(fd);
-	if (str || (ft_strncmp(str, color, 2) && ft_strlen(str) < 4)
-		|| import_color(prm, color_element, &str[3]))
+	trim_backslash_n(str);
+	if (!str || ft_strncmp(str, color, 2) || ft_strlen(str) < 7
+		|| import_color(color_element, &str[2]))
 	{
 		ft_printf_fd(2, "Error\nInvalid %scolor\n", color);
 		if (prm->map.north_texture.img != NULL)
@@ -142,19 +144,50 @@ int	fd_to_color(t_param *prm, int fd, int *color_element, char *color)
 
 int	fd_to_map(t_param *prm, int fd)
 {
-	if (fd_to_card(prm, fd, &prm->map.north_texture, "NO "))
+	t_list	*lst;
+
+	if (fd_to_card(prm, fd, &(prm->map.north_texture), "NO "))
 		return (1);
-	if (fd_to_card(prm, fd, &prm->map.south_texture, "SO "))
+	if (fd_to_card(prm, fd, &(prm->map.south_texture), "SO "))
 		return (1);
-	if (fd_to_card(prm, fd, &prm->map.west_texture, "WE "))
+	if (fd_to_card(prm, fd, &(prm->map.west_texture), "WE "))
 		return (1);
-	if (fd_to_card(prm, fd, &prm->map.east_texture, "EA "))
+	if (fd_to_card(prm, fd, &(prm->map.east_texture), "EA "))
 		return (1);
-	if (fd_to_floor_color(prm, fd, prm->map.floor_color, "F "))
+	if (fd_to_color(prm, fd, &(prm->map.floor_color), "F "))
 		return (1);
-	if (fd_to_floor_color(prm, fd, prm->map.ceiling_color, "C "))
+	if (fd_to_color(prm, fd, &(prm->map.ceiling_color), "C "))
 		return (1);
+	lst = fd_to_lst(fd);
+	prm->map.map = lst_to_tab(lst, fd);
+
 	return (0);
+}
+
+static int	count_number_of_lines(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+static int	count_max_width_of_lines(char **map)
+{
+	int		i;
+	size_t	max_len;
+
+	i = 0;
+	max_len = 0;
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) > max_len)
+			max_len = ft_strlen(map[i]);
+		i++;
+	}
+	return (max_len);
 }
 
 int	parsing_map(t_param *prm, char *file_name)
@@ -172,6 +205,8 @@ int	parsing_map(t_param *prm, char *file_name)
 		return (1);
 	}
 	close(fd);
+	prm->map.map_height = count_number_of_lines(prm->map.map);
+	prm->map.map_width = count_max_width_of_lines(prm->map.map);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 16:38:42 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:42:17 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	initiate_img_minimap(t_param *prm)
 {
-	prm->mini_map.width = 480;
-	prm->mini_map.height = 480;
+	prm->mm_res_x = 10;
+	prm->mm_res_y = 10;
+	prm->mini_map.width = prm->mm_res_x * prm->map.map_width;
+	prm->mini_map.height = prm->mm_res_y * prm->map.map_height;
 	prm->mini_map.img = mlx_new_image(prm->mlx, prm->mini_map.width,
 			prm->mini_map.height);
 	prm->mini_map.addr = mlx_get_data_addr(prm->mini_map.img,
@@ -55,8 +57,6 @@ void	print_minimap(t_param *prm)
 	p.x = 0;
 	p.y = 0;
 	color = create_trgb(0, 255, 255, 255);
-	prm->mm_res_x = prm->mini_map.width / prm->map.map_width;
-	prm->mm_res_y = prm->mini_map.height / prm->map.map_height;
 	while (p.x < prm->mini_map.width)
 	{
 		p.y = 0;

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/21 15:12:07 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/22 17:40:56 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ int	initiate_mlx(t_param *prm, int width, int height)
 	return (0);
 }
 
+void	print_mapi(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_putendl_fd(map[i], 1);
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_param	prm;
@@ -36,6 +48,8 @@ int	main(int argc, char *argv[])
 	if ((initiate_mlx(&prm, 480, 480) && ft_printf_fd(2, "Error\nInitiate mlx"))
 		|| parsing_map(&prm, argv[1]))
 		return (ft_exit(&prm, EXIT_FAILURE));
+	printf("color floor : %x\ncolor sky : %x\n", prm.map.floor_color, prm.map.ceiling_color);
+	print_mapi(prm.map.map);
 	initiate_img_minimap(&prm);
 	print_minimap(&prm);
 	init_player_pos(&prm);
