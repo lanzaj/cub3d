@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/21 16:06:12 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:34:12 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	initiate_img_minimap(t_param *prm)
 {
-	prm->mini_map.width = 480;
-	prm->mini_map.height = 480;
+	prm->mm_res_x = 6;
+	prm->mm_res_y = 6;
+	prm->mini_map.width = prm->map.map_width * prm->mm_res_x;
+	prm->mini_map.height = prm->map.map_height * prm->mm_res_y;
 	prm->mini_map.img = mlx_new_image(prm->mlx, prm->mini_map.width,
 			prm->mini_map.height);
 	prm->mini_map.addr = mlx_get_data_addr(prm->mini_map.img,
@@ -47,16 +49,16 @@ void	print_mini_map_grid(t_param *prm)
 	}
 }
 
-void	print_minimap(t_param *prm)
+void	print_minimap(t_param *prm, int x, int y)
 {
 	t_point	p;
 	int		color;
+	int		color_wall;
 
 	p.x = 0;
 	p.y = 0;
-	color = create_trgb(0, 255, 255, 255);
-	prm->mm_res_x = prm->mini_map.width / prm->map.map_width;
-	prm->mm_res_y = prm->mini_map.height / prm->map.map_height;
+	color = create_trgb(0, 237, 237, 237);
+	color_wall = create_trgb(0, 78, 22, 9);
 	while (p.x < prm->mini_map.width)
 	{
 		p.y = 0;
@@ -64,14 +66,15 @@ void	print_minimap(t_param *prm)
 		{
 			if (prm->map.map[p.y / prm->mm_res_y][p.x / prm->mm_res_x] == '1'
 				&& p.x < prm->mini_map.width && p.y < prm->mini_map.height)
-				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y, 0);
+				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y, color_wall);
 			else
 				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y, color);
 			p.y++;
 		}
 		p.x++;
 	}
-	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
+	print_player(prm);
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, x, y);
 }
 
 void	print_player(t_param *prm)
@@ -79,15 +82,12 @@ void	print_player(t_param *prm)
 	t_point	del;
 	t_point	p;
 
-	print_raytracing(prm);
-	p.x = prm->pos_player.x * prm->mm_res_x;
-	p.y = prm->pos_player.y * prm->mm_res_y;
-	p.color = create_trgb(0, 0, 0, 255);
-	del.x = p.x - 3;
-	while (del.x <= p.x + 3)
+	p = get_minimap_pos(prm, prm->pos_player, create_trgb(0, 255, 0, 0));
+	del.x = p.x - 2;
+	while (del.x <= p.x + 2)
 	{
-		del.y = p.y - 3;
-		while (del.y <= p.y + 3)
+		del.y = p.y - 2;
+		while (del.y <= p.y + 2)
 		{
 			if (del.x >= 0 && del.x < prm->mini_map.width && del.y >= 0
 				&& del.y < prm->mini_map.height)
@@ -96,7 +96,9 @@ void	print_player(t_param *prm)
 		}
 		del.x++;
 	}
-	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, 0, 0);
+	put_segment_img(&(prm->mini_map), p,
+		get_minimap_pos(prm, sum_vect(prm->pos_player,
+				prod_vect(0.7, prm->view_dir)), p.color));
 }
 
 void	print_raytracing(t_param *prm)

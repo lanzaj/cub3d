@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/21 17:46:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:57:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ int	main(int argc, char *argv[])
 		&& ft_printf_fd(2, "Error\n"))
 		return (ft_exit(&prm, EXIT_FAILURE));
 	initiate_img_game(&prm);
+	initiate_img_minimap(&prm);
 	init_player_pos(&prm);
-	print_game(&prm);
 	mlx_hook(prm.win, 17, (1L << 0), close_win, &prm);
-	mlx_key_hook(prm.win, handle_key, &prm);
+	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
+	mlx_hook(prm.win, 3, 1L << 1, key_release, &prm);
+	mlx_loop_hook(prm.mlx, game_loop, &prm);
 	mlx_loop(prm.mlx);
 	return (0);
 }

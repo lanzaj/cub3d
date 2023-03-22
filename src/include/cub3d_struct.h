@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/21 16:18:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:08:50 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ typedef struct s_coord {
 	double	x;
 	double	y;
 }				t_coord;
+
+typedef struct s_px_col
+{
+	int				px_cell;
+	int				px_wall;
+	int				px_total;
+	int				color_cell;
+	int				color_floor;
+}					t_px_col;
 
 typedef struct s_point {
 	int	x;
@@ -49,13 +58,14 @@ typedef struct s_layer {
 	t_img	back;
 }				t_layer;
 
-typedef struct s_direction {
-	char	up;
+typedef struct s_key_stat {
 	char	left;
 	char	right;
-	char	down;
-	char	dir;
-}				t_direction;
+	char	key_w;
+	char	key_a;
+	char	key_d;
+	char	key_s;
+}				t_key_stat;
 
 typedef struct s_garb
 {
@@ -76,8 +86,9 @@ typedef struct s_param {
 	void		*win;
 	int			width;
 	int			height;
+	int			frame;
 	t_layer		layer;
-	t_direction	dir;
+	t_key_stat	key;
 	t_map		map;
 	t_coord		pos_player;
 	t_coord		view_dir;

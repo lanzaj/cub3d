@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/21 17:45:08 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:09:22 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,50 @@ int	get_wall_color(t_param *prm, t_coord coord)
 	return (0);
 }
 
-void	print_wall_slice(t_param *prm, int x, t_coord wall)
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+double	ft_max_d(double a, double b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+double	ft_min_d(double a, double b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 {
 	int		y;
-	double	dist;
 	int		px_cell;
 	int		px_wall;
+	int		px_total;
+	
 
-	y = 0;
-	dist = get_distance(prm->pos_player, wall);
-	px_wall = prm->height * 2 / dist;
-	if (px_wall > prm->height)
-		px_wall = prm->height;
-	px_cell = (prm->height - px_wall) / 2;
+	px_wall = (prm->height * 7)
+		/ (2 * ft_max(0.001, get_distance(prm->pos_player, wall) * cos(ang)));
+	px_cell = (prm->height - ft_min(px_wall, prm->height)) / 2;
+	px_total = 2 * px_cell + px_wall;
+	y = -1 * (ft_max(0, (px_total - prm->height) / 2));
 	while (x > 0 && x < prm->width && ++y < px_cell)
-		my_mlx_pixel_put(&(prm->layer.front), x, y, create_trgb(0, 0, 0, 0));
+		my_mlx_pixel_put(&(prm->layer.front), x, y,
+			create_trgb(0, 116, 208, 241));
 	while (x > 0 && x < prm->width && y < px_cell + px_wall)
 	{
 		my_mlx_pixel_put(&(prm->layer.front), x, y, get_wall_color(prm, wall));
@@ -57,7 +86,7 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall)
 	while (x > 0 && x < prm->width && y < prm->height)
 	{
 		my_mlx_pixel_put(&(prm->layer.front), x, y,
-			create_trgb(0, 0, 255, 0));
+			create_trgb(0, 87, 213, 59));
 		y++;
 	}
 }
@@ -75,7 +104,7 @@ void	print_game(t_param *prm)
 	{
 		ang = atan((dx * 0.5773502) / 1280);
 		wall = find_wall(prm, convert_angle(prm->view_ang + ang));
-		print_wall_slice(prm, x - dx, wall);
+		print_wall_slice(prm, x - dx, wall, ang);
 		dx++;
 	}
 	dx = 0;
@@ -83,7 +112,7 @@ void	print_game(t_param *prm)
 	{
 		ang = atan((dx * 0.5773502) / 1280);
 		wall = find_wall(prm, convert_angle(prm->view_ang - ang));
-		print_wall_slice(prm, x + dx, wall);
+		print_wall_slice(prm, x + dx, wall, ang);
 		dx++;
 	}
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);

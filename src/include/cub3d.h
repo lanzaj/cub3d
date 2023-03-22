@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/21 16:37:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:16:44 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_ESC 0xFF1B
+# define LOOP 1000
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
 # define PI 3.14159f
@@ -53,6 +54,16 @@ void			print_garbage(t_param *prm);
 void			remove_from_garb(t_param *prm, void *ptr);
 
 /*	game */
+/*	game -> event_handle.c */
+int				key_press(int keycode, void *p);
+int				key_release(int keycode, void *p);
+int				is_valid_move(t_param *prm, t_coord pos);
+
+/*	game -> game_loop.c */
+int				game_loop(t_param *prm);
+void			move_player(t_param *prm);
+void			rotate_player(t_param *prm);
+
 /*	game ->	initiate_game.c */
 void			initiate_img_game(t_param *prm);
 void			print_game(t_param *prm);
@@ -61,16 +72,11 @@ void			print_game(t_param *prm);
 /*	minimap -> print_minimap.c */
 void			initiate_img_minimap(t_param *prm);
 void			print_mini_map_grid(t_param *prm);
-void			print_minimap(t_param *prm);
+void			print_minimap(t_param *prm, int x, int y);
 void			print_player(t_param *prm);
 void			print_raytracing(t_param *prm);
 
 /*	mlx_functions	*/
-/*	mlx_functions -> event_handle.c */
-int				handle_key(int key, void *p);
-void			move_player(t_param *prm, int key);
-void			rotate_player(t_param *prm, int key);
-
 /*	mlx_functions -> mlx_color.c */
 int				create_trgb(unsigned char t, unsigned char r,
 					unsigned char g, unsigned char b);
