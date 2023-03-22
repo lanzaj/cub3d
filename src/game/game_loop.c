@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 16:17:03 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:41:17 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	game_loop(t_param *prm)
 	return (0);
 }
 
+
 void	move_player(t_param *prm)
 {
 	t_coord	new_pos;
@@ -37,7 +38,7 @@ void	move_player(t_param *prm)
 	speed = 0.1;
 	new_pos = prm->pos_player;
 	if (prm->key.key_w != prm->key.key_s && prm->key.key_a != prm->key.key_d)
-		speed *= 0.95 * speed;
+		speed = 0.707106 * speed;
 	if (prm->key.key_w && !prm->key.key_s)
 		new_pos = sum_vect(new_pos, prod_vect(speed, prm->view_dir));
 	if (!prm->key.key_w && prm->key.key_s)
