@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 18:08:50 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:34:34 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_px_col
 	int				px_cell;
 	int				px_wall;
 	int				px_total;
+	int				ofset;
 	int				color_cell;
 	int				color_floor;
 }					t_px_col;
@@ -76,9 +77,15 @@ typedef struct s_garb
 
 typedef struct s_map
 {
-	char			**map;
-	int				map_width;
-	int				map_height;
+	char	**map;
+	int		map_width;
+	int		map_height;
+	t_img	north_texture;
+	t_img	south_texture;
+	t_img	west_texture;
+	t_img	east_texture;
+	int		floor_color;
+	int		ceiling_color;
 }					t_map;
 
 typedef struct s_param {

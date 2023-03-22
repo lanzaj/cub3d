@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 18:09:22 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:41:35 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,29 +64,33 @@ double	ft_min_d(double a, double b)
 
 void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 {
-	int		y;
-	int		px_cell;
-	int		px_wall;
-	int		px_total;
-	
+	int			y;
+	t_px_col	col;
 
-	px_wall = (prm->height * 7)
-		/ (2 * ft_max(0.001, get_distance(prm->pos_player, wall) * cos(ang)));
-	px_cell = (prm->height - ft_min(px_wall, prm->height)) / 2;
-	px_total = 2 * px_cell + px_wall;
-	y = -1 * (ft_max(0, (px_total - prm->height) / 2));
-	while (x > 0 && x < prm->width && ++y < px_cell)
-		my_mlx_pixel_put(&(prm->layer.front), x, y,
-			create_trgb(0, 116, 208, 241));
-	while (x > 0 && x < prm->width && y < px_cell + px_wall)
+	col.px_wall = (prm->height * 4)
+		/ (2 * ft_max_d(0.001, get_distance(prm->pos_player, wall) * cos(ang)));
+	col.px_cell = (prm->height - ft_min(col.px_wall, prm->height)) / 2;
+	col.px_total = 2 * col.px_cell + col.px_wall;
+	col.color_cell = create_trgb(0, 116, 208, 241);
+	col.color_floor = create_trgb(0, 87, 213, 59);
+	col.ofset = (ft_max(0, (col.px_total - prm->height) / 2));
+	y = -col.ofset;
+	while (x > 0 && x < prm->width && ++y < col.px_cell)
 	{
-		my_mlx_pixel_put(&(prm->layer.front), x, y, get_wall_color(prm, wall));
+		if (y > 0 && y < prm->height)
+			my_mlx_pixel_put(&(prm->layer.front), x, y, col.color_cell);
+	}
+	while (x > 0 && x < prm->width && y < col.px_cell + col.px_wall)
+	{
+		if (y > 0 && y < prm->height)
+			my_mlx_pixel_put(&(prm->layer.front), x, y,
+				get_wall_color(prm, wall));
 		y++;
 	}
 	while (x > 0 && x < prm->width && y < prm->height)
 	{
-		my_mlx_pixel_put(&(prm->layer.front), x, y,
-			create_trgb(0, 87, 213, 59));
+		if (y > 0 && y < prm->height)
+			my_mlx_pixel_put(&(prm->layer.front), x, y, col.color_floor);
 		y++;
 	}
 }

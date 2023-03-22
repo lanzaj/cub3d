@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 15:57:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:13:07 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ int	initiate_mlx(t_param *prm, int width, int height)
 	prm->width = width;
 	prm->height = height;
 	return (0);
+}
+
+void	print_mapi(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_putendl_fd(map[i], 1);
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
