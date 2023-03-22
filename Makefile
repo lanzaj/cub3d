@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/22 18:12:00 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/22 18:46:26 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ $(NAME):	$(OBJECTS)
 clean:
 	$(RM) $(BUILD_DIR)
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(LIBMLX_DIR)
 
 fclean: clean
 	$(RM)  $(NAME)
