@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/22 18:46:26 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/23 12:13:57 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			alloc_garbage/garbage.c \
 			game/event_handle.c \
 			game/game_loop.c \
-			game/initiate_game.c \
+			game/get_color_to_print.c \
+			game/print_game.c \
 			minimap/print_minimap.c \
 			mlx_functions/mlx_print_seg.c \
 			mlx_functions/mlx_utils.c \

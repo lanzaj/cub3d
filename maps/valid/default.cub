@@ -1,10 +1,10 @@
-NO ./img/north.xpm
-SO ./img/south.xpm
-WE ./img/west.xpm
-EA ./img/east.xpm
+NO ./img/bricks.xpm
+SO ./img/wood.xpm
+WE ./img/MARBFAC2.xpm
+EA ./img/STONE3.xpm
 
-F 220,100,0
-C 225,30,0
+F 87,213,59
+C 116,208,241
 
 111111111111111111111111111111111
 100000000011000000000000111111111

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 19:05:11 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:15:21 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,12 @@ int				game_loop(t_param *prm);
 void			move_player(t_param *prm);
 void			rotate_player(t_param *prm);
 
-/*	game ->	initiate_game.c */
+/*	game -> get_color_to_print.c */
+double			pos_impact(t_param *prm, t_coord point);
+int				get_texture_px_color(t_param *prm, t_coord wall, double pos_y);
+int				get_color_px(t_param *prm, t_px_col col, int y, t_coord wall);
+
+/*	game ->	print_game.c */
 void			initiate_img_game(t_param *prm);
 void			print_game(t_param *prm);
 
@@ -140,6 +145,10 @@ void			print_map(t_param *prm);
 /*	vector_manipulation	*/
 /*	vector_manipulation -> get_distance.c */
 double			get_distance(t_coord a, t_coord b);
+int				ft_max(int a, int b);
+int				ft_min(int a, int b);
+double			ft_max_d(double a, double b);
+double			ft_min_d(double a, double b);
 
 /*	vector_manipulation -> matrix_vector_calc.c */
 t_coord			rotate(double angle, t_coord coord);
