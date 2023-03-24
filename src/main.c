@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/24 13:08:25 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/24 16:45:56 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ void	print_mapi(char **map)
 	}
 }
 
-int	main(int argc, char *argv[])
+/* int	main(int argc, char *argv[])
 {
 	t_param	prm;
 
 	if (argc != 2 && ft_printf_fd(2, "Error: wrong number of arguments\n"))
 		return (1);
 	ft_memset(&prm, 0, sizeof(t_param));
-	if ((initiate_mlx(&prm, 1280, 720) || parsing_map(&prm, argv[1])))
+	if (initiate_mlx(&prm, 1280, 720))
 		return (ft_exit(&prm, EXIT_FAILURE));
+	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
 	init_player_pos(&prm);
@@ -60,7 +61,8 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(prm.mlx, game_loop, &prm);
 	mlx_loop(prm.mlx);
 	return (0);
-}
+} */
+
 
 /*main pour afficher la minimap
 int	main(int argc, char *argv[])

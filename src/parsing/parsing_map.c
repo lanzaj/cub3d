@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/24 15:22:25 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/24 16:38:52 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,26 @@ int	check_extension(char *file_name)
 	return (1);
 }
 
-char	*get_next_nonnull_line(int fd)
+char	*get_next_nonnull_line(t_param *prm, int fd)
 {
 	char	*str;
+	static int	i = 0;
+
+	printf("appel de get_n_nn_line number: %d\n", i);
+	i++;
+	print_garbage(prm);
+	printf("\n");
 
 	str = get_next_line(fd);
-	while (str && (str[0] == '\n' || str[0] == '\0'))
+	free(str);
+	//garbage_col(prm, 0, str);
+	print_garbage(prm);
+	/* while (str && (str[0] == '\n' || str[0] == '\0'))
 	{
-		free (str);
 		str = get_next_line(fd);
-	}
+		if (str != NULL)
+			garbage_col(prm, 0, str);
+	} */
 	return (str);
 }
 
@@ -66,17 +76,18 @@ void	fd_to_card(t_param *prm, int fd, t_img *card_texture, char *card)
 {
 	char	*str;
 
-	str = get_next_nonnull_line(fd);
-	trim_backslash_n(str);
-	if (!str || ft_strncmp(str, card, 3) || ft_strlen(str) < 4
+	str = get_next_nonnull_line(prm, fd);
+	fd_to_card_error(prm, fd);
+	//trim_backslash_n(str);
+/* 	if (!str || ft_strncmp(str, card, 3) || ft_strlen(str) < 4
 		|| import_img(prm, card_texture, &str[3]))
 	{
 		ft_printf_fd(2, "Error\nInvalid %s\n", card);
-		if (str)
-			free(str);
 		fd_to_card_error(prm, fd);
-	}
-	free (str);
+	} */
+	(void)card;
+	(void)card_texture;
+	(void)str;
 }
 
 int	get_number(int *n, int i, char *str)
@@ -134,17 +145,14 @@ void	fd_to_color(t_param *prm, int fd, int *color_element, char *color)
 {
 	char	*str;
 
-	str = get_next_nonnull_line(fd);
+	str = get_next_nonnull_line(prm, fd);
 	trim_backslash_n(str);
 	if (!str || ft_strncmp(str, color, 2) || ft_strlen(str) < 7
 		|| import_color(color_element, &str[2]))
 	{
 		ft_printf_fd(2, "Error\nInvalid %scolor\n", color);
-		if (str)
-			free(str);
 		fd_to_color_error(prm, fd);
 	}
-	free (str);
 }
 
 
@@ -158,7 +166,7 @@ void	fd_to_map(t_param *prm, int fd)
 	fd_to_card(prm, fd, &(prm->map.east_texture), "EA ");
 	fd_to_color(prm, fd, &(prm->map.floor_color), "F ");
 	fd_to_color(prm, fd, &(prm->map.ceiling_color), "C ");
-	lst = fd_to_lst(fd);
+	lst = fd_to_lst(prm, fd);
 	prm->map.map = lst_to_tab(lst, fd);
 }
 

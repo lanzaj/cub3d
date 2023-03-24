@@ -6,20 +6,20 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/24 13:19:24 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/24 15:34:30 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_list	*fd_to_lst(int fd)
+t_list	*fd_to_lst(t_param *prm, int fd)
 {
 	t_list	*lst;
 	t_list	*new;
 	char	*line;
 
 	lst = NULL;
-	line = get_next_nonnull_line(fd);
+	line = get_next_nonnull_line(prm, fd);
 	while (line != NULL)
 	{
 		new = ft_lstnew(line);

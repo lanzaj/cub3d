@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/24 15:15:00 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/24 15:34:54 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int				count_max_width_of_lines(char **map);
 void			destroy_images(t_param *prm);
 
 /*	parsing	-> fd_to_map.c */
-t_list			*fd_to_lst(int fd);
+t_list			*fd_to_lst(t_param *prm, int fd);
 void			trim_backslash_n(char *str);
 char			**lst_to_tab(t_list *lst, int fd);
 
@@ -116,7 +116,7 @@ int				import_img(t_param *prm, t_img *xpm, char *path);
 
 /*	parsing -> parsing_map.c */
 void			init_player_pos(t_param *prm);
-char			*get_next_nonnull_line(int fd);
+char			*get_next_nonnull_line(t_param *prm, int fd);
 void			parsing_map(t_param *prm, char *file_name);
 
 /*	rayracing */
