@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/23 12:15:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:03:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			remove_from_garb(t_param *prm, void *ptr);
 int				key_press(int keycode, void *p);
 int				key_release(int keycode, void *p);
 int				is_valid_move(t_param *prm, t_coord pos);
+int				handle_mouse_move(int x, int y, void *param);
 
 /*	game -> game_loop.c */
 int				game_loop(t_param *prm);

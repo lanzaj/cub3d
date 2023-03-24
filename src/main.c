@@ -6,11 +6,13 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 18:13:07 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:05:27 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
+
+/*Besoin de garbage collecter la partie parsing*/
 
 int	initiate_mlx(t_param *prm, int width, int height)
 {
@@ -51,9 +53,10 @@ int	main(int argc, char *argv[])
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
 	init_player_pos(&prm);
-	mlx_hook(prm.win, 17, (1L << 0), close_win, &prm);
+	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
 	mlx_hook(prm.win, 3, 1L << 1, key_release, &prm);
+	mlx_hook(prm.win, 6, 1L << 6, handle_mouse_move, &prm);
 	mlx_loop_hook(prm.mlx, game_loop, &prm);
 	mlx_loop(prm.mlx);
 	return (0);

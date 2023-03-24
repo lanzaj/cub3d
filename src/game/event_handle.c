@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 14:16:20 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:03:44 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,24 @@ int	key_release(int keycode, void *p)
 		prm->key.left = 0;
 	return (0);
 }
-/*
-int	handle_key(int key, void *p)
+
+int	handle_mouse_move(int x, int y, void *param)
 {
 	t_param	*prm;
 
-	prm = (t_param *)p;
-	(void)prm;
-	if (key == KEY_A || key == KEY_W || key == KEY_S || key == KEY_D)
-		move_player(prm, key);
-	if (key == KEY_LEFT_ARROW || key == KEY_RIGHT_ARROW)
-		rotate_player(prm, key);
-	if (key == KEY_ESC)
-		close_win(p);
+	(void)y;
+	prm = (t_param *)param;
+	if (x < prm->width / 4)
+		prm->key.left = 1;
+	else if (x >= prm->width / 4 && x < (prm->width * 3) / 4)
+	{
+		prm->key.left = 0;
+		prm->key.right = 0;
+	}
+	else
+		prm->key.right = 1;
 	return (0);
-}*/
+}
 
 int	is_valid_move(t_param *prm, t_coord pos)
 {
