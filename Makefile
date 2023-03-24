@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/23 12:13:57 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/24 14:44:34 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,11 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			mlx_functions/mlx_print_seg.c \
 			mlx_functions/mlx_utils.c \
 			mlx_functions/mlx_color.c \
-			parsing/fd_to_map.c \
 			raytracing/find_first.c \
 			raytracing/find_wall.c \
 			raytracing/hit_a_wall.c \
+			parsing/count_map.c \
+			parsing/fd_to_map.c \
 			parsing/parsing_map.c \
 			parsing/import_img.c \
 			utils/ft_exit.c \

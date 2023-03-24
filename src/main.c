@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 18:13:07 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:08:25 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ int	initiate_mlx(t_param *prm, int width, int height)
 {
 	prm->mlx = mlx_init();
 	if (prm->mlx == NULL)
-		return (1);
+		return (ft_printf_fd(2, "Error\nInit mlx"), 1);
 	garbage_col(prm, 0, prm->mlx);
 	prm->win = mlx_new_window(prm->mlx, width, height, "Cub 3D");
 	if (prm->win == NULL)
+	{
+		mlx_destroy_display(prm->mlx);
+		ft_printf_fd(2, "Error\nCreating window");
 		return (1);
+	}
 	prm->width = width;
 	prm->height = height;
 	return (0);
@@ -45,8 +49,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2 && ft_printf_fd(2, "Error: wrong number of arguments\n"))
 		return (1);
 	ft_memset(&prm, 0, sizeof(t_param));
-	if ((initiate_mlx(&prm, 1280, 720) || parsing_map(&prm, argv[1]))
-		&& ft_printf_fd(2, "Error\n"))
+	if ((initiate_mlx(&prm, 1280, 720) || parsing_map(&prm, argv[1])))
 		return (ft_exit(&prm, EXIT_FAILURE));
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/23 12:15:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:15:00 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ void			ft_swap_seg(t_seg *seg, t_point *delt);
 int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 
 /*	parsing	*/
+/*	parsing -> count_map.c*/
+int				count_number_of_lines(char **map);
+int				count_max_width_of_lines(char **map);
+
+/*	parsing -> destroy_img.c */
+void			destroy_images(t_param *prm);
+
 /*	parsing	-> fd_to_map.c */
 t_list			*fd_to_lst(int fd);
 void			trim_backslash_n(char *str);
@@ -110,7 +117,7 @@ int				import_img(t_param *prm, t_img *xpm, char *path);
 /*	parsing -> parsing_map.c */
 void			init_player_pos(t_param *prm);
 char			*get_next_nonnull_line(int fd);
-int				parsing_map(t_param *prm, char *file_name);
+void			parsing_map(t_param *prm, char *file_name);
 
 /*	rayracing */
 /*	rayracing -> find_first.c */

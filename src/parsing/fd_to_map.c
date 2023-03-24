@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 16:16:51 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/24 13:19:24 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,3 @@ char	**lst_to_tab(t_list *lst, int fd)
 	return (map);
 }
 
-/* static char	**fd_to_map(int fd)
-{
-	t_list	*lst;
-	char	**map;
-
-	lst = fd_to_lst(fd);
-	map = lst_to_tab(lst, fd);
-	return (map);
-} */
