@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 20:07:04 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 20:57:24 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	enter_window(void *p)
 	mlx_mouse_hide(prm->mlx, prm->win);
 	return (0);
 	(void)p;
+	(void)prm;
 }
 
 int	leave_window(void *p)

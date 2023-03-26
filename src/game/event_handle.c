@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 20:03:30 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 20:57:11 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	rotate_mouse_player(t_param *prm, double speed)
 		if (prm->view_ang == 0)
 			prm->view_ang = 2 * PI;
 		prm->view_dir = rotate((double)(-PI * speed / 36000), prm->view_dir);
-		prm->screen_dir = rotate((double)(-PI * speed / 36000), prm->screen_dir);
+		prm->screen_dir = rotate((double)(-PI * speed / 36000),
+			prm->screen_dir);
 		prm->view_ang -= (double)PI * speed / 36000;
 		if (prm->view_ang == 0)
 			prm->view_ang = 2 * PI;
