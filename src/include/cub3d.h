@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/24 15:34:54 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 17:16:30 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,12 @@ void			ft_swap_seg(t_seg *seg, t_point *delt);
 int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 
 /*	parsing	*/
-/*	parsing -> count_map.c*/
+/*	parsing -> check_if_enclosed_in_walls.c */
+void			check_if_enclosed_in_walls(t_param *prm, char **map);
+
+/*	parsing -> check_map.c */
+void			check_map(t_param *prm, char **map);
+/*	parsing -> count_map.c */
 int				count_number_of_lines(char **map);
 int				count_max_width_of_lines(char **map);
 
@@ -109,7 +114,7 @@ void			destroy_images(t_param *prm);
 /*	parsing	-> fd_to_map.c */
 t_list			*fd_to_lst(t_param *prm, int fd);
 void			trim_backslash_n(char *str);
-char			**lst_to_tab(t_list *lst, int fd);
+char			**lst_to_tab(t_param *prm, t_list *lst, int fd);
 
 /*	parsing -> import_img.c */
 int				import_img(t_param *prm, t_img *xpm, char *path);

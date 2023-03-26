@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/24 16:45:56 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 14:33:08 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_mapi(char **map)
 	}
 }
 
-/* int	main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_param	prm;
 
@@ -61,7 +61,7 @@ void	print_mapi(char **map)
 	mlx_loop_hook(prm.mlx, game_loop, &prm);
 	mlx_loop(prm.mlx);
 	return (0);
-} */
+}
 
 
 /*main pour afficher la minimap

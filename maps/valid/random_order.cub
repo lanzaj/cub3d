@@ -1,9 +1,24 @@
-NO ./img/bricks.xpm
+
+
+
+
 SO ./img/wood.xpm
-WE ./img/MARBFAC2.xpm
+
 EA ./img/STONE3.xpm
 
+
+NO ./img/bricks.xpm
+
+
+
+WE ./img/MARBFAC2.xpm
+
 F 87,213,59
+
+
+
+
+
 C 116,208,241
 
 111111111111111111111111111111111

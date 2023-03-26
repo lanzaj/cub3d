@@ -6,7 +6,7 @@
 #    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/24 15:27:11 by jlanza           ###   ########.fr        #
+#    Updated: 2023/03/26 16:42:56 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			raytracing/find_first.c \
 			raytracing/find_wall.c \
 			raytracing/hit_a_wall.c \
+			parsing/check_if_enclosed_in_walls.c \
+			parsing/check_map.c \
 			parsing/count_map.c \
 			parsing/destroy_img.c \
 			parsing/fd_to_map.c \

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/24 16:38:52 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 17:41:54 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,30 @@ int	check_extension(char *file_name)
 char	*get_next_nonnull_line(t_param *prm, int fd)
 {
 	char	*str;
-	static int	i = 0;
-
-	printf("appel de get_n_nn_line number: %d\n", i);
-	i++;
-	print_garbage(prm);
-	printf("\n");
 
 	str = get_next_line(fd);
-	free(str);
-	//garbage_col(prm, 0, str);
-	print_garbage(prm);
-	/* while (str && (str[0] == '\n' || str[0] == '\0'))
+	if (str != NULL)
+		garbage_col(prm, 0, str);
+	while (str && (str[0] == '\n' || str[0] == '\0'))
 	{
 		str = get_next_line(fd);
 		if (str != NULL)
 			garbage_col(prm, 0, str);
-	} */
+	}
 	return (str);
 }
 
-int	fd_to_card_error(t_param *prm, int fd)
+int	fd_to_card_error(t_param *prm, int fd, char *msg)
 {
+	char	*str;
+
+	ft_printf_fd(2, "%s", msg);
+	str = get_next_line(fd);
+	while (str)
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
 	close(fd);
 	destroy_images(prm);
 	mlx_destroy_window(prm->mlx, prm->win);
@@ -72,22 +74,22 @@ int	fd_to_card_error(t_param *prm, int fd)
 	exit(1);
 }
 
-void	fd_to_card(t_param *prm, int fd, t_img *card_texture, char *card)
+void	fd_to_card(t_param *prm, int fd, char *str)
 {
-	char	*str;
-
-	str = get_next_nonnull_line(prm, fd);
-	fd_to_card_error(prm, fd);
-	//trim_backslash_n(str);
-/* 	if (!str || ft_strncmp(str, card, 3) || ft_strlen(str) < 4
-		|| import_img(prm, card_texture, &str[3]))
-	{
-		ft_printf_fd(2, "Error\nInvalid %s\n", card);
-		fd_to_card_error(prm, fd);
-	} */
-	(void)card;
-	(void)card_texture;
-	(void)str;
+	if (!str || ft_strlen(str) < 4)
+		fd_to_card_error(prm, fd, "Error\nInvalid line\n");
+	if (!ft_strncmp(str, "NO ", 3) && prm->map.north_texture.img == NULL
+		&& import_img(prm, &(prm->map.north_texture), &str[3]))
+		fd_to_card_error(prm, fd, "Error\nInvalid north texture\n");
+	if (!ft_strncmp(str, "SO ", 3) && prm->map.south_texture.img == NULL
+		&& import_img(prm, &(prm->map.south_texture), &str[3]))
+		fd_to_card_error(prm, fd, "Error\nInvalid south texture\n");
+	if (!ft_strncmp(str, "WE ", 3) && prm->map.west_texture.img == NULL
+		&& import_img(prm, &(prm->map.west_texture), &str[3]))
+		fd_to_card_error(prm, fd, "Error\nInvalid west texture\n");
+	if (!ft_strncmp(str, "EA ", 3) && prm->map.east_texture.img == NULL
+		&& import_img(prm, &(prm->map.east_texture), &str[3]))
+		fd_to_card_error(prm, fd, "Error\nInvalid east texture\n");
 }
 
 int	get_number(int *n, int i, char *str)
@@ -126,13 +128,26 @@ int	import_color(int *color_element, char *str)
 		return (1);
 	if (get_number(&b, i, str))
 		return (1);
+	while (ft_isdigit(str[i]))
+		i++;
+	if (str[i] != '\0')
+		return (1);
 	*color_element = create_trgb(0, (unsigned char)r, (unsigned char)g,
 			(unsigned char)b);
 	return (0);
 }
 
-static int	fd_to_color_error(t_param *prm, int fd)
+static int	fd_to_color_error(t_param *prm, int fd, char *msg)
 {
+	char	*str;
+
+	ft_printf_fd(2, "%s", msg);
+	str = get_next_line(fd);
+	while (str)
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
 	close(fd);
 	destroy_images(prm);
 	mlx_destroy_window(prm->mlx, prm->win);
@@ -141,33 +156,50 @@ static int	fd_to_color_error(t_param *prm, int fd)
 	exit(1);
 }
 
-void	fd_to_color(t_param *prm, int fd, int *color_element, char *color)
+void	fd_to_color(t_param *prm, int fd, char *str)
 {
-	char	*str;
-
-	str = get_next_nonnull_line(prm, fd);
-	trim_backslash_n(str);
-	if (!str || ft_strncmp(str, color, 2) || ft_strlen(str) < 7
-		|| import_color(color_element, &str[2]))
-	{
-		ft_printf_fd(2, "Error\nInvalid %scolor\n", color);
-		fd_to_color_error(prm, fd);
-	}
+	if (!str || ft_strlen(str) < 4)
+		fd_to_card_error(prm, fd, "Error\nInvalid line\n");
+	if (!ft_strncmp(str, "F ", 2) && prm->map.floor_color == -1
+		&& import_color(&(prm->map.floor_color), &str[2]))
+		fd_to_color_error(prm, fd, "Error\nInvalid floor color\n");
+	if (!ft_strncmp(str, "C ", 2) && prm->map.ceiling_color == -1
+		&& import_color(&(prm->map.ceiling_color), &str[2]))
+		fd_to_color_error(prm, fd, "Error\nInvalid ceiling color\n");
 }
 
+void	check_import_textures_and_colors(t_param *prm, int fd)
+{
+	if (prm->map.north_texture.img == NULL
+		|| prm->map.south_texture.img == NULL
+		|| prm->map.east_texture.img == NULL
+		|| prm->map.west_texture.img == NULL)
+		fd_to_card_error(prm, fd, "Error\nTexture missing\n");
+	if (prm->map.ceiling_color == -1
+		|| prm->map.floor_color == -1)
+		fd_to_color_error(prm, fd, "Error\nColor missing\n");
+}
 
 void	fd_to_map(t_param *prm, int fd)
 {
 	t_list	*lst;
+	char	*str;
+	int		i;
 
-	fd_to_card(prm, fd, &(prm->map.north_texture), "NO ");
-	fd_to_card(prm, fd, &(prm->map.south_texture), "SO ");
-	fd_to_card(prm, fd, &(prm->map.west_texture), "WE ");
-	fd_to_card(prm, fd, &(prm->map.east_texture), "EA ");
-	fd_to_color(prm, fd, &(prm->map.floor_color), "F ");
-	fd_to_color(prm, fd, &(prm->map.ceiling_color), "C ");
+	prm->map.ceiling_color = -1;
+	prm->map.floor_color = -1;
+	i = 0;
+	while (i < 6)
+	{
+		str = get_next_nonnull_line(prm, fd);
+		trim_backslash_n(str);
+		fd_to_card(prm, fd, str);
+		fd_to_color(prm, fd, str);
+		i++;
+	}
+	check_import_textures_and_colors(prm, fd);
 	lst = fd_to_lst(prm, fd);
-	prm->map.map = lst_to_tab(lst, fd);
+	prm->map.map = lst_to_tab(prm, lst, fd);
 }
 
 void	open_error(t_param *prm, char *msg)
@@ -192,4 +224,5 @@ void	parsing_map(t_param *prm, char *file_name)
 	close(fd);
 	prm->map.map_height = count_number_of_lines(prm->map.map);
 	prm->map.map_width = count_max_width_of_lines(prm->map.map);
+	check_map(prm, prm->map.map);
 }
