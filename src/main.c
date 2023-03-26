@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 14:33:08 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 21:23:15 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	main(int argc, char *argv[])
 	mlx_loop(prm.mlx);
 	return (0);
 }
-
 
 /*main pour afficher la minimap
 int	main(int argc, char *argv[])

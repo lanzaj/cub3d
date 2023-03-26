@@ -6,21 +6,73 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 17:41:54 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 21:57:47 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+void	get_starting_pos(t_param *prm, int *x, int *y)
+{
+	*y = 0;
+	while (prm->map.map[*y])
+	{
+		*x = 0;
+		while (prm->map.map[*y][*x])
+		{
+			if (prm->map.map[*y][*x] == 'N'
+				|| prm->map.map[*y][*x] == 'S'
+				|| prm->map.map[*y][*x] == 'E'
+				|| prm->map.map[*y][*x] == 'W')
+				return ;
+			(*x)++;
+		}
+		(*y)++;
+	}
+}
+
 void	init_player_pos(t_param *prm)
 {
-	prm->pos_player.x = 4.5;
-	prm->pos_player.y = 2.5;
-	prm->view_dir.x = 2;
-	prm->view_dir.y = 0;
-	prm->screen_dir.x = 0;
-	prm->screen_dir.y = 2;
-	prm->view_ang = 0;
+	int	x;
+	int	y;
+
+	get_starting_pos(prm, &x, &y);
+	printf("%d	%d\n", x, y);
+	prm->pos_player.x = (double)x + 0.5;
+	prm->pos_player.y = (double)y + 0.5;
+	printf("%c\n", prm->map.map[y][x]);
+	if (prm->map.map[y][x] == 'E')
+	{
+		prm->view_dir.x = 2;
+		prm->view_dir.y = 0;
+		prm->screen_dir.x = 0;
+		prm->screen_dir.y = 2;
+		prm->view_ang = 0;
+	}
+	else if (prm->map.map[y][x] == 'W')
+	{
+		prm->view_dir.x = -2;
+		prm->view_dir.y = 0;
+		prm->screen_dir.x = 0;
+		prm->screen_dir.y = -2;
+		prm->view_ang = 0;
+	}
+	else if (prm->map.map[y][x] == 'N')
+	{
+		prm->view_dir.x = 0;
+		prm->view_dir.y = -2;
+		prm->screen_dir.x = 2;
+		prm->screen_dir.y = 0;
+		prm->view_ang = 0;
+	}
+	else if (prm->map.map[y][x] == 'S')
+	{
+		prm->view_dir.x = 0;
+		prm->view_dir.y = 2;
+		prm->screen_dir.x = -2;
+		prm->screen_dir.y = 0;
+		prm->view_ang = 0;
+	}
 }
 
 int	check_extension(char *file_name)
