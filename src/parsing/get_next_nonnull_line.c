@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_img.c                                      :+:      :+:    :+:   */
+/*   get_next_nonnull_line.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 14:36:26 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/24 14:41:35 by jlanza           ###   ########.fr       */
+/*   Created: 2023/03/26 23:02:48 by jlanza            #+#    #+#             */
+/*   Updated: 2023/03/26 23:03:21 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/cub3d.h"
 
-void	destroy_images(t_param *prm)
+char	*get_next_nonnull_line(t_param *prm, int fd)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	while (i < 124 && prm->img_tab[i] != 0)
+	str = get_next_line(fd);
+	if (str != NULL)
+		garbage_col(prm, 0, str);
+	while (str && (str[0] == '\n' || str[0] == '\0'))
 	{
-		mlx_destroy_image(prm->mlx, prm->img_tab[i]);
-		i++;
+		str = get_next_line(fd);
+		if (str != NULL)
+			garbage_col(prm, 0, str);
 	}
+	return (str);
 }

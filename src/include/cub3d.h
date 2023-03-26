@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 17:16:30 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 23:13:21 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,29 +99,40 @@ void			ft_swap_seg(t_seg *seg, t_point *delt);
 int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 
 /*	parsing	*/
+/*	parsing -> check_extension.c */
+int				check_extension(char *file_name);
+
 /*	parsing -> check_if_enclosed_in_walls.c */
 void			check_if_enclosed_in_walls(t_param *prm, char **map);
 
+/*	parsing -> check_if_enclosed_in_walls.c */
+int				check_map_error(t_param *prm, char *msg);
+void			is_0_next_to_2(t_param *prm, char **map);
+
 /*	parsing -> check_map.c */
 void			check_map(t_param *prm, char **map);
+
 /*	parsing -> count_map.c */
 int				count_number_of_lines(char **map);
 int				count_max_width_of_lines(char **map);
 
-/*	parsing -> destroy_img.c */
-void			destroy_images(t_param *prm);
+/*	parsing	-> fd_to_color.c */
+void			fd_to_color(t_param *prm, int fd, char *str);
+
+/*	parsing	-> fd_to_card.c */
+void			fd_to_card(t_param *prm, int fd, char *str);
 
 /*	parsing	-> fd_to_map.c */
 t_list			*fd_to_lst(t_param *prm, int fd);
 void			trim_backslash_n(char *str);
 char			**lst_to_tab(t_param *prm, t_list *lst, int fd);
 
-/*	parsing -> import_img.c */
-int				import_img(t_param *prm, t_img *xpm, char *path);
+/*	parsing -> get_next_nonnull_line.c */
+char			*get_next_nonnull_line(t_param *prm, int fd);
 
 /*	parsing -> parsing_map.c */
+int				fd_to_map_error(t_param *prm, int fd, char *msg);
 void			init_player_pos(t_param *prm);
-char			*get_next_nonnull_line(t_param *prm, int fd);
 void			parsing_map(t_param *prm, char *file_name);
 
 /*	rayracing */
@@ -145,9 +156,15 @@ int				is_valid_coord(t_param *prm, t_coord coord);
 int				has_hit_a_wall(t_param *prm, t_coord point);
 
 /*	utils	*/
+/*	utils -> destroy_img.c */
+void			destroy_images(t_param *prm);
+
 /*	utils -> ft_exit.c */
 int				close_win(void *p);
 int				ft_exit(t_param *prm, int exit_code);
+
+/*	utils -> import_img.c */
+int				import_img(t_param *prm, t_img *xpm, char *path);
 
 /*	utils -> utils.c */
 int				get_nb_str(char **strs);
