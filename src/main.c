@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 21:23:15 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/27 15:58:05 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	main(int argc, char *argv[])
 	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
-	init_player_pos(&prm);
 	mlx_hook(prm.win, 17, (1L << 0), close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
 	mlx_hook(prm.win, 3, 1L << 1, key_release, &prm);

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:52:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/27 14:46:06 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/27 15:59:03 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	make_map_rectangular(t_param *prm, char **map)
 	}
 }
 
-static void	check_charset(t_param *prm, char **map)
+static void	check_charset(t_param *prm, char **map, char *charset, char *msg)
 {
 	int		i;
 	int		j;
@@ -56,8 +56,8 @@ static void	check_charset(t_param *prm, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (!ft_strchr("01NSEW", map[i][j]))
-				check_map_error(prm, "Error\nInvalid character\n");
+			if (!ft_strchr(charset, map[i][j]))
+				check_map_error(prm, msg);
 			j++;
 		}
 		i++;
@@ -67,7 +67,9 @@ static void	check_charset(t_param *prm, char **map)
 
 void	check_map(t_param *prm, char **map)
 {
-	check_charset(prm, map);
+	check_charset(prm, map, "01NSEW ", "Error\nInvalid character\n");
 	make_map_rectangular(prm, map);
 	check_if_enclosed_in_walls(prm, map);
+	init_player_pos(prm);
+	check_charset(prm, map, "012", "Error\nTwo starting position\n");
 }
