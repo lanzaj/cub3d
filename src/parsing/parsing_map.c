@@ -6,32 +6,13 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 23:12:01 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 23:27:42 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	fd_to_map_error(t_param *prm, int fd, char *msg)
-{
-	char	*str;
-
-	ft_printf_fd(2, "%s", msg);
-	str = get_next_line(fd);
-	while (str)
-	{
-		free(str);
-		str = get_next_line(fd);
-	}
-	close(fd);
-	destroy_images(prm);
-	mlx_destroy_window(prm->mlx, prm->win);
-	mlx_destroy_display(prm->mlx);
-	empty_garbage(prm, -1);
-	exit(1);
-}
-
-void	check_import_textures_and_colors(t_param *prm, int fd)
+static void	check_import_textures_and_colors(t_param *prm, int fd)
 {
 	if (prm->map.north_texture.img == NULL
 		|| prm->map.south_texture.img == NULL
@@ -43,29 +24,7 @@ void	check_import_textures_and_colors(t_param *prm, int fd)
 		fd_to_map_error(prm, fd, "Error\nColor missing\n");
 }
 
-void	fd_to_map(t_param *prm, int fd)
-{
-	t_list	*lst;
-	char	*str;
-	int		i;
-
-	prm->map.ceiling_color = -1;
-	prm->map.floor_color = -1;
-	i = 0;
-	while (i < 6)
-	{
-		str = get_next_nonnull_line(prm, fd);
-		trim_backslash_n(str);
-		fd_to_card(prm, fd, str);
-		fd_to_color(prm, fd, str);
-		i++;
-	}
-	check_import_textures_and_colors(prm, fd);
-	lst = fd_to_lst(prm, fd);
-	prm->map.map = lst_to_tab(prm, lst, fd);
-}
-
-void	open_error(t_param *prm, char *msg)
+static void	open_error(t_param *prm, char *msg)
 {
 	ft_printf_fd(2, "%s", msg);
 	mlx_destroy_window(prm->mlx, prm->win);

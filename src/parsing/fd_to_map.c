@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 14:23:46 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/26 23:28:47 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,3 +76,43 @@ char	**lst_to_tab(t_param *prm, t_list *lst, int fd)
 	return (map);
 }
 
+int	fd_to_map_error(t_param *prm, int fd, char *msg)
+{
+	char	*str;
+
+	ft_printf_fd(2, "%s", msg);
+	str = get_next_line(fd);
+	while (str)
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
+	close(fd);
+	destroy_images(prm);
+	mlx_destroy_window(prm->mlx, prm->win);
+	mlx_destroy_display(prm->mlx);
+	empty_garbage(prm, -1);
+	exit(1);
+}
+
+void	fd_to_map(t_param *prm, int fd)
+{
+	t_list	*lst;
+	char	*str;
+	int		i;
+
+	prm->map.ceiling_color = -1;
+	prm->map.floor_color = -1;
+	i = 0;
+	while (i < 6)
+	{
+		str = get_next_nonnull_line(prm, fd);
+		trim_backslash_n(str);
+		fd_to_card(prm, fd, str);
+		fd_to_color(prm, fd, str);
+		i++;
+	}
+	check_import_textures_and_colors(prm, fd);
+	lst = fd_to_lst(prm, fd);
+	prm->map.map = lst_to_tab(prm, lst, fd);
+}
