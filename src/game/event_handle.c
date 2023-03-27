@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 20:57:11 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/27 12:56:20 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	rotate_mouse_player(t_param *prm, double speed)
 			prm->view_ang = 2 * PI;
 		prm->view_dir = rotate((double)(-PI * speed / 36000), prm->view_dir);
 		prm->screen_dir = rotate((double)(-PI * speed / 36000),
-			prm->screen_dir);
+				prm->screen_dir);
 		prm->view_ang -= (double)PI * speed / 36000;
 		if (prm->view_ang == 0)
 			prm->view_ang = 2 * PI;
@@ -99,12 +99,16 @@ int	handle_mouse_move(int x, int y, void *param)
 
 int	is_valid_move(t_param *prm, t_coord pos)
 {
-	int	x;
-	int	y;
+	double	buf;
 
-	x = (int)pos.x;
-	y = (int)pos.y;
-	if (prm->map.map[y][x] == '0')
-		return (1);
-	return (0);
+	buf = 0.2;
+	if (prm->map.map[(int)(pos.y + buf)][(int)(pos.x + buf)] != '0')
+		return (0);
+	if (prm->map.map[(int)(pos.y + buf)][(int)(pos.x - buf)] != '0')
+		return (0);
+	if (prm->map.map[(int)(pos.y - buf)][(int)(pos.x + buf)] != '0')
+		return (0);
+	if (prm->map.map[(int)(pos.y - buf)][(int)(pos.x - buf)] != '0')
+		return (0);
+	return (1);
 }

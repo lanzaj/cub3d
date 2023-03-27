@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 21:10:40 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:03:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	game_loop(t_param *prm)
 	return (0);
 }
 
-void	move_player(t_param *prm)
+/*void	move_player(t_param *prm)
 {
 	float	speed;
 
@@ -52,6 +52,53 @@ void	move_player(t_param *prm)
 			sum_vect(prm->pos_player, prod_vect(-speed, prm->screen_dir))))
 		prm->pos_player = sum_vect(prm->pos_player,
 				prod_vect(-speed, prm->screen_dir));
+}*/
+
+t_coord	get_wanted_move(t_param *prm, float speed)
+{
+	t_coord	move;
+
+	ft_memset(&move, 0, sizeof(t_coord));
+	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
+		move = prod_vect(speed, prm->view_dir);
+	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
+		move = prod_vect(-speed, prm->view_dir);
+	if (!prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		move = prod_vect(speed, prm->screen_dir);
+	if (!prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		move = prod_vect(-speed, prm->screen_dir);
+	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		move = sum_vect(prod_vect(speed, prm->view_dir),
+				prod_vect(speed, prm->screen_dir));
+	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		move = sum_vect(prod_vect(-speed, prm->view_dir),
+				prod_vect(speed, prm->screen_dir));
+	if (!prm->key.key_w && prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		move = sum_vect(prod_vect(-speed, prm->view_dir),
+				prod_vect(-speed, prm->screen_dir));
+	if (prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		move = sum_vect(prod_vect(speed, prm->view_dir),
+				prod_vect(-speed, prm->screen_dir));
+	return (move);
+}
+
+t_coord	get_possible_move(t_param *prm, t_coord move)
+{
+	t_coord	move;
+}
+
+void	move_player(t_param *prm)
+{
+	float	speed;
+	t_coord	new_pos;
+	t_coord	move;
+
+	speed = 0.1;
+	if (prm->key.key_w != prm->key.key_s && prm->key.key_a != prm->key.key_d)
+		speed = 0.707106 * speed;
+	move = get_wanted_move(prm, speed);
+	move = get_possible_move(prm, move);
+	prm->pos_player = sum_vect(prm->pos_player, move);
 }
 
 void	rotate_player(t_param *prm)

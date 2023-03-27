@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/23 12:13:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:33:54 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	initiate_img_game(t_param *prm)
 
 void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
 {
-	col->px_wall = (prm->height * 4)
+	col->px_wall = (prm->height * 3)
 		/ (2 * ft_max_d(0.01, get_distance(prm->pos_player, wall) * cos(ang)));
 	col->px_cell = (prm->height - ft_min(col->px_wall, prm->height)) / 2;
 	col->px_total = 2 * col->px_cell + col->px_wall;
@@ -58,7 +58,7 @@ void	print_game(t_param *prm)
 	dx = 0;
 	while (x - dx > 0)
 	{
-		ang = atan((dx * 0.5773502) / 1280);
+		ang = atan((dx * 2 * 0.5773502) / prm->width);
 		wall = find_wall(prm, convert_angle(prm->view_ang + ang));
 		print_wall_slice(prm, x - dx, wall, ang);
 		dx++;
@@ -66,7 +66,7 @@ void	print_game(t_param *prm)
 	dx = 0;
 	while (x + dx < prm->width)
 	{
-		ang = atan((dx * 0.5773502) / 1280);
+		ang = atan((dx * 2 * 0.5773502) / prm->width);
 		wall = find_wall(prm, convert_angle(prm->view_ang - ang));
 		print_wall_slice(prm, x + dx, wall, ang);
 		dx++;
