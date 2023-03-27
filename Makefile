@@ -6,7 +6,7 @@
 #    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/26 23:23:12 by jlanza           ###   ########.fr        #
+#    Updated: 2023/03/27 14:31:18 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			parsing/fd_to_map.c \
 			parsing/get_next_nonnull_line.c \
 			parsing/init_player_pos.c \
+			parsing/parsing_error.c \
 			parsing/parsing_map.c \
+			parsing/parsing_utils.c \
 			utils/destroy_img.c \
 			utils/ft_exit.c \
 			utils/import_img.c \

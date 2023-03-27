@@ -6,32 +6,11 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 23:27:42 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:00:35 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static void	check_import_textures_and_colors(t_param *prm, int fd)
-{
-	if (prm->map.north_texture.img == NULL
-		|| prm->map.south_texture.img == NULL
-		|| prm->map.east_texture.img == NULL
-		|| prm->map.west_texture.img == NULL)
-		fd_to_map_error(prm, fd, "Error\nTexture missing\n");
-	if (prm->map.ceiling_color == -1
-		|| prm->map.floor_color == -1)
-		fd_to_map_error(prm, fd, "Error\nColor missing\n");
-}
-
-static void	open_error(t_param *prm, char *msg)
-{
-	ft_printf_fd(2, "%s", msg);
-	mlx_destroy_window(prm->mlx, prm->win);
-	mlx_destroy_display(prm->mlx);
-	empty_garbage(prm, -1);
-	exit(1);
-}
 
 void	parsing_map(t_param *prm, char *file_name)
 {

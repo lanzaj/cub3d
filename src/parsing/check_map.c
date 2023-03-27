@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:52:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 17:48:13 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:46:06 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,29 @@ static void	make_map_rectangular(t_param *prm, char **map)
 	}
 }
 
+static void	check_charset(t_param *prm, char **map)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (!ft_strchr("01NSEW", map[i][j]))
+				check_map_error(prm, "Error\nInvalid character\n");
+			j++;
+		}
+		i++;
+	}
+	(void)prm;
+}
+
 void	check_map(t_param *prm, char **map)
 {
+	check_charset(prm, map);
 	make_map_rectangular(prm, map);
 	check_if_enclosed_in_walls(prm, map);
 }

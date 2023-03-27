@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 23:29:03 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/27 14:30:40 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 int				check_extension(char *file_name);
 
 /*	parsing -> check_if_enclosed_in_walls_utils.c */
-int				check_map_error(t_param *prm, char *msg);
 void			is_0_next_to_2(t_param *prm, char **map);
 
 /*	parsing -> check_if_enclosed_in_walls.c */
@@ -123,9 +122,7 @@ void			fd_to_color(t_param *prm, int fd, char *str);
 void			fd_to_card(t_param *prm, int fd, char *str);
 
 /*	parsing	-> fd_to_map.c */
-int				fd_to_map_error(t_param *prm, int fd, char *msg);
 t_list			*fd_to_lst(t_param *prm, int fd);
-void			trim_backslash_n(char *str);
 char			**lst_to_tab(t_param *prm, t_list *lst, int fd);
 void			fd_to_map(t_param *prm, int fd);
 
@@ -135,8 +132,16 @@ char			*get_next_nonnull_line(t_param *prm, int fd);
 /*	parsing -> init_player_pos.c */
 void			init_player_pos(t_param *prm);
 
+/*	parsing -> parsing_error.c */
+void			open_error(t_param *prm, char *msg);
+int				check_map_error(t_param *prm, char *msg);
+int				fd_to_map_error(t_param *prm, int fd, char *msg);
+
 /*	parsing -> parsing_map.c */
 void			parsing_map(t_param *prm, char *file_name);
+
+/*	parsing -> parsing_utils.c */
+void			trim_backslash_n(char *str);
 
 /*	rayracing */
 /*	rayracing -> find_first.c */
