@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 18:52:43 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:36:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	init_player_pos(t_param *prm)
 {
 	prm->pos_player.x = 4.5;
 	prm->pos_player.y = 2.5;
-	prm->view_dir.x = 2;
+	prm->view_dir.x = 1;
 	prm->view_dir.y = 0;
 	prm->screen_dir.x = 0;
-	prm->screen_dir.y = 2;
+	prm->screen_dir.y = 1;
 	prm->view_ang = 0;
 }
 

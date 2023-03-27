@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/27 14:03:37 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:56:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,76 +29,95 @@ int	game_loop(t_param *prm)
 	return (0);
 }
 
-/*void	move_player(t_param *prm)
-{
-	float	speed;
-
-	speed = 0.1;
-	if (prm->key.key_w != prm->key.key_s && prm->key.key_a != prm->key.key_d)
-		speed = 0.707106 * speed;
-	if (prm->key.key_w && !prm->key.key_s && is_valid_move(prm,
-			sum_vect(prm->pos_player, prod_vect(speed, prm->view_dir))))
-		prm->pos_player = sum_vect(prm->pos_player,
-				prod_vect(speed, prm->view_dir));
-	if (!prm->key.key_w && prm->key.key_s && is_valid_move(prm,
-			sum_vect(prm->pos_player, prod_vect(-speed, prm->view_dir))))
-		prm->pos_player = sum_vect(prm->pos_player,
-				prod_vect(-speed, prm->view_dir));
-	if (prm->key.key_d && !prm->key.key_a && is_valid_move(prm,
-			sum_vect(prm->pos_player, prod_vect(speed, prm->screen_dir))))
-		prm->pos_player = sum_vect(prm->pos_player,
-				prod_vect(speed, prm->screen_dir));
-	if (prm->key.key_a && !prm->key.key_d && is_valid_move(prm,
-			sum_vect(prm->pos_player, prod_vect(-speed, prm->screen_dir))))
-		prm->pos_player = sum_vect(prm->pos_player,
-				prod_vect(-speed, prm->screen_dir));
-}*/
-
-t_coord	get_wanted_move(t_param *prm, float speed)
+t_coord	get_wanted_move_dir(t_param *prm)
 {
 	t_coord	move;
 
 	ft_memset(&move, 0, sizeof(t_coord));
 	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
-		move = prod_vect(speed, prm->view_dir);
+		move = prod_vect(1, prm->view_dir);
 	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
-		move = prod_vect(-speed, prm->view_dir);
+		move = prod_vect(-1, prm->view_dir);
 	if (!prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		move = prod_vect(speed, prm->screen_dir);
+		move = prod_vect(1, prm->screen_dir);
 	if (!prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		move = prod_vect(-speed, prm->screen_dir);
+		move = prod_vect(-1, prm->screen_dir);
 	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		move = sum_vect(prod_vect(speed, prm->view_dir),
-				prod_vect(speed, prm->screen_dir));
+		move = sum_vect(prod_vect(0.707106, prm->view_dir),
+				prod_vect(0.707106, prm->screen_dir));
 	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		move = sum_vect(prod_vect(-speed, prm->view_dir),
-				prod_vect(speed, prm->screen_dir));
+		move = sum_vect(prod_vect(-0.707106, prm->view_dir),
+				prod_vect(0.707106, prm->screen_dir));
 	if (!prm->key.key_w && prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		move = sum_vect(prod_vect(-speed, prm->view_dir),
-				prod_vect(-speed, prm->screen_dir));
+		move = sum_vect(prod_vect(-0.707106, prm->view_dir),
+				prod_vect(-0.707106, prm->screen_dir));
 	if (prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		move = sum_vect(prod_vect(speed, prm->view_dir),
-				prod_vect(-speed, prm->screen_dir));
+		move = sum_vect(prod_vect(0.707106, prm->view_dir),
+				prod_vect(-0.707106, prm->screen_dir));
 	return (move);
 }
 
-t_coord	get_possible_move(t_param *prm, t_coord move)
+double	angle_move(t_param *prm)
 {
-	t_coord	move;
+	double	ang;
+
+	ang = convert_angle(prm->view_ang);
+	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + PI);
+	if (!prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		ang = convert_angle(prm->view_ang - PI / 2);
+	if (!prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + PI / 2);
+	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		ang = convert_angle(prm->view_ang - PI / 4);
+	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		ang = convert_angle(prm->view_ang - (3 * PI) / 4);
+	if (!prm->key.key_w && prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + (3 * PI) / 4);
+	if (prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + PI / 4);
+	return (ang);
+}
+
+t_coord	pos_buff(t_param *prm, t_coord pos)
+{
+	double	buf;
+	t_coord	new_pos;
+	double	ang_move;
+
+	ang_move = angle_move(prm);
+	buf = 0.2;
+	new_pos = pos;
+	if (ang_move > 0 && ang_move < PI
+		&& prm->map.map[(int)(pos.y) - 1][(int)(pos.x)] != '0'
+			&& pos.y - (int)(pos.y) < buf)
+		new_pos.y = (int)(pos.y) + buf;
+	if (ang_move > PI && ang_move < 2 * PI
+		&& prm->map.map[(int)(pos.y) + 1][(int)(pos.x)] != '0'
+			&& (int)(pos.y) + 1 - pos.y < buf)
+		new_pos.y = (int)(pos.y) + 1 - buf;
+	if ((ang_move > (3 * PI) / 2 || ang_move < PI / 2)
+		&& prm->map.map[(int)(pos.y)][(int)(pos.x) + 1] != '0'
+			&& (int)(pos.x) + 1 - pos.x < buf)
+		new_pos.x = (int)(pos.x + 1) - buf;
+	if (ang_move > PI / 2 && ang_move < (3 * PI) / 2
+		&& prm->map.map[(int)(pos.y)][(int)(pos.x) - 1] != '0'
+			&& pos.x - (int)(pos.x) < buf)
+		new_pos.x = (int)pos.x + buf;
+	return (new_pos);
 }
 
 void	move_player(t_param *prm)
 {
-	float	speed;
-	t_coord	new_pos;
-	t_coord	move;
+	double	speed;
+	t_coord	move_dir;
 
 	speed = 0.1;
-	if (prm->key.key_w != prm->key.key_s && prm->key.key_a != prm->key.key_d)
-		speed = 0.707106 * speed;
-	move = get_wanted_move(prm, speed);
-	move = get_possible_move(prm, move);
-	prm->pos_player = sum_vect(prm->pos_player, move);
+	move_dir = get_wanted_move_dir(prm);
+	if (!(move_dir.x == 0 && move_dir.y == 0) && is_valid_move(prm,
+			sum_vect(prm->pos_player, prod_vect(speed, move_dir))))
+		prm->pos_player = pos_buff(prm,
+				sum_vect(prm->pos_player, prod_vect(speed, move_dir)));
 }
 
 void	rotate_player(t_param *prm)

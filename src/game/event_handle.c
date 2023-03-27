@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/27 12:56:20 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:14:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,13 @@ int	handle_mouse_move(int x, int y, void *param)
 
 int	is_valid_move(t_param *prm, t_coord pos)
 {
-	double	buf;
-
-	buf = 0.2;
-	if (prm->map.map[(int)(pos.y + buf)][(int)(pos.x + buf)] != '0')
+	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
 		return (0);
-	if (prm->map.map[(int)(pos.y + buf)][(int)(pos.x - buf)] != '0')
+	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
 		return (0);
-	if (prm->map.map[(int)(pos.y - buf)][(int)(pos.x + buf)] != '0')
+	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
 		return (0);
-	if (prm->map.map[(int)(pos.y - buf)][(int)(pos.x - buf)] != '0')
+	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
 		return (0);
 	return (1);
 }
