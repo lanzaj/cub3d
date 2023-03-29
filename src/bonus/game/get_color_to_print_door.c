@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 20:36:03 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:00:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	get_color_px_door(t_param *prm, t_px_col col, int y, t_coord wall)
 	int		y_bis;
 	double	pos_v_in_wall;
 
-	y_bis = y + col.ofset;
-	if (y_bis < col.px_cell)
+	y_bis = y + col.ofset + col.px_open ;
+	if (y + col.ofset < col.px_cell)
 		return (-1);
-	if (y_bis >= col.px_cell + col.px_wall)
+	if (y + col.ofset > col.px_cell + col.px_wall - 1)
 		return (-1);
 	pos_v_in_wall = (double)(y_bis - col.px_cell) / (double)col.px_wall;
 	return (get_texture_px_color_door(prm, wall, pos_v_in_wall));

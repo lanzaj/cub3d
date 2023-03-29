@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:17:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 18:34:14 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:02:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	find_door_to_open(t_param *prm)
 		{
 			coord_door.x = (double)(prm->tab_doors[id_door]->x) + 0.5;
 			coord_door.y = (double)(prm->tab_doors[id_door]->y) + 0.5;
-			printf("distance avec porte %d : %f\n",id_door, get_distance(coord_door, prm->pos_player));
 			if (get_distance(coord_door, prm->pos_player) < 2.5
 				&& (prm->tab_doors[id_door])->status == CLOSED)
 				(prm->tab_doors[id_door])->status = OPENING;

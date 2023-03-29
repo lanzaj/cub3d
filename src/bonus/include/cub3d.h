@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 19:27:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:59:25 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define KEY_SPACE 32
 # define KEY_ESC 0xFF1B
 # define LOOP 150
-# define TIME_CLOSE_DOOR 30
-# define SPEED_MOVE_DOOR 5
+# define TIME_CLOSE_DOOR 100
+# define SPEED_MOVE_DOOR 10
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
 # define PI 3.14159f

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:19:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 20:32:11 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:47:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_door_slice(t_param *prm, int x, t_coord door, double ang)
 	t_px_col	col;
 
 	init_col_px_door(prm, door, ang, &col);
-	y = 1;
+	y = 0;
 	while (x > 0 && x < prm->width && y < prm->height)
 	{
 		if (get_color_px_door(prm, col, y, door) != -1)

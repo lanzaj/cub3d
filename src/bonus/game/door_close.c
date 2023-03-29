@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:39:32 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 18:45:55 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:01:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 static void	change_state_opening(t_param *prm, int id)
 {
 	(prm->tab_doors[id])->percent_open += SPEED_MOVE_DOOR;
-	printf("Door %d opening - Opened at %d %%\n", id,
-		(prm->tab_doors[id])->percent_open);
 	if ((prm->tab_doors[id])->percent_open == 100)
 		(prm->tab_doors[id])->status = OPENED;
 }
@@ -24,8 +22,6 @@ static void	change_state_opening(t_param *prm, int id)
 static void	change_state_closing(t_param *prm, int id)
 {
 	(prm->tab_doors[id])->percent_open -= SPEED_MOVE_DOOR;
-	printf("Door %d closing - Opened at %d %%\n", id,
-		(prm->tab_doors[id])->percent_open);
 	if ((prm->tab_doors[id])->percent_open == 0)
 		(prm->tab_doors[id])->status = CLOSED;
 }
@@ -44,8 +40,6 @@ int	ok_to_close_door(t_param *prm, int id)
 static void	change_state_open(t_param *prm, int id)
 {
 	(prm->tab_doors[id])->count_open++;
-	printf("Door %d opened for %d\n", id,
-		(prm->tab_doors[id])->count_open);
 	if ((prm->tab_doors[id])->count_open >= TIME_CLOSE_DOOR
 		&& ok_to_close_door(prm, id))
 	{
