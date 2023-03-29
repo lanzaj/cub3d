@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/29 14:15:58 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/29 14:19:23 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,42 +18,42 @@ SOURCES_DIR = ./src/
 
 BUILD_DIR = ./build/
 
-SOURCES =	alloc_garbage/ft_alloc_gc.c \
-			alloc_garbage/garbage_2.c \
-			alloc_garbage/garbage.c \
-			game/event_handle.c \
-			game/game_loop.c \
-			game/get_color_to_print.c \
-			game/move_and_rotate.c \
-			game/print_game.c \
-			minimap/print_minimap.c \
-			mlx_functions/mlx_print_seg.c \
-			mlx_functions/mlx_utils.c \
-			mlx_functions/mlx_color.c \
-			raytracing/find_first.c \
-			raytracing/find_wall.c \
-			raytracing/hit_a_wall.c \
-			parsing/check_extension.c \
-			parsing/check_if_enclosed_in_walls_utils.c \
-			parsing/check_if_enclosed_in_walls.c \
-			parsing/check_map.c \
-			parsing/count_map.c \
-			parsing/fd_to_card.c \
-			parsing/fd_to_color.c \
-			parsing/fd_to_map.c \
-			parsing/get_next_nonnull_line.c \
-			parsing/init_player_pos.c \
-			parsing/parsing_error.c \
-			parsing/parsing_map.c \
-			parsing/parsing_utils.c \
-			utils/destroy_img.c \
-			utils/ft_exit.c \
-			utils/import_img.c \
-			utils/utils.c \
-			vector_manipulation/matrix_vector_calc.c \
-			vector_manipulation/projection_minimap.c \
-			vector_manipulation/get_distance.c \
-			main.c
+SOURCES =	mandatory/alloc_garbage/ft_alloc_gc.c \
+			mandatory/alloc_garbage/garbage_2.c \
+			mandatory/alloc_garbage/garbage.c \
+			mandatory/game/event_handle.c \
+			mandatory/game/game_loop.c \
+			mandatory/game/get_color_to_print.c \
+			mandatory/game/move_and_rotate.c \
+			mandatory/game/print_game.c \
+			mandatory/minimap/print_minimap.c \
+			mandatory/mlx_functions/mlx_print_seg.c \
+			mandatory/mlx_functions/mlx_utils.c \
+			mandatory/mlx_functions/mlx_color.c \
+			mandatory/raytracing/find_first.c \
+			mandatory/raytracing/find_wall.c \
+			mandatory/raytracing/hit_a_wall.c \
+			mandatory/parsing/check_extension.c \
+			mandatory/parsing/check_if_enclosed_in_walls_utils.c \
+			mandatory/parsing/check_if_enclosed_in_walls.c \
+			mandatory/parsing/check_map.c \
+			mandatory/parsing/count_map.c \
+			mandatory/parsing/fd_to_card.c \
+			mandatory/parsing/fd_to_color.c \
+			mandatory/parsing/fd_to_map.c \
+			mandatory/parsing/get_next_nonnull_line.c \
+			mandatory/parsing/init_player_pos.c \
+			mandatory/parsing/parsing_error.c \
+			mandatory/parsing/parsing_map.c \
+			mandatory/parsing/parsing_utils.c \
+			mandatory/utils/destroy_img.c \
+			mandatory/utils/ft_exit.c \
+			mandatory/utils/import_img.c \
+			mandatory/utils/utils.c \
+			mandatory/vector_manipulation/matrix_vector_calc.c \
+			mandatory/vector_manipulation/projection_minimap.c \
+			mandatory/vector_manipulation/get_distance.c \
+			mandatory/main.c
 			
 SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/alloc_garbage/garbage_2.c \

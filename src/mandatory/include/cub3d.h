@@ -6,15 +6,15 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 14:13:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:20:26 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../../libft/src/libft.h"
-# include "../../mlx_linux/mlx.h"
+# include "../../../libft/src/libft.h"
+# include "../../../mlx_linux/mlx.h"
 # include "cub3d_struct.h"
 # include <math.h>
 # include <sys/stat.h>
