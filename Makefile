@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/29 14:19:23 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/29 15:10:53 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SOURCES =	mandatory/alloc_garbage/ft_alloc_gc.c \
 			mandatory/vector_manipulation/projection_minimap.c \
 			mandatory/vector_manipulation/get_distance.c \
 			mandatory/main.c
-			
+
 SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/alloc_garbage/garbage_2.c \
 				bonus/alloc_garbage/garbage.c \
