@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 14:11:07 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:14:36 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	game_loop(t_param *prm)
 	move_player(prm);
 	rotate_player(prm);
 	print_game(prm);
+	print_minimap(prm, prm->width - 10 - prm->mini_map.width, 10);
 	return (0);
 }
 

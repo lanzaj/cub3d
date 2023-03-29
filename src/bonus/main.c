@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 14:13:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:16:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,28 @@ void	print_mapi(char **map)
 	}
 }
 
+int	enter_window(void *p)
+{
+	t_param	*prm;
+
+	prm = (t_param *)p;
+	prm->in_focus = 1;
+	mlx_mouse_hide(prm->mlx, prm->win);
+	return (0);
+	(void)p;
+	(void)prm;
+}
+
+int	leave_window(void *p)
+{
+	t_param	*prm;
+
+	prm = (t_param *)p;
+	prm->in_focus = 0;
+	mlx_mouse_show(prm->mlx, prm->win);
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_param	prm;
@@ -56,9 +78,13 @@ int	main(int argc, char *argv[])
 	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
+	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);
 	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
 	mlx_hook(prm.win, 3, 1L << 1, key_release, &prm);
+	mlx_hook(prm.win, 9, 1L << 21, enter_window, &prm);
+	mlx_hook(prm.win, 10, 1L << 21, leave_window, &prm);
+	mlx_hook(prm.win, 6, 1L << 6, handle_mouse_move, &prm);
 	mlx_loop_hook(prm.mlx, game_loop, &prm);
 	mlx_loop(prm.mlx);
 	return (0);
