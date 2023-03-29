@@ -6,7 +6,7 @@
 #    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/29 15:10:53 by jlanza           ###   ########.fr        #
+#    Updated: 2023/03/29 19:33:27 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/get_color_to_print.c \
 				bonus/game/move_and_rotate.c \
 				bonus/game/print_game.c \
+				bonus/game/print_sprites.c \
 				bonus/minimap/print_minimap.c \
 				bonus/mlx_functions/mlx_print_seg.c \
 				bonus/mlx_functions/mlx_utils.c \

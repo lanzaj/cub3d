@@ -6,13 +6,13 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 18:56:03 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/29 21:31:11 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
+/* void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
 {
 	col->px_wall = (prm->height * 3)
 		/ (2 * ft_max_d(0.01, get_distance(prm->pos_player, wall) * cos(ang)));
@@ -62,7 +62,7 @@ void	print_game(t_param *prm)
 		print_wall_slice(prm, x + dx, wall, ang);
 		dx++;
 	}
-}
+} */
 
 // a partir d'une coord, trouver la colonne de pixel a afficher
 /*
@@ -71,18 +71,51 @@ soit Xp et Yp les coord du player
 
 */
 
-double	get_angle_with_player_view(t_param *prm, int x_sprite, int y_sprite)
+double	get_angle_with_player_view(t_param *prm, double x_sprite, double y_sprite)
 {
-	return (atan2(-prm->pos_player.y + y_sprite, prm->pos_player.x - x_sprite)
-		- prm->view_ang);
+	return (convert_angle(convert_angle(-atan2((y_sprite - prm->pos_player.y), (x_sprite - prm->pos_player.x))) - prm->view_ang));
 }
 
-int	get_center_column(t_param *prm, int x_sprite, int y_sprite)
+int	get_center_column(t_param *prm, double x_sprite, double y_sprite)
 {
 	double	dx;
 	double	theta;
 
 	theta = get_angle_with_player_view(prm, x_sprite, y_sprite);
-	dx = (tan(theta) * prm->width) / (2 * 0.5773502);
+	//theta = convert_angle(theta);
+	//printf("%f \n", convert_angle(-atan2((prm->pos_player.y) - 3.5, prm->pos_player.x - 3.5)));
+	printf("%f %f\n", convert_angle(-atan2((prm->pos_player.y) - 3.5, prm->pos_player.x - 3.5)), theta);
+	dx = (tan(theta + prm->view_ang) * prm->width) / (2 * 0.5773502);
 	return ((int)nearbyint(dx));
 }
+
+void	print_column(t_param *prm, double x_sprite, double y_sprite)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	x = get_center_column(prm, x_sprite, y_sprite);
+	if (x < 1 || x >= prm->width)
+		return ;
+	y = 0;
+	while (y < prm->height)
+	{
+		my_mlx_pixel_put(&(prm->layer.front), x, y, 0x00FFFFFF);
+		y++;
+	}
+}
+
+/* fonction qui permet de connaitre la taille d'un mur
+col->px_wall = (prm->height * 3)
+		/ (2 * ft_max_d(0.01, get_distance(prm->pos_player, wall) * cos(ang)));*/
+
+/* trouver le mur le plus proche
+wall = find_wall(prm, convert_angle(prm->view_ang + ang));*/
+
+/* recuperer la distance entre le wall et le player
+get_distance(prm->pos_player, wall)*/
+
+
+// imprimer une image dont le centre est la center column
+

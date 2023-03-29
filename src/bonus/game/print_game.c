@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/27 12:33:54 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:53:53 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 	t_px_col	col;
 
 	init_col_px(prm, wall, ang, &col);
-	y = 1;
+	y = 0;
 	while (x > 0 && x < prm->width && y < prm->height)
 	{
 		my_mlx_pixel_put(&(prm->layer.front), x, y,
