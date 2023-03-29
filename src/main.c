@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 13:18:36 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:33:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	enter_window(void *p)
 
 	prm = (t_param *)p;
 	prm->in_focus = 1;
-	mlx_mouse_hide(prm->mlx, prm->win);
+	//mlx_mouse_hide(prm->mlx, prm->win);
 	return (0);
 	(void)p;
 	(void)prm;
@@ -78,7 +78,6 @@ int	main(int argc, char *argv[])
 	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
-	init_player_pos(&prm);
 	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);
 	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);

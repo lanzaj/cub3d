@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player_pos.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:23:21 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 22:39:39 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/29 13:32:00 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ static void	init_east_west_player_pos(t_param *prm, int x, int y)
 {
 	if (prm->map.map[y][x] == 'E')
 	{
-		prm->view_dir.x = 2;
+		prm->view_dir.x = 1;
 		prm->view_dir.y = 0;
 		prm->screen_dir.x = 0;
-		prm->screen_dir.y = 2;
+		prm->screen_dir.y = 1;
 		prm->view_ang = 0;
 	}
 	if (prm->map.map[y][x] == 'W')
 	{
-		prm->view_dir.x = -2;
+		prm->view_dir.x = -1;
 		prm->view_dir.y = 0;
 		prm->screen_dir.x = 0;
-		prm->screen_dir.y = -2;
+		prm->screen_dir.y = -1;
 		prm->view_ang = PI;
 	}
 }
@@ -56,16 +56,16 @@ static void	init_north_south_player_pos(t_param *prm, int x, int y)
 	if (prm->map.map[y][x] == 'N')
 	{
 		prm->view_dir.x = 0;
-		prm->view_dir.y = -2;
-		prm->screen_dir.x = 2;
+		prm->view_dir.y = -1;
+		prm->screen_dir.x = 1;
 		prm->screen_dir.y = 0;
 		prm->view_ang = PI / 2;
 	}
 	if (prm->map.map[y][x] == 'S')
 	{
 		prm->view_dir.x = 0;
-		prm->view_dir.y = 2;
-		prm->screen_dir.x = -2;
+		prm->view_dir.y = 1;
+		prm->screen_dir.x = -1;
 		prm->screen_dir.y = 0;
 		prm->view_ang = -1 * PI / 2;
 	}
@@ -77,8 +77,8 @@ void	init_player_pos(t_param *prm)
 	int	y;
 
 	get_starting_pos(prm, &x, &y);
-	prm->pos_player.x = (double)x + 0.5 - 1;
-	prm->pos_player.y = (double)y + 0.5 - 1;
+	prm->pos_player.x = (double)x + 0.5;
+	prm->pos_player.y = (double)y + 0.5;
 	init_east_west_player_pos(prm, x, y);
 	init_north_south_player_pos(prm, x, y);
 	prm->map.map[y][x] = '0';
