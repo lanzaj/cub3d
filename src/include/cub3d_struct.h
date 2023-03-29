@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/27 16:29:46 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:19:37 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_param {
 	int			width;
 	int			height;
 	int			frame;
+	t_img		*img_tab[128];
 	int			in_focus;
 	t_layer		layer;
 	t_key_stat	key;

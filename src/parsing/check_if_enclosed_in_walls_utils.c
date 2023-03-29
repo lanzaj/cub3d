@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   check_if_enclosed_in_walls_utils.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 11:37:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 14:29:25 by jlanza           ###   ########.fr       */
+/*   Created: 2023/03/26 16:00:47 by jlanza            #+#    #+#             */
+/*   Updated: 2023/03/27 13:52:15 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	close_win(void *p)
+void	is_0_next_to_2(t_param *prm, char **map)
 {
-	t_param	*prm;
+	int	i;
+	int	j;
 
-	prm = (t_param *)p;
-	destroy_images(prm);
-	mlx_destroy_image(prm->mlx, prm->layer.front.img);
-	mlx_destroy_image(prm->mlx, prm->mini_map.img);
-	mlx_destroy_window(prm->mlx, prm->win);
-	mlx_destroy_display(prm->mlx);
-	ft_printf("---- Goodbye, see you latter ! ----\n");
-	return (ft_exit(prm, 0));
-}
-
-int	ft_exit(t_param *prm, int exit_code)
-{
-	empty_garbage(prm, -1);
-	exit(exit_code);
+	i = 1;
+	while (map[i + 1])
+	{
+		j = 1;
+		while (map[i][j + 1])
+		{
+			if (map[i][j] != '1' && map[i][j] != '2')
+			{
+				if (map[i - 1][j] == '2'
+					|| map[i + 1][j] == '2'
+					|| map[i][j - 1] == '2'
+					|| map[i][j + 1] == '2')
+					check_map_error(prm, "Error\nNot enclosed in walls\n");
+			}
+			j++;
+		}
+		i++;
+	}
 }

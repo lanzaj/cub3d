@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   import_img.c                                       :+:      :+:    :+:   */
+/*   count_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 16:13:17 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/22 15:40:25 by jlanza           ###   ########.fr       */
+/*   Created: 2023/03/24 12:56:32 by jlanza            #+#    #+#             */
+/*   Updated: 2023/03/24 12:57:12 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	import_img(t_param *prm, t_img *xpm, char *path)
+int	count_number_of_lines(char **map)
 {
-	xpm->img = mlx_xpm_file_to_image(prm->mlx,
-			path, &(xpm->width), &(xpm->height));
-	if (xpm->img == NULL)
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	count_max_width_of_lines(char **map)
+{
+	int		i;
+	size_t	max_len;
+
+	i = 0;
+	max_len = 0;
+	while (map[i])
 	{
-		return (1);
+		if (ft_strlen(map[i]) > max_len)
+			max_len = ft_strlen(map[i]);
+		i++;
 	}
-	xpm->addr = mlx_get_data_addr(xpm->img, &(xpm->bits_per_pixel),
-			&(xpm->line_length), &(xpm->endian));
-	return (0);
+	return (max_len);
 }

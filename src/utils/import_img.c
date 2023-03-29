@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   import_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 11:37:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/26 14:29:25 by jlanza           ###   ########.fr       */
+/*   Created: 2023/03/21 16:13:17 by jlanza            #+#    #+#             */
+/*   Updated: 2023/03/24 14:36:15 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	close_win(void *p)
+int	import_img(t_param *data, t_img *xpm, char *path)
 {
-	t_param	*prm;
+	static int	i = 0;
 
-	prm = (t_param *)p;
-	destroy_images(prm);
-	mlx_destroy_image(prm->mlx, prm->layer.front.img);
-	mlx_destroy_image(prm->mlx, prm->mini_map.img);
-	mlx_destroy_window(prm->mlx, prm->win);
-	mlx_destroy_display(prm->mlx);
-	ft_printf("---- Goodbye, see you latter ! ----\n");
-	return (ft_exit(prm, 0));
-}
-
-int	ft_exit(t_param *prm, int exit_code)
-{
-	empty_garbage(prm, -1);
-	exit(exit_code);
+	xpm->img = mlx_xpm_file_to_image(data->mlx,
+			path, &(xpm->width), &(xpm->height));
+	if (xpm->img == NULL)
+		return (1);
+	data->img_tab[i] = xpm->img;
+	i++;
+	xpm->addr = mlx_get_data_addr(xpm->img, &(xpm->bits_per_pixel),
+			&(xpm->line_length), &(xpm->endian));
+	return (0);
 }

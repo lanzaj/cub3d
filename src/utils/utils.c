@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:59:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/18 16:39:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/26 17:19:24 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	print_map(t_param *prm)
 		col = 0;
 		while (prm->map.map[row][col])
 		{
-			ft_printf("%c ", prm->map.map[row][col]);
+			ft_printf("%c", prm->map.map[row][col]);
 			col++;
 		}
 		ft_printf("\n");

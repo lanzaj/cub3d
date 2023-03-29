@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/23 12:13:57 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/27 14:31:18 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,25 @@ SOURCES =	alloc_garbage/ft_alloc_gc.c \
 			mlx_functions/mlx_print_seg.c \
 			mlx_functions/mlx_utils.c \
 			mlx_functions/mlx_color.c \
-			parsing/fd_to_map.c \
 			raytracing/find_first.c \
 			raytracing/find_wall.c \
 			raytracing/hit_a_wall.c \
+			parsing/check_extension.c \
+			parsing/check_if_enclosed_in_walls_utils.c \
+			parsing/check_if_enclosed_in_walls.c \
+			parsing/check_map.c \
+			parsing/count_map.c \
+			parsing/fd_to_card.c \
+			parsing/fd_to_color.c \
+			parsing/fd_to_map.c \
+			parsing/get_next_nonnull_line.c \
+			parsing/init_player_pos.c \
+			parsing/parsing_error.c \
 			parsing/parsing_map.c \
-			parsing/import_img.c \
+			parsing/parsing_utils.c \
+			utils/destroy_img.c \
 			utils/ft_exit.c \
+			utils/import_img.c \
 			utils/utils.c \
 			vector_manipulation/matrix_vector_calc.c \
 			vector_manipulation/projection_minimap.c \
