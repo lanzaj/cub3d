@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 18:14:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:32:11 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	print_raytracing(t_param *prm)
 	double	ray_ang;
 	int		color;
 
-	color = create_trgb(0, 255, 0, 0);
+	color = create_trgb(0, 0, 0, 255);
 	ray_ang = prm->view_ang - 30 * ((2 * PI) / 360);
 	while (ray_ang < prm->view_ang + 30 * ((2 * PI) / 360))
 	{

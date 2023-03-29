@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 13:19:37 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:18:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,22 @@ typedef enum e_bool {
 }				t_bool;
 
 typedef enum e_dir {
-	SOUTH = 2,
-	NORTH = 3,
-	EAST = 5,
-	WEST = 7
+	SOUTH = 1,
+	NORTH,
+	EAST,
+	WEST,
+	SOUTH_DOOR,
+	NORTH_DOOR,
+	EAST_DOOR,
+	WEST_DOOR
 }				t_dir;
+
+typedef enum e_door_status {
+	CLOSED = 0,
+	OPENED,
+	CLOSING,
+	OPENING
+}				t_door_status;
 
 typedef struct s_coord {
 	double	x;
@@ -35,6 +46,7 @@ typedef struct s_px_col
 	int				px_cell;
 	int				px_wall;
 	int				px_total;
+	int				px_open;
 	int				ofset;
 	int				color_cell;
 	int				color_floor;
@@ -73,6 +85,7 @@ typedef struct s_key_stat {
 	char	key_a;
 	char	key_d;
 	char	key_s;
+	char	key_space;
 }				t_key_stat;
 
 typedef struct s_garb
@@ -91,9 +104,19 @@ typedef struct s_map
 	t_img	south_texture;
 	t_img	west_texture;
 	t_img	east_texture;
+	t_img	door_texture;
 	int		floor_color;
 	int		ceiling_color;
 }					t_map;
+
+typedef struct s_door
+{
+	int				x;
+	int				y;
+	t_door_status	status;
+	int				percent_open;
+	int				count_open;
+}					t_door;
 
 typedef struct s_param {
 	void		*mlx;
@@ -112,6 +135,7 @@ typedef struct s_param {
 	double		view_ang;
 	t_garb		*garb;
 	t_img		mini_map;
+	t_door		**tab_doors;
 	int			mm_res_x;
 	int			mm_res_y;
 }				t_param;

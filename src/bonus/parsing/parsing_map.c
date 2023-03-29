@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:41:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 13:20:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:08:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	parsing_map(t_param *prm, char *file_name)
 	prm->map.map_height = count_number_of_lines(prm->map.map);
 	prm->map.map_width = count_max_width_of_lines(prm->map.map);
 	check_map(prm, prm->map.map);
+	init_doors_tab(prm);
 }

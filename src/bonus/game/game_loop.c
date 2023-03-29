@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 14:14:36 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:51:29 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	game_loop(t_param *prm)
 	update_frame(prm);
 	move_player(prm);
 	rotate_player(prm);
+	find_door_to_open(prm);
+	change_door_status(prm);
 	print_game(prm);
 	print_minimap(prm, prm->width - 10 - prm->mini_map.width, 10);
 	return (0);
@@ -89,19 +91,27 @@ t_coord	pos_buff(t_param *prm, t_coord pos)
 	buf = 0.2;
 	new_pos = pos;
 	if (ang_move > 0 && ang_move < PI
-		&& prm->map.map[(int)(pos.y) - 1][(int)(pos.x)] != '0'
+		&& (prm->map.map[(int)(pos.y) - 1][(int)(pos.x)] == '1'
+		|| (prm->map.map[(int)(pos.y) - 1][(int)(pos.x)] == 'D'
+			&& status_door(prm, (int)(pos.x), (int)(pos.y) - 1) != OPENED))
 			&& pos.y - (int)(pos.y) < buf)
 		new_pos.y = (int)(pos.y) + buf;
 	if (ang_move > PI && ang_move < 2 * PI
-		&& prm->map.map[(int)(pos.y) + 1][(int)(pos.x)] != '0'
+		&& (prm->map.map[(int)(pos.y) + 1][(int)(pos.x)] == '1'
+		|| (prm->map.map[(int)(pos.y) + 1][(int)(pos.x)] == 'D'
+			&& status_door(prm, (int)(pos.x), (int)(pos.y) + 1) != OPENED))
 			&& (int)(pos.y) + 1 - pos.y < buf)
 		new_pos.y = (int)(pos.y) + 1 - buf;
 	if ((ang_move > (3 * PI) / 2 || ang_move < PI / 2)
-		&& prm->map.map[(int)(pos.y)][(int)(pos.x) + 1] != '0'
+		&& (prm->map.map[(int)(pos.y)][(int)(pos.x) + 1] == '1'
+		|| (prm->map.map[(int)(pos.y)][(int)(pos.x) + 1] == 'D'
+			&& status_door(prm, (int)(pos.x) + 1, (int)(pos.y)) != OPENED))
 			&& (int)(pos.x) + 1 - pos.x < buf)
 		new_pos.x = (int)(pos.x + 1) - buf;
 	if (ang_move > PI / 2 && ang_move < (3 * PI) / 2
-		&& prm->map.map[(int)(pos.y)][(int)(pos.x) - 1] != '0'
+		&& (prm->map.map[(int)(pos.y)][(int)(pos.x) - 1] == '1'
+		|| (prm->map.map[(int)(pos.y)][(int)(pos.x) - 1] == 'D'
+			&& status_door(prm, (int)(pos.x) - 1, (int)(pos.y)) != OPENED))
 			&& pos.x - (int)(pos.x) < buf)
 		new_pos.x = (int)pos.x + buf;
 	return (new_pos);

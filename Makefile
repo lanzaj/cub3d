@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/29 14:19:23 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/29 19:28:24 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,16 +58,22 @@ SOURCES =	mandatory/alloc_garbage/ft_alloc_gc.c \
 SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/alloc_garbage/garbage_2.c \
 				bonus/alloc_garbage/garbage.c \
+				bonus/game/door_close.c \
+				bonus/game/door_open.c \
 				bonus/game/event_handle.c \
 				bonus/game/game_loop.c \
+				bonus/game/get_color_to_print_door.c \
 				bonus/game/get_color_to_print.c \
 				bonus/game/move_and_rotate.c \
+				bonus/game/print_door.c \
 				bonus/game/print_game.c \
 				bonus/minimap/print_minimap.c \
 				bonus/mlx_functions/mlx_print_seg.c \
 				bonus/mlx_functions/mlx_utils.c \
 				bonus/mlx_functions/mlx_color.c \
+				bonus/raytracing/find_first_wall_only.c \
 				bonus/raytracing/find_first.c \
+				bonus/raytracing/find_wall_only.c \
 				bonus/raytracing/find_wall.c \
 				bonus/raytracing/hit_a_wall.c \
 				bonus/parsing/check_extension.c \
@@ -80,6 +86,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/parsing/fd_to_map.c \
 				bonus/parsing/get_next_nonnull_line.c \
 				bonus/parsing/init_player_pos.c \
+				bonus/parsing/parsing_doors.c \
 				bonus/parsing/parsing_error.c \
 				bonus/parsing/parsing_map.c \
 				bonus/parsing/parsing_utils.c \

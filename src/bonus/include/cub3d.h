@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 14:15:17 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:27:10 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_SPACE 32
 # define KEY_ESC 0xFF1B
 # define LOOP 150
+# define TIME_CLOSE_DOOR 30
+# define SPEED_MOVE_DOOR 5
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
 # define PI 3.14159f
@@ -54,6 +57,12 @@ void			print_garbage(t_param *prm);
 void			remove_from_garb(t_param *prm, void *ptr);
 
 /*	game */
+/*	game -> door_close.c */
+void			change_door_status(t_param *prm);
+
+/*	game -> door_open.c */
+void			find_door_to_open(t_param *prm);
+
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
 int				key_release(int keycode, void *p);
@@ -66,6 +75,13 @@ t_coord			get_wanted_move_dir(t_param *prm);
 double			angle_move(t_param *prm);
 t_coord			pos_buff(t_param *prm, t_coord pos);
 
+/*	game -> get_color_to_print_door.c */
+double			pos_impact_door(t_param *prm, t_coord point);
+int				get_texture_px_color_door(t_param *prm,
+					t_coord wall, double pos_y);
+int				get_color_px_door(t_param *prm,
+					t_px_col col, int y, t_coord wall);
+
 /*	game -> get_color_to_print.c */
 double			pos_impact(t_param *prm, t_coord point);
 int				get_texture_px_color(t_param *prm, t_coord wall, double pos_y);
@@ -75,9 +91,16 @@ int				get_color_px(t_param *prm, t_px_col col, int y, t_coord wall);
 void			move_player(t_param *prm);
 void			rotate_player(t_param *prm);
 
+/*	game ->	print_door.c */
+void			init_col_px_door(t_param *prm,
+					t_coord door, double ang, t_px_col *col);
+void			print_door_slice(t_param *prm, int x,
+					t_coord door, double ang);
+
 /*	game ->	print_game.c */
 void			initiate_img_game(t_param *prm);
 void			print_game(t_param *prm);
+void			print_game_part2(t_param *prm);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */
@@ -138,6 +161,11 @@ char			*get_next_nonnull_line(t_param *prm, int fd);
 /*	parsing -> init_player_pos.c */
 void			init_player_pos(t_param *prm);
 
+/*	parsing -> parsing_doors.c */
+int				get_id_door(t_param *prm, int x, int y);
+int				init_doors_tab(t_param *prm);
+t_door_status	status_door(t_param *prm, int x, int y);
+
 /*	parsing -> parsing_error.c */
 void			open_error(t_param *prm, char *msg);
 int				check_map_error(t_param *prm, char *msg);
@@ -165,9 +193,28 @@ void			find_wall_v_part_2(t_param *prm,
 					double ray_ang, t_coord *delt_v);
 t_coord			find_wall(t_param *prm, double ray_ang);
 
+/*	rayracing -> find_first_wall_only.c */
+t_coord			find_first_h_w_only(t_param *prm, double ray_ang);
+t_coord			find_first_h_part_2_w_only(t_param *prm, double ray_ang);
+t_coord			find_first_v_w_only(t_param *prm, double ray_ang);
+t_coord			find_first_v_part_2_w_only(t_param *prm, double ray_ang);
+
+/*	rayracing -> find_wall.c */
+t_coord			find_wall_h_w_only(t_param *prm,
+					double ray_ang, t_coord first_h);
+void			find_wall_h_part_2_w_only(t_param *prm,
+					double ray_ang, t_coord *delt_h);
+t_coord			find_wall_v_w_only(t_param *prm,
+					double ray_ang, t_coord first_v);
+void			find_wall_v_part_2_w_only(t_param *prm,
+					double ray_ang, t_coord *delt_v);
+t_coord			find_wall_only(t_param *prm, double ray_ang);
+
 /*	rayracing -> hit_a_wall.c */
 int				is_valid_coord(t_param *prm, t_coord coord);
+int				has_hit_a_door(t_param *prm, t_coord point);
 int				has_hit_a_wall(t_param *prm, t_coord point);
+int				has_hit_a_wall_or_door(t_param *prm, t_coord point);
 
 /*	utils	*/
 /*	utils -> destroy_img.c */

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 13:17:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:31:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	key_press(int keycode, void *p)
 		prm->key.right = 1;
 	if (keycode == KEY_LEFT_ARROW)
 		prm->key.left = 1;
+	if (keycode == KEY_SPACE)
+		prm->key.key_space = 1;
 	return (0);
 }
 
@@ -99,13 +101,10 @@ int	handle_mouse_move(int x, int y, void *param)
 
 int	is_valid_move(t_param *prm, t_coord pos)
 {
-	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
+	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] == '1')
 		return (0);
-	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
-		return (0);
-	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
-		return (0);
-	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] != '0')
+	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] == 'D'
+		&& status_door(prm, (int)(pos.x), (int)(pos.y)) != OPENED)
 		return (0);
 	return (1);
 }
