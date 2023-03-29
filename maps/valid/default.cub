@@ -1,7 +1,7 @@
-NO ./img/bricks.xpm
-SO ./img/wood.xpm
-WE ./img/MARBFAC2.xpm
-EA ./img/STONE3.xpm
+NO ./img/north.xpm
+SO ./img/south.xpm
+WE ./img/west.xpm
+EA ./img/east.xpm
 
 F 87,213,59
 C 116,208,241
