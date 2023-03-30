@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_and_rotate.c                                  :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:11:13 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 21:40:37 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:18:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	move_player(t_param *prm)
+double	angle_move(t_param *prm)
 {
-	double	speed;
-	t_coord	move_dir;
+	double	ang;
 
-	speed = 0.1;
-	move_dir = get_wanted_move_dir(prm);
-	if (!(move_dir.x == 0 && move_dir.y == 0) && is_valid_move(prm,
-			sum_vect(prm->pos_player, prod_vect(speed, move_dir))))
-		prm->pos_player = pos_buff(prm,
-				sum_vect(prm->pos_player, prod_vect(speed, move_dir)));
+	ang = convert_angle(prm->view_ang);
+	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + PI);
+	if (!prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		ang = convert_angle(prm->view_ang - PI / 2);
+	if (!prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + PI / 2);
+	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		ang = convert_angle(prm->view_ang - PI / 4);
+	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && prm->key.key_d)
+		ang = convert_angle(prm->view_ang - (3 * PI) / 4);
+	if (!prm->key.key_w && prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + (3 * PI) / 4);
+	if (prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
+		ang = convert_angle(prm->view_ang + PI / 4);
+	return (ang);
 }
 
 void	rotate_player(t_param *prm)

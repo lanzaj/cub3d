@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 17:51:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:18:35 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,90 +29,4 @@ int	game_loop(t_param *prm)
 	print_game(prm);
 	print_minimap(prm, prm->width - 10 - prm->mini_map.width, 10);
 	return (0);
-}
-
-t_coord	get_wanted_move_dir(t_param *prm)
-{
-	t_coord	move;
-
-	ft_memset(&move, 0, sizeof(t_coord));
-	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
-		move = prod_vect(1, prm->view_dir);
-	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
-		move = prod_vect(-1, prm->view_dir);
-	if (!prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		move = prod_vect(1, prm->screen_dir);
-	if (!prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		move = prod_vect(-1, prm->screen_dir);
-	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		move = sum_vect(prod_vect(0.707106, prm->view_dir),
-				prod_vect(0.707106, prm->screen_dir));
-	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		move = sum_vect(prod_vect(-0.707106, prm->view_dir),
-				prod_vect(0.707106, prm->screen_dir));
-	if (!prm->key.key_w && prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		move = sum_vect(prod_vect(-0.707106, prm->view_dir),
-				prod_vect(-0.707106, prm->screen_dir));
-	if (prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		move = sum_vect(prod_vect(0.707106, prm->view_dir),
-				prod_vect(-0.707106, prm->screen_dir));
-	return (move);
-}
-
-double	angle_move(t_param *prm)
-{
-	double	ang;
-
-	ang = convert_angle(prm->view_ang);
-	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && !prm->key.key_d)
-		ang = convert_angle(prm->view_ang + PI);
-	if (!prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		ang = convert_angle(prm->view_ang - PI / 2);
-	if (!prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		ang = convert_angle(prm->view_ang + PI / 2);
-	if (prm->key.key_w && !prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		ang = convert_angle(prm->view_ang - PI / 4);
-	if (!prm->key.key_w && prm->key.key_s && !prm->key.key_a && prm->key.key_d)
-		ang = convert_angle(prm->view_ang - (3 * PI) / 4);
-	if (!prm->key.key_w && prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		ang = convert_angle(prm->view_ang + (3 * PI) / 4);
-	if (prm->key.key_w && !prm->key.key_s && prm->key.key_a && !prm->key.key_d)
-		ang = convert_angle(prm->view_ang + PI / 4);
-	return (ang);
-}
-
-t_coord	pos_buff(t_param *prm, t_coord pos)
-{
-	double	buf;
-	t_coord	new_pos;
-	double	ang_move;
-
-	ang_move = angle_move(prm);
-	buf = 0.2;
-	new_pos = pos;
-	if (ang_move > 0 && ang_move < PI
-		&& (prm->map.map[(int)(pos.y) - 1][(int)(pos.x)] == '1'
-		|| (prm->map.map[(int)(pos.y) - 1][(int)(pos.x)] == 'D'
-			&& status_door(prm, (int)(pos.x), (int)(pos.y) - 1) != OPENED))
-			&& pos.y - (int)(pos.y) < buf)
-		new_pos.y = (int)(pos.y) + buf;
-	if (ang_move > PI && ang_move < 2 * PI
-		&& (prm->map.map[(int)(pos.y) + 1][(int)(pos.x)] == '1'
-		|| (prm->map.map[(int)(pos.y) + 1][(int)(pos.x)] == 'D'
-			&& status_door(prm, (int)(pos.x), (int)(pos.y) + 1) != OPENED))
-			&& (int)(pos.y) + 1 - pos.y < buf)
-		new_pos.y = (int)(pos.y) + 1 - buf;
-	if ((ang_move > (3 * PI) / 2 || ang_move < PI / 2)
-		&& (prm->map.map[(int)(pos.y)][(int)(pos.x) + 1] == '1'
-		|| (prm->map.map[(int)(pos.y)][(int)(pos.x) + 1] == 'D'
-			&& status_door(prm, (int)(pos.x) + 1, (int)(pos.y)) != OPENED))
-			&& (int)(pos.x) + 1 - pos.x < buf)
-		new_pos.x = (int)(pos.x + 1) - buf;
-	if (ang_move > PI / 2 && ang_move < (3 * PI) / 2
-		&& (prm->map.map[(int)(pos.y)][(int)(pos.x) - 1] == '1'
-		|| (prm->map.map[(int)(pos.y)][(int)(pos.x) - 1] == 'D'
-			&& status_door(prm, (int)(pos.x) - 1, (int)(pos.y)) != OPENED))
-			&& pos.x - (int)(pos.x) < buf)
-		new_pos.x = (int)pos.x + buf;
-	return (new_pos);
 }

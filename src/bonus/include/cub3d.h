@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 21:59:25 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:21:26 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,6 @@ int				handle_mouse_move(int x, int y, void *param);
 
 /*	game -> game_loop.c */
 int				game_loop(t_param *prm);
-t_coord			get_wanted_move_dir(t_param *prm);
-double			angle_move(t_param *prm);
-t_coord			pos_buff(t_param *prm, t_coord pos);
 
 /*	game -> get_color_to_print_door.c */
 double			pos_impact_door(t_param *prm, t_coord point);
@@ -87,11 +84,18 @@ double			pos_impact(t_param *prm, t_coord point);
 int				get_texture_px_color(t_param *prm, t_coord wall, double pos_y);
 int				get_color_px(t_param *prm, t_px_col col, int y, t_coord wall);
 
-/*	game -> move_and_rotate.c */
+/*	game -> impact_raycast.c */
+int				allocate_impact_tab(t_param *prm);
+void			update_impact_tab(t_param *prm);
+void			update_impact_tab_part2(t_param *prm);
+
+/*	game -> move.c */
 void			move_player(t_param *prm);
-void			rotate_player(t_param *prm);
+t_coord			get_wanted_move_dir(t_param *prm);
+t_coord			pos_buff(t_param *prm, t_coord pos);
 
 /*	game ->	print_door.c */
+int				find_door(t_param *prm, t_coord door);
 void			init_col_px_door(t_param *prm,
 					t_coord door, double ang, t_px_col *col);
 void			print_door_slice(t_param *prm, int x,
@@ -99,8 +103,14 @@ void			print_door_slice(t_param *prm, int x,
 
 /*	game ->	print_game.c */
 void			initiate_img_game(t_param *prm);
+void			init_col_px(t_param *prm, t_coord wall,
+					double ang, t_px_col *col);
+void			print_wall_slice(t_param *prm, int x, t_coord wall, double ang);
 void			print_game(t_param *prm);
-void			print_game_part2(t_param *prm);
+
+/*	game ->	rotate.c */
+double			angle_move(t_param *prm);
+void			rotate_player(t_param *prm);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */
@@ -215,6 +225,7 @@ int				is_valid_coord(t_param *prm, t_coord coord);
 int				has_hit_a_door(t_param *prm, t_coord point);
 int				has_hit_a_wall(t_param *prm, t_coord point);
 int				has_hit_a_wall_or_door(t_param *prm, t_coord point);
+t_bool			is_a_door(t_param *prm, t_coord point);
 
 /*	utils	*/
 /*	utils -> destroy_img.c */
@@ -223,6 +234,7 @@ void			destroy_images(t_param *prm);
 /*	utils -> ft_exit.c */
 int				close_win(void *p);
 int				ft_exit(t_param *prm, int exit_code);
+int				ft_exit_error(t_param *prm, int exit_code);
 
 /*	utils -> import_img.c */
 int				import_img(t_param *prm, t_img *xpm, char *path);

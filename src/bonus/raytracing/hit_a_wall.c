@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:26:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 18:58:49 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:53:44 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ int	is_valid_coord(t_param *prm, t_coord coord)
 	return (1);
 }
 
+int	has_hit_a_door(t_param *prm, t_coord point)
+{
+	if (point.y == (int)point.y
+		&& prm->map.map[(int)point.y][(int)point.x] == 'D')
+		return (SOUTH_DOOR);
+	if (point.y == (int)point.y
+		&& (int)point.y - 1 >= 0
+		&& prm->map.map[(int)point.y - 1][(int)point.x] == 'D')
+		return (NORTH_DOOR);
+	if (point.x == (int)point.x
+		&& prm->map.map[(int)point.y][(int)point.x] == 'D')
+		return (EAST_DOOR);
+	if (point.x == (int)point.x
+		&& (int)point.x - 1 >= 0
+		&& prm->map.map[(int)point.y][(int)point.x - 1] == 'D')
+		return (WEST_DOOR);
+	return (0);
+}
+/*
 int	has_hit_a_door(t_param *prm, t_coord point)
 {
 	if (point.y == (int)point.y
@@ -44,7 +63,7 @@ int	has_hit_a_door(t_param *prm, t_coord point)
 		&& status_door(prm, (int)point.x - 1, (int)point.y) != OPENED)
 		return (WEST_DOOR);
 	return (0);
-}
+}*/
 
 int	has_hit_a_wall(t_param *prm, t_coord point)
 {
@@ -74,4 +93,11 @@ int	has_hit_a_wall_or_door(t_param *prm, t_coord point)
 	if (has_hit_a_door(prm, point))
 		return (has_hit_a_door(prm, point));
 	return (0);
+}
+
+t_bool	is_a_door(t_param *prm, t_coord point)
+{
+	if (has_hit_a_door(prm, point))
+		return (TRUE);
+	return (FALSE);
 }

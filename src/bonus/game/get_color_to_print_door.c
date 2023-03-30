@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 22:00:09 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:38:29 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,9 @@ int	get_texture_px_color_door(t_param *prm, t_coord wall, double pos_y)
 {
 	int		px_x;
 	int		px_y;
-	t_dir	dir;
 	t_img	*xpm;
 
-	dir = has_hit_a_wall_or_door(prm, wall);
-	if (dir == SOUTH)
-		xpm = &(prm->map.south_texture);
-	else if (dir == NORTH)
-		xpm = &(prm->map.north_texture);
-	else if (dir == EAST)
-		xpm = &(prm->map.east_texture);
-	else if (dir == WEST)
-		xpm = &(prm->map.west_texture);
-	else
-		xpm = &(prm->map.door_texture);
+	xpm = &(prm->map.door_texture);
 	px_x = (int)(pos_impact_door(prm, wall) * (double)xpm->width);
 	px_y = (int)(pos_y * (double)xpm->height);
 	if (px_x < 0 || px_x > xpm->width || px_y < 0 || px_y > xpm->height)
@@ -57,17 +46,26 @@ int	get_texture_px_color_door(t_param *prm, t_coord wall, double pos_y)
 			+ px_y * xpm->line_length)));
 }
 
-int	get_color_px_door(t_param *prm, t_px_col col, int y, t_coord wall)
+int	get_color_px_door(t_param *prm, t_px_col col, int y, t_coord door)
 {
 	int		y_bis;
 	double	pos_v_in_wall;
+	int		id_door;
 
+	id_door = find_door(prm, door);
 	y_bis = y + col.ofset + col.px_open ;
-	if (y + col.ofset < col.px_cell)
+	if (y + col.ofset < col.px_cell
+		&& prm->tab_doors[id_door]->status != CLOSED)
 		return (-1);
-	if (y + col.ofset > col.px_cell + col.px_wall - 1)
+	if (y + col.ofset < col.px_cell
+		&& prm->tab_doors[id_door]->status == CLOSED)
+		return (col.color_cell);
+	if (y + col.ofset > col.px_cell + col.px_wall - 1
+		&& prm->tab_doors[id_door]->status != CLOSED)
 		return (-1);
+	if (y + col.ofset > col.px_cell + col.px_wall - 1
+		&& prm->tab_doors[id_door]->status == CLOSED)
+		return (col.color_floor);
 	pos_v_in_wall = (double)(y_bis - col.px_cell) / (double)col.px_wall;
-	return (get_texture_px_color_door(prm, wall, pos_v_in_wall));
+	return (get_texture_px_color_door(prm, door, pos_v_in_wall));
 }
-//Besoin de gerer l'ouverture de la porte. 

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 20:18:09 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:50:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ typedef struct s_px_col
 	int				color_cell;
 	int				color_floor;
 }					t_px_col;
+
+typedef struct s_impact
+{
+	t_coord			wall_only;
+	t_coord			wall_and_door;
+	t_bool			is_door;
+	int				id_door;
+	t_door_status	status_door;
+	double			ang;
+}					t_impact;
 
 typedef struct s_point {
 	int	x;
@@ -138,6 +148,7 @@ typedef struct s_param {
 	t_door		**tab_doors;
 	int			mm_res_x;
 	int			mm_res_y;
+	t_impact	*impact;
 }				t_param;
 
 #endif

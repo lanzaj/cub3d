@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 20:18:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:58:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 
 	init_col_px(prm, wall, ang, &col);
 	y = 0;
-	while (x > 0 && x < prm->width && y < prm->height)
+	while (x >= 0 && x < prm->width && y < prm->height)
 	{
 		my_mlx_pixel_put(&(prm->layer.front), x, y,
 			get_color_px(prm, col, y, wall));
@@ -50,48 +50,26 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 
 void	print_game(t_param *prm)
 {
-	int		x;
-	t_coord	wall;
-	t_coord	wall_and_door;
-	double	ang;
-	int		dx;
+	int			x;
 
-	x = prm->width / 2;
-	dx = 0;
-	while (x - dx > 0)
+	ft_memset(prm->impact, 0, prm->width * sizeof(t_impact));
+	update_impact_tab(prm);
+	x = 0;
+	while (x < prm->width)
 	{
-		ang = atan((dx * 2 * 0.5773502) / prm->width);
-		wall_and_door = find_wall(prm, convert_angle(prm->view_ang + ang));
-		wall = find_wall_only(prm, convert_angle(prm->view_ang + ang));
-		print_wall_slice(prm, x - dx, wall, ang);
-		if (get_distance(wall_and_door, prm->pos_player)
-			< get_distance(wall, prm->pos_player))
-			print_door_slice(prm, x - dx, wall_and_door, ang);
-		dx++;
-	}
-	print_game_part2(prm);
-}
-
-void	print_game_part2(t_param *prm)
-{
-	int		x;
-	t_coord	wall;
-	t_coord	wall_and_door;
-	double	ang;
-	int		dx;
-
-	x = prm->width / 2;
-	dx = 0;
-	while (x + dx < prm->width)
-	{
-		ang = atan((dx * 2 * 0.5773502) / prm->width);
-		wall_and_door = find_wall(prm, convert_angle(prm->view_ang - ang));
-		wall = find_wall_only(prm, convert_angle(prm->view_ang - ang));
-		print_wall_slice(prm, x + dx, wall, ang);
-		if (get_distance(wall_and_door, prm->pos_player)
-			< get_distance(wall, prm->pos_player))
-			print_door_slice(prm, x + dx, wall_and_door, ang);
-		dx++;
+		if (prm->impact[x].is_door == FALSE || (prm->impact[x].is_door == TRUE
+				&& prm->impact[x].status_door == CLOSED))
+			print_wall_slice(prm, x,
+				prm->impact[x].wall_and_door, prm->impact[x].ang);
+		else
+		{
+			print_wall_slice(prm, x,
+				prm->impact[x].wall_only, prm->impact[x].ang);
+			if (prm->impact[x].status_door != OPENED)
+				print_door_slice(prm, x,
+					prm->impact[x].wall_and_door, prm->impact[x].ang);
+		}
+		x++;
 	}
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 }

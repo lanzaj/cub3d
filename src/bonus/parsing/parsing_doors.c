@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:20 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 17:59:16 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:19:11 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int	init_door(t_param *prm, int x, int y, int n_door)
 	(prm->tab_doors[n_door])->y = y;
 	return (0);
 }
-
 
 int	get_id_door(t_param *prm, int x, int y)
 {
