@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 21:31:11 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/03/30 02:03:20 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,32 @@ soit Xp et Yp les coord du player
 
 double	get_angle_with_player_view(t_param *prm, double x_sprite, double y_sprite)
 {
-	return (convert_angle(convert_angle(-atan2((y_sprite - prm->pos_player.y), (x_sprite - prm->pos_player.x))) - prm->view_ang));
+	return (convert_angle(-atan2((y_sprite - prm->pos_player.y), (x_sprite - prm->pos_player.x))));
 }
 
 int	get_center_column(t_param *prm, double x_sprite, double y_sprite)
 {
 	double	dx;
 	double	theta;
+	t_coord	wall;
 
 	theta = get_angle_with_player_view(prm, x_sprite, y_sprite);
+	wall = find_wall(prm, theta);
+	put_segment_img(&prm->mini_map, get_minimap_pos(prm, prm->pos_player, 0x00000000), get_minimap_pos(prm, wall, 0x00000000));
 	//theta = convert_angle(theta);
 	//printf("%f \n", convert_angle(-atan2((prm->pos_player.y) - 3.5, prm->pos_player.x - 3.5)));
-	printf("%f %f\n", convert_angle(-atan2((prm->pos_player.y) - 3.5, prm->pos_player.x - 3.5)), theta);
-	dx = (tan(theta + prm->view_ang) * prm->width) / (2 * 0.5773502);
-	return ((int)nearbyint(dx));
+	//printf("%f %f\n", convert_angle(-atan2((prm->pos_player.y) - 3.5, prm->pos_player.x - 3.5)), theta);
+	dx = (tan(prm->view_ang - theta) * prm->width) / (2 * 0.5773502);
+	return ((int)nearbyint(dx ));
 }
-
+//ang = atan((dx * 2 * 0.5773502) / prm->width);
 void	print_column(t_param *prm, double x_sprite, double y_sprite)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	x = get_center_column(prm, x_sprite, y_sprite);
+	x = get_center_column(prm, x_sprite, y_sprite) + (prm->width / 2);
 	if (x < 1 || x >= prm->width)
 		return ;
 	y = 0;

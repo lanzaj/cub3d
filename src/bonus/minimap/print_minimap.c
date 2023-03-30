@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/22 18:14:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:36:18 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	print_minimap(t_param *prm, int x, int y)
 		p.x++;
 	}
 	print_player(prm);
-	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, x, y);
+	(void)x;
+	(void)y;
 }
 
 void	print_player(t_param *prm)
