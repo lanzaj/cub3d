@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 14:32:11 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:01:07 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,25 @@ void	print_mini_map_grid(t_param *prm)
 void	print_minimap(t_param *prm, int x, int y)
 {
 	t_point	p;
-	int		color;
-	int		color_wall;
 
 	p.x = 0;
-	p.y = 0;
-	color = create_trgb(0, 237, 237, 237);
-	color_wall = create_trgb(0, 78, 22, 9);
 	while (p.x < prm->mini_map.width)
 	{
-		p.y = 0;
-		while (p.y < prm->mini_map.height)
+		p.y = -1;
+		while (++p.y < prm->mini_map.height)
 		{
 			if (prm->map.map[p.y / prm->mm_res_y][p.x / prm->mm_res_x] == '1'
 				&& p.x < prm->mini_map.width && p.y < prm->mini_map.height)
-				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y, color_wall);
+				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y,
+					create_trgb(0, 78, 22, 9));
+			else if (prm->map.map[p.y / prm->mm_res_y][p.x / prm->mm_res_x]
+				== 'D' && p.x < prm->mini_map.width && p.y
+					< prm->mini_map.height)
+				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y,
+					create_trgb(0, 0, 0, 255));
 			else
-				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y, color);
-			p.y++;
+				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y,
+					create_trgb(0, 237, 237, 237));
 		}
 		p.x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:26:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/30 16:53:44 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:48:54 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,29 @@ int	has_hit_a_door(t_param *prm, t_coord point)
 		return (WEST_DOOR);
 	return (0);
 }
-/*
-int	has_hit_a_door(t_param *prm, t_coord point)
+
+int	has_hit_a_closed_door(t_param *prm, t_coord point)
 {
 	if (point.y == (int)point.y
 		&& prm->map.map[(int)point.y][(int)point.x] == 'D'
-		&& status_door(prm, (int)point.x, (int)point.y) != OPENED)
+		&& status_door(prm, (int)point.x, (int)point.y) == CLOSED)
 		return (SOUTH_DOOR);
 	if (point.y == (int)point.y
 		&& (int)point.y - 1 >= 0
 		&& prm->map.map[(int)point.y - 1][(int)point.x] == 'D'
-		&& status_door(prm, (int)point.x, (int)point.y - 1) != OPENED)
+		&& status_door(prm, (int)point.x, (int)point.y - 1) == CLOSED)
 		return (NORTH_DOOR);
 	if (point.x == (int)point.x
 		&& prm->map.map[(int)point.y][(int)point.x] == 'D'
-		&& status_door(prm, (int)point.x, (int)point.y) != OPENED)
+		&& status_door(prm, (int)point.x, (int)point.y) == CLOSED)
 		return (EAST_DOOR);
 	if (point.x == (int)point.x
 		&& (int)point.x - 1 >= 0
 		&& prm->map.map[(int)point.y][(int)point.x - 1] == 'D'
-		&& status_door(prm, (int)point.x - 1, (int)point.y) != OPENED)
+		&& status_door(prm, (int)point.x - 1, (int)point.y) == CLOSED)
 		return (WEST_DOOR);
 	return (0);
-}*/
+}
 
 int	has_hit_a_wall(t_param *prm, t_coord point)
 {
@@ -83,7 +83,7 @@ int	has_hit_a_wall(t_param *prm, t_coord point)
 		&& ((int)point.x - 1 >= 0
 			&& prm->map.map[(int)point.y][(int)point.x - 1] == '1'))
 		return (WEST);
-	return (0);
+	return (has_hit_a_closed_door(prm, point));
 }
 
 int	has_hit_a_wall_or_door(t_param *prm, t_coord point)
