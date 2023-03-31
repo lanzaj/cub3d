@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 19:10:01 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 19:41:54 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ double	pos_impact(t_param *prm, t_coord point)
 		return (1 - (point.y - (double)((int)point.y)));
 	return (0);
 }
-
+/*
 void	get_correct_xpm(t_param *prm, t_dir dir, t_img	*xpm)
 {
 	if (dir == SOUTH)
@@ -58,7 +58,7 @@ void	get_correct_xpm(t_param *prm, t_dir dir, t_img	*xpm)
 	else
 		xpm = &(prm->map.door_texture);
 }
-
+*/
 int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
 {
 	int		px_x;
