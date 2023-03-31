@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/30 17:21:57 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 19:10:01 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,46 @@ double	pos_impact(t_param *prm, t_coord point)
 	if (!is_valid_coord(prm, point))
 		return (-1);
 	if (point.y == (int)point.y
-		&& (prm->map.map[(int)point.y][(int)point.x] == '1'
-		|| prm->map.map[(int)point.y][(int)point.x] == 'D'))
+		&& ft_strchr("13456789D", prm->map.map[(int)point.y][(int)point.x]))
 		return (1 - (point.x - (double)((int)point.x)));
 	if (point.y == (int)point.y && (int)point.y - 1 >= 0
-		&& (prm->map.map[(int)point.y - 1][(int)point.x] == '1'
-		|| prm->map.map[(int)point.y - 1][(int)point.x] == 'D'))
+		&& ft_strchr("13456789D", prm->map.map[(int)point.y - 1][(int)point.x]))
 		return ((point.x - (double)((int)point.x)));
 	if (point.x == (int)point.x
-		&& (prm->map.map[(int)point.y][(int)point.x] == '1'
-		|| prm->map.map[(int)point.y][(int)point.x] == 'D'))
+		&& ft_strchr("13456789D", prm->map.map[(int)point.y][(int)point.x]))
 		return (point.y - (double)((int)point.y));
 	if (point.x == (int)point.x && (int)point.x - 1 >= 0
-		&& (prm->map.map[(int)point.y][(int)point.x - 1] == '1'
-		|| prm->map.map[(int)point.y][(int)point.x - 1] == 'D'))
+		&& ft_strchr("13456789D", prm->map.map[(int)point.y][(int)point.x - 1]))
 		return (1 - (point.y - (double)((int)point.y)));
 	return (0);
+}
+
+void	get_correct_xpm(t_param *prm, t_dir dir, t_img	*xpm)
+{
+	if (dir == SOUTH)
+		xpm = &(prm->map.south_texture);
+	else if (dir == NORTH)
+		xpm = &(prm->map.north_texture);
+	else if (dir == EAST)
+		xpm = &(prm->map.east_texture);
+	else if (dir == WEST)
+		xpm = &(prm->map.west_texture);
+	else if (dir == WALL_3)
+		xpm = &(prm->map.wall3_texture);
+	else if (dir == WALL_4)
+		xpm = &(prm->map.wall4_texture);
+	else if (dir == WALL_5)
+		xpm = &(prm->map.wall5_texture);
+	else if (dir == WALL_6)
+		xpm = &(prm->map.wall6_texture);
+	else if (dir == WALL_7)
+		xpm = &(prm->map.wall7_texture);
+	else if (dir == WALL_8)
+		xpm = &(prm->map.wall8_texture);
+	else if (dir == WALL_9)
+		xpm = &(prm->map.wall9_texture);
+	else
+		xpm = &(prm->map.door_texture);
 }
 
 int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
@@ -42,7 +66,8 @@ int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
 	t_dir	dir;
 	t_img	*xpm;
 
-	dir = has_hit_a_wall_or_door(prm, wall);
+	xpm = NULL;
+	dir = get_type_of_wall(prm, wall);
 	if (dir == SOUTH)
 		xpm = &(prm->map.south_texture);
 	else if (dir == NORTH)
@@ -51,6 +76,20 @@ int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
 		xpm = &(prm->map.east_texture);
 	else if (dir == WEST)
 		xpm = &(prm->map.west_texture);
+	else if (dir == WALL_3)
+		xpm = &(prm->map.wall3_texture);
+	else if (dir == WALL_4)
+		xpm = &(prm->map.wall4_texture);
+	else if (dir == WALL_5)
+		xpm = &(prm->map.wall5_texture);
+	else if (dir == WALL_6)
+		xpm = &(prm->map.wall6_texture);
+	else if (dir == WALL_7)
+		xpm = &(prm->map.wall7_texture);
+	else if (dir == WALL_8)
+		xpm = &(prm->map.wall8_texture);
+	else if (dir == WALL_9)
+		xpm = &(prm->map.wall9_texture);
 	else
 		xpm = &(prm->map.door_texture);
 	px_x = (int)(pos_impact(prm, wall) * (double)xpm->width);

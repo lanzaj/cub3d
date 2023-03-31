@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/30 18:22:18 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/03/31 18:43:41 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/game_loop.c \
 				bonus/game/get_color_to_print_door.c \
 				bonus/game/get_color_to_print.c \
+				bonus/game/get_type_of_wall.c \
 				bonus/game/impact_raycast.c \
 				bonus/game/move.c \
 				bonus/game/print_door.c \

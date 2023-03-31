@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 17:31:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 19:08:10 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	handle_mouse_move(int x, int y, void *param)
 
 int	is_valid_move(t_param *prm, t_coord pos)
 {
-	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] == '1')
+	if (ft_strchr("13456789", prm->map.map[(int)(pos.y)][(int)(pos.x)]))
 		return (0);
 	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] == 'D'
 		&& status_door(prm, (int)(pos.x), (int)(pos.y)) != OPENED)

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 15:01:07 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 19:11:35 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ void	print_minimap(t_param *prm, int x, int y)
 {
 	t_point	p;
 
-	p.x = 0;
-	while (p.x < prm->mini_map.width)
+	p.x = -1;
+	while (++p.x < prm->mini_map.width)
 	{
 		p.y = -1;
 		while (++p.y < prm->mini_map.height)
 		{
-			if (prm->map.map[p.y / prm->mm_res_y][p.x / prm->mm_res_x] == '1'
+			if (ft_strchr("13456789",
+					prm->map.map[p.y / prm->mm_res_y][p.x / prm->mm_res_x])
 				&& p.x < prm->mini_map.width && p.y < prm->mini_map.height)
 				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y,
 					create_trgb(0, 78, 22, 9));
@@ -72,7 +73,6 @@ void	print_minimap(t_param *prm, int x, int y)
 				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y,
 					create_trgb(0, 237, 237, 237));
 		}
-		p.x++;
 	}
 	print_player(prm);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, x, y);

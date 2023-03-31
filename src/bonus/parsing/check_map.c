@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:52:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 14:37:23 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:31:17 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static void	check_charset(t_param *prm, char **map, char *charset, char *msg)
 
 void	check_map(t_param *prm, char **map)
 {
-	check_charset(prm, map, "01NSEWD ", "Error\nInvalid character\n");
+	check_charset(prm, map, "013456789NSEWD ", "Error\nInvalid character\n");
 	make_map_rectangular(prm, map);
 	check_if_enclosed_in_walls(prm, map);
 	init_player_pos(prm);
-	check_charset(prm, map, "012D", "Error\nTwo starting position\n");
+	check_charset(prm, map, "0123456789D", "Error\nTwo starting position\n");
 }

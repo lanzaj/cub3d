@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/30 18:21:26 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:43:20 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,19 @@ int				get_texture_px_color_door(t_param *prm,
 					t_coord wall, double pos_y);
 int				get_color_px_door(t_param *prm,
 					t_px_col col, int y, t_coord wall);
+t_bool			is_a_door(t_param *prm, t_coord point);;
 
 /*	game -> get_color_to_print.c */
 double			pos_impact(t_param *prm, t_coord point);
 int				get_texture_px_color(t_param *prm, t_coord wall, double pos_y);
 int				get_color_px(t_param *prm, t_px_col col, int y, t_coord wall);
+
+/*	game -> get_type_of_wall.c */
+t_dir			get_type_of_wall(t_param *prm, t_coord point);
+t_dir			get_type_of_wall_part_2(t_param *prm, t_coord point);
+t_dir			get_type_of_wall_part_3(t_param *prm, t_coord point);
+t_dir			get_type_of_wall_part_4(t_param *prm, t_coord point);
+t_dir			get_type_of_wall_part_5(t_param *prm, t_coord point);
 
 /*	game -> impact_raycast.c */
 int				allocate_impact_tab(t_param *prm);
@@ -225,7 +233,7 @@ int				is_valid_coord(t_param *prm, t_coord coord);
 int				has_hit_a_door(t_param *prm, t_coord point);
 int				has_hit_a_wall(t_param *prm, t_coord point);
 int				has_hit_a_wall_or_door(t_param *prm, t_coord point);
-t_bool			is_a_door(t_param *prm, t_coord point);
+int				has_hit_a_closed_door(t_param *prm, t_coord point);
 
 /*	utils	*/
 /*	utils -> destroy_img.c */

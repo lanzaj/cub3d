@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/30 16:38:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:42:58 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,11 @@ int	get_color_px_door(t_param *prm, t_px_col col, int y, t_coord door)
 		return (col.color_floor);
 	pos_v_in_wall = (double)(y_bis - col.px_cell) / (double)col.px_wall;
 	return (get_texture_px_color_door(prm, door, pos_v_in_wall));
+}
+
+t_bool	is_a_door(t_param *prm, t_coord point)
+{
+	if (has_hit_a_door(prm, point))
+		return (TRUE);
+	return (FALSE);
 }

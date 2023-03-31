@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/30 17:50:52 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:03:39 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef enum e_dir {
 	NORTH,
 	EAST,
 	WEST,
+	WALL_3,
+	WALL_4,
+	WALL_5,
+	WALL_6,
+	WALL_7,
+	WALL_8,
+	WALL_9,
 	SOUTH_DOOR,
 	NORTH_DOOR,
 	EAST_DOOR,
@@ -114,6 +121,13 @@ typedef struct s_map
 	t_img	south_texture;
 	t_img	west_texture;
 	t_img	east_texture;
+	t_img	wall3_texture;
+	t_img	wall4_texture;
+	t_img	wall5_texture;
+	t_img	wall6_texture;
+	t_img	wall7_texture;
+	t_img	wall8_texture;
+	t_img	wall9_texture;
 	t_img	door_texture;
 	int		floor_color;
 	int		ceiling_color;

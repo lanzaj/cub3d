@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:26:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 13:48:54 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:42:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,16 @@ int	has_hit_a_wall(t_param *prm, t_coord point)
 	if (!is_valid_coord(prm, point))
 		return (-1);
 	if (point.y == (int)point.y
-		&& prm->map.map[(int)point.y][(int)point.x] == '1')
+		&& ft_strchr("13456789", prm->map.map[(int)point.y][(int)point.x]))
 		return (SOUTH);
-	if (point.y == (int)point.y
-		&& ((int)point.y - 1 >= 0
-			&& prm->map.map[(int)point.y - 1][(int)point.x] == '1'))
+	if (point.y == (int)point.y && (int)point.y - 1 >= 0
+		&& ft_strchr("13456789", prm->map.map[(int)point.y - 1][(int)point.x]))
 		return (NORTH);
 	if (point.x == (int)point.x
-		&& prm->map.map[(int)point.y][(int)point.x] == '1')
+		&& ft_strchr("13456789", prm->map.map[(int)point.y][(int)point.x]))
 		return (EAST);
-	if (point.x == (int)point.x
-		&& ((int)point.x - 1 >= 0
-			&& prm->map.map[(int)point.y][(int)point.x - 1] == '1'))
+	if (point.x == (int)point.x && (int)point.x - 1 >= 0
+		&& ft_strchr("13456789", prm->map.map[(int)point.y][(int)point.x - 1]))
 		return (WEST);
 	return (has_hit_a_closed_door(prm, point));
 }
@@ -95,9 +93,3 @@ int	has_hit_a_wall_or_door(t_param *prm, t_coord point)
 	return (0);
 }
 
-t_bool	is_a_door(t_param *prm, t_coord point)
-{
-	if (has_hit_a_door(prm, point))
-		return (TRUE);
-	return (FALSE);
-}
