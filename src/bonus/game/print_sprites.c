@@ -6,12 +6,12 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/31 14:59:59 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/02 20:35:30 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
+/*
 void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
 {
 	col->px_wall = (prm->height * 3)
@@ -62,9 +62,9 @@ void	print_game(t_param *prm)
 		print_wall_slice(prm, x + dx, wall, ang);
 		dx++;
 	}
-}
+} */
 ///////////// get color //////////////////////
-double	pos_impact(t_param *prm, t_coord point)
+/* double	pos_impact(t_param *prm, t_coord point)
 {
 	if (!is_valid_coord(prm, point))
 		return (-1);
@@ -121,7 +121,7 @@ int	get_color_px(t_param *prm, t_px_col col, int y, t_coord wall)
 		return (col.color_floor);
 	pos_v_in_wall = (double)(y_bis - col.px_cell) / (double)col.px_wall;
 	return (get_texture_px_color(prm, wall, pos_v_in_wall));
-}
+} */
 
 
 // a partir d'une coord, trouver la colonne de pixel a afficher
@@ -129,37 +129,47 @@ int	get_color_px(t_param *prm, t_px_col col, int y, t_coord wall)
 soit Xp et Yp les coord du player
 
 */
-void	pixel_put_front_layer(t_param *prm, t_point pixel)
+void	pixel_put_img(t_img *img, t_point pixel)
 {
 	char	*dst;
 
-	if (!(pixel.x < 0 || pixel.x >= (*prm).layer.front.width || pixel.y < 0
-			|| pixel.y >= (*prm).layer.front.height
+	if (!(pixel.x < 0 || pixel.x >= img->width || pixel.y < 0
+			|| pixel.y >= img->height
 			|| pixel.color == -1 || get_t(pixel.color) == 255))
 	{
-		dst = (*prm).layer.front.addr
-			+ (pixel.y * (*prm).layer.front.line_length
-				+ pixel.x * ((*prm).layer.front.bits_per_pixel / 8));
+		dst = img->addr + (pixel.y * img->line_length
+				+ pixel.x * (img->bits_per_pixel / 8));
 		*(unsigned int *)dst = pixel.color;
 	}
 }
 
-// besoin de coord, besoin de couleur, de distance et de deplacement vertical
-void	put_img_to_front(t_param *prm, t_img *xpm, t_point screen, double scale)
+/* return la couleur d'un pixel a une position*/
+int get_color(t_img *xpm, int x, int y)
+{
+	if (x < 0 || x >= xpm->width || y < 0 || y >= xpm->height)
+		return (-1);
+	return (*(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8) + y * xpm->line_length)));
+}
+
+void	put_img_to_front(t_param *prm, t_img *xpm, t_coord_int screen, double scale)
 {
 	t_point	img;
+	int		x;
+	int		y;
 
-	img.y = screen.y;
-	while (img.y < xpm->height + screen.y)
+	y = screen.y;
+	while (y * scale < xpm->height + screen.y)
 	{
-		img.x = screen.x;
-		while (img.x < xpm->width + screen.x)
+		x = screen.x;
+		while (x * scale < xpm->width + screen.x)
 		{
-			img.color = get_color(xpm, img.x - screen.x, img.y - screen.y);
-			pixel_put_front_layer(prm, img);
-			img.x++;
+			img.color = get_color(xpm, (int)((x - screen.x) * scale), (int)((y - screen.y) * scale));
+			img.x = x * scale;
+			img.y = y * scale;
+			pixel_put_img(&(prm->layer.front), img);
+			x++;
 		}
-		img.y++;
+		y++;
 	}
 }
 
@@ -178,30 +188,21 @@ int	get_center_column(t_param *prm, double x_sprite, double y_sprite)
 	wall = find_wall(prm, theta);
 	put_segment_img(&prm->mini_map, get_minimap_pos(prm, prm->pos_player, 0x00000000), get_minimap_pos(prm, wall, 0x00000000));
 	dx = (tan(convert_angle(prm->view_ang - theta)) * prm->width) / (2 * 0.5773502);
-	printf("\r%f", convert_angle(prm->view_ang - theta - PI / 2));
 	if (convert_angle(prm->view_ang - theta - PI / 2) < PI)
-	{
-		printf("\r%f toto", convert_angle(prm->view_ang - theta - PI / 2));
 		dx = -prm->width;
-	}
 	return ((int)nearbyint(dx));
 }
-//ang = atan((dx * 2 * 0.5773502) / prm->width);
+
 void	print_column(t_param *prm, double x_sprite, double y_sprite)
 {
-	int	x;
-	int	y;
+	t_coord_int	screen;
 
-	x = 0;
-	x = get_center_column(prm, x_sprite, y_sprite) + (prm->width / 2);
-	if (x < 0 || x >= prm->width)
+	screen.x = 0;
+	screen.x = get_center_column(prm, x_sprite, y_sprite) + (prm->width / 2);
+	if (screen.x < 0 || screen.x >= prm->width)
 		return ;
-	y = 0;
-	while (y < prm->height)
-	{
-		my_mlx_pixel_put(&(prm->layer.front), x, y, 0x00FFFFFF);
-		y++;
-	}
+	screen.y = prm->height / 2;
+	put_img_to_front(prm, &prm->map.east_texture, screen, 1);
 }
 
 /* fonction qui permet de connaitre la taille d'un mur

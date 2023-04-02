@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 19:53:53 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/02 20:34:15 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	initiate_img_game(t_param *prm)
 {
 	prm->layer.front.img = mlx_new_image(prm->mlx, prm->width,
 			prm->height);
+	prm->layer.front.width = prm->width;
+	prm->layer.front.height = prm->height;
 	prm->layer.front.addr = mlx_get_data_addr(prm->layer.front.img,
 			&(prm->layer.front.bits_per_pixel), &(prm->layer.front.line_length),
 			&(prm->layer.front.endian));
@@ -71,5 +73,5 @@ void	print_game(t_param *prm)
 		print_wall_slice(prm, x + dx, wall, ang);
 		dx++;
 	}
-	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+	//mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 }
