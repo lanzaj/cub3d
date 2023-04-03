@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/03 16:53:57 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 00:38:34 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,19 @@ static void	check_import_textures_and_colors(t_param *prm, int fd)
 		|| prm->map.south_texture.img == NULL
 		|| prm->map.east_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
-/* 		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
-		|| prm->map.west_texture.img == NULL */
+		
+		|| prm->map.front1_texture.img == NULL
+		|| prm->map.front2_texture.img == NULL
+		|| prm->map.front3_texture.img == NULL
+		|| prm->map.front4_texture.img == NULL
+		|| prm->map.attack1_texture.img == NULL
+		|| prm->map.attack2_texture.img == NULL
+		|| prm->map.attack3_texture.img == NULL
+		|| prm->map.die1_texture.img == NULL
+		|| prm->map.die2_texture.img == NULL
+		|| prm->map.die3_texture.img == NULL
+		|| prm->map.barrel_texture.img == NULL
+		|| prm->map.cables_texture.img == NULL
 		|| prm->map.wall3_texture.img == NULL
 		|| prm->map.wall4_texture.img == NULL
 		|| prm->map.wall5_texture.img == NULL
