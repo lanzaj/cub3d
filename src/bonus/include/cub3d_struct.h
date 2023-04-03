@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/31 18:03:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:36:42 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ typedef struct s_coord {
 	double	x;
 	double	y;
 }				t_coord;
+
+typedef struct s_coord_int {
+	int	x;
+	int	y;
+}				t_coord_int;
 
 typedef struct s_px_col
 {
@@ -162,6 +167,7 @@ typedef struct s_param {
 	t_door		**tab_doors;
 	int			mm_res_x;
 	int			mm_res_y;
+	t_coord		wall[1280];
 	t_impact	*impact;
 }				t_param;
 

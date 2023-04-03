@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/31 18:43:20 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:42:20 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,9 @@ void			print_game(t_param *prm);
 /*	game ->	rotate.c */
 double			angle_move(t_param *prm);
 void			rotate_player(t_param *prm);
+
+/*	game ->	print_game.c */
+void			print_sprite(t_param *prm, t_coord sprite);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/30 18:18:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:40:21 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ int	game_loop(t_param *prm)
 	find_door_to_open(prm);
 	change_door_status(prm);
 	print_game(prm);
+
+	t_coord	sprite;
+	sprite.x = 4.5;
+	sprite.y = 4.5;
+	print_sprite(prm, sprite);
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	print_minimap(prm, prm->width - 10 - prm->mini_map.width, 10);
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, prm->width - 10 - prm->mini_map.width, 10);
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/03/31 20:02:20 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/03 16:27:37 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SOURCES =	mandatory/alloc_garbage/ft_alloc_gc.c \
 			mandatory/vector_manipulation/projection_minimap.c \
 			mandatory/vector_manipulation/get_distance.c \
 			mandatory/main.c
-			
+
 SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/alloc_garbage/garbage_2.c \
 				bonus/alloc_garbage/garbage.c \
@@ -69,6 +69,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/move.c \
 				bonus/game/print_door.c \
 				bonus/game/print_game.c \
+				bonus/game/print_sprites.c \
 				bonus/game/rotate.c \
 				bonus/minimap/print_minimap.c \
 				bonus/mlx_functions/mlx_print_seg.c \
