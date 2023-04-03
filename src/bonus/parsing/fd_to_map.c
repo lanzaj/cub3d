@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/03 16:43:21 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 16:53:57 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	fd_to_map(t_param *prm, int fd)
 	prm->map.ceiling_color = -1;
 	prm->map.floor_color = -1;
 	i = 0;
-	while (i < 24)
+	while (i < 26)
 	{
 		str = get_next_nonnull_line(prm, fd);
 		if (str == NULL)

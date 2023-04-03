@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/03 03:00:36 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 20:50:00 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,27 @@ void	pixel_put_img(t_img *img, t_point pixel)
 	}
 }
 
+int	check_distance_x(t_param *prm, t_coord sprite, t_coord_int i)
+{
+	if (prm->impact[i.x].is_door && prm->impact[i.x].status_door != CLOSED)
+		return (get_distance(sprite, prm->pos_player) < get_distance(prm->pos_player, prm->impact[i.x].wall_only) && get_distance(sprite, prm->pos_player) > 0.3);
+	else
+		return (get_distance(sprite, prm->pos_player) < get_distance(prm->pos_player, prm->impact[i.x].wall_and_door) && get_distance(sprite, prm->pos_player) > 0.3);
+}
+
+int	check_distance_y(t_param *prm, t_coord_int i)
+{
+	t_px_col	col;
+
+	init_col_px(prm, prm->impact[i.x].wall_and_door, prm->impact[i.x].ang, &col);
+	if (prm->impact[i.x].is_door && (prm->impact[i.x].status_door == OPENING || prm->impact[i.x].status_door == CLOSING))
+	{
+		return ((col.px_wall * (100 - prm->tab_doors[find_door(prm, prm->impact[i.x].wall_and_door)]->percent_open)) / 100 - col.ofset + col.px_cell < i.y);
+	}
+	else
+		return (1);
+}
+
 void	put_img_to_front(t_param *prm, t_img *xpm, int	dx, t_coord sprite)
 {
 	t_point		pixel;
@@ -55,12 +76,12 @@ void	put_img_to_front(t_param *prm, t_img *xpm, int	dx, t_coord sprite)
 	start.x = dx - (col.px_wall / 2);
 	start.y = col.px_cell;
 	i.x = start.x;
-		if (i.x < 0)
-			i.x = 0;
+	if (i.x < 0)
+		i.x = 0;
 	while (i.x < col.px_wall + start.x && i.x >= 0 && i.x < prm->width)
 	{
 		i.y = start.y;
-		if (get_distance(sprite, prm->pos_player) < get_distance(prm->pos_player, prm->wall[i.x]) && get_distance(sprite, prm->pos_player) > 0.3)
+		if (check_distance_x(prm, sprite, i))
 		{
 			while (i.y < col.px_wall + start.y && i.y >= 0 && i.y < prm->height)
 			{
@@ -68,7 +89,8 @@ void	put_img_to_front(t_param *prm, t_img *xpm, int	dx, t_coord sprite)
 					(i.y - start.y + (col.ofset)) * xpm->height / (col.px_wall));
 				pixel.x = i.x;
 				pixel.y = i.y;
-				pixel_put_img(&(prm->layer.front), pixel);
+				if (check_distance_y(prm, i))
+					pixel_put_img(&(prm->layer.front), pixel);
 				i.y++;
 			}
 		}

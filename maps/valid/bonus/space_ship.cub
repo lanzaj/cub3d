@@ -1,7 +1,8 @@
-NO ./img/LAB_1A.xpm
-SO ./img/LAB_2A.xpm
-WE ./img/LAB_3A.xpm
-EA ./img/LAB_3B.xpm
+NO ./img/TECH_0A_dark.xpm
+SO ./img/TECH_0A_dark.xpm
+WE ./img/TECH_0A.xpm
+EA ./img/TECH_0A.xpm
+
 DO ./img/DOOR_2C.xpm
 W3 ./img/CONSOLE_1A.xpm
 W4 ./img/VENT_1B.xpm
@@ -11,11 +12,27 @@ W7 ./img/LIGHT_1B.xpm
 W8 ./img/SUPPORT_1D.xpm
 W9 ./img/PIPES_2A.xpm
 
-F 50,50,50
+F1 ./img/front1.xpm
+F2 ./img/front2.xpm
+F3 ./img/front3.xpm
+F4 ./img/front4.xpm
+
+A1 ./img/attack.xpm
+A2 ./img/attack.xpm
+A3 ./img/attack.xpm
+
+D1 ./img/die1.xpm
+D2 ./img/die2.xpm
+D3 ./img/die3.xpm
+
+BA ./img/BARREL.xpm
+CA ./img/CABLES.xpm
+
+F 55,50,50
 C 18,18,18
 
 111111111111151111111
-1110101111140000W0001
+1110101111140000S0001
 110000190111000000001
 110700D0000D001131001
 100000100001011111001

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_to_print_door.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 18:42:58 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:46:49 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_texture_px_color_door(t_param *prm, t_coord wall, double pos_y)
 	xpm = &(prm->map.door_texture);
 	px_x = (int)(pos_impact_door(prm, wall) * (double)xpm->width);
 	px_y = (int)(pos_y * (double)xpm->height);
-	if (px_x < 0 || px_x > xpm->width || px_y < 0 || px_y > xpm->height)
+	if (px_x < 0 || px_x >= xpm->width || px_y < 0 || px_y >= xpm->height)
 		return (-1);
 	return (*(int *)(xpm->addr + (px_x * (xpm->bits_per_pixel / 8)
 			+ px_y * xpm->line_length)));
@@ -53,7 +53,7 @@ int	get_color_px_door(t_param *prm, t_px_col col, int y, t_coord door)
 	int		id_door;
 
 	id_door = find_door(prm, door);
-	y_bis = y + col.ofset + col.px_open ;
+	y_bis = y + col.ofset + col.px_open;
 	if (y + col.ofset < col.px_cell
 		&& prm->tab_doors[id_door]->status != CLOSED)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/03 16:36:42 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 18:19:03 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,6 @@ typedef struct s_param {
 	t_door		**tab_doors;
 	int			mm_res_x;
 	int			mm_res_y;
-	t_coord		wall[1280];
 	t_impact	*impact;
 }				t_param;
 
