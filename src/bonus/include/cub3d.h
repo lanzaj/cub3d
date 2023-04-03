@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/29 19:37:09 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 02:53:23 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void			initiate_img_game(t_param *prm);
 void			print_game(t_param *prm);
 
 /*	game ->	print_game.c */
-void			print_column(t_param *prm, double x_sprite, double y_sprite);
+void			print_sprite(t_param *prm, t_coord sprite);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */
