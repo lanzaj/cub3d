@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/27 15:07:59 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:29:49 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,17 @@ static void	check_import_textures_and_colors(t_param *prm, int fd)
 		|| prm->map.south_texture.img == NULL
 		|| prm->map.east_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
+/* 		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.west_texture.img == NULL */
 		|| prm->map.ceiling_color == -1
 		|| prm->map.floor_color == -1)
 		fd_to_map_error(prm, fd, "Error\nDuplicate info or info missing\n");
@@ -78,7 +89,7 @@ void	fd_to_map(t_param *prm, int fd)
 	prm->map.ceiling_color = -1;
 	prm->map.floor_color = -1;
 	i = 0;
-	while (i < 6)
+	while (i < 16)
 	{
 		str = get_next_nonnull_line(prm, fd);
 		if (str == NULL)

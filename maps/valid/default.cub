@@ -1,10 +1,26 @@
-NO ./img/north.xpm
-SO ./img/south.xpm
-WE ./img/west.xpm
-EA ./img/east.xpm
+NO ./img/TECH_0B.xpm
+SO ./img/TECH_0B.xpm
+WE ./img/TECH_0A.xpm
+EA ./img/TECH_OA.xpm
 
-F 87,213,59
-C 116,208,241
+F1 ./img/front1.xpm
+F2 ./img/front2.xpm
+F3 ./img/front3.xpm
+F4 ./img/front4.xpm
+
+A1 ./img/attack1.xpm
+A2 ./img/attack2.xpm
+A3 ./img/attack3.xpm
+
+D1 ./img/die1.xpm
+D2 ./img/die2.xpm
+D3 ./img/die3.xpm
+
+B ./img/BARREL.xpm
+C ./img/CABLES_1.xpm
+
+F 25,25,27
+C 18,18,18
 
 111111111111111111111111111111111
 100000000011000000000000111111111
