@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/02 23:01:28 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 02:18:31 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,19 +158,25 @@ void	put_img_to_front(t_param *prm, t_img *xpm, t_coord_int screen, t_coord spri
 	init_col_px_sprite(prm, sprite, &col);
 	start.x = screen.x - (col.px_wall / 2);
 	start.y = col.px_cell + screen.y;
-	i.y = start.y;
-	while (i.y < col.px_wall + start.y)
+	i.x = start.x;
+		if (i.x < 0)
+			i.x = 0;
+	while (i.x < col.px_wall + start.x && i.x >= 0 && i.x < prm->width)
 	{
-		i.x = start.x;
-		while (i.x < col.px_wall + start.x)
+		i.y = start.y;
+		if (get_distance(sprite, prm->pos_player) < get_distance(prm->pos_player, prm->wall[i.x]))
 		{
-			pixel.color = get_color(xpm, (i.x - start.x) * xpm->width / (col.px_wall) , (i.y - start.y) * xpm->height / (col.px_cell));
-			pixel.x = i.x;
-			pixel.y = i.y;
-			pixel_put_img(&(prm->layer.front), pixel);
-			i.x++;
+			while (i.y < col.px_wall + start.y && i.y >= 0 && i.y < prm->height)
+			{
+				pixel.color = get_color(xpm, (i.x - start.x) * xpm->width / (col.px_wall),
+					(i.y - start.y + (col.ofset)) * xpm->height / (col.px_wall));
+				pixel.x = i.x;
+				pixel.y = i.y;
+				pixel_put_img(&(prm->layer.front), pixel);
+				i.y++;
+			}
 		}
-		i.y++;
+		i.x++;
 	}
 	(void)xpm;
 }

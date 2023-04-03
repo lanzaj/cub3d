@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/02 20:23:38 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 02:02:38 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	game_loop(t_param *prm)
 	move_player(prm);
 	rotate_player(prm);
 	print_game(prm);
-	print_column(prm, 3.5, 3.5);
+	print_column(prm, 4.5, 4.5);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	print_minimap(prm, prm->width - 10 - prm->mini_map.width, 10);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img, prm->width - 10 - prm->mini_map.width, 10);

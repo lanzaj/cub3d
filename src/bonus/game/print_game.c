@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/02 20:34:15 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 02:02:10 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 void	print_game(t_param *prm)
 {
 	int		x;
-	t_coord	wall;
 	double	ang;
 	int		dx;
 
@@ -61,16 +60,16 @@ void	print_game(t_param *prm)
 	while (x - dx > 0)
 	{
 		ang = atan((dx * 2 * 0.5773502) / prm->width);
-		wall = find_wall(prm, convert_angle(prm->view_ang + ang));
-		print_wall_slice(prm, x - dx, wall, ang);
+		prm->wall[x - dx] = find_wall(prm, convert_angle(prm->view_ang + ang));
+		print_wall_slice(prm, x - dx, prm->wall[x - dx], ang);
 		dx++;
 	}
 	dx = 0;
 	while (x + dx < prm->width)
 	{
 		ang = atan((dx * 2 * 0.5773502) / prm->width);
-		wall = find_wall(prm, convert_angle(prm->view_ang - ang));
-		print_wall_slice(prm, x + dx, wall, ang);
+		prm->wall[x + dx] = find_wall(prm, convert_angle(prm->view_ang - ang));
+		print_wall_slice(prm, x + dx, prm->wall[x + dx], ang);
 		dx++;
 	}
 	//mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);

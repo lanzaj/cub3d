@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/02 19:39:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/03 02:01:30 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct s_param {
 	t_img		mini_map;
 	int			mm_res_x;
 	int			mm_res_y;
+	t_coord		wall[1280];
 }				t_param;
 
 #endif
