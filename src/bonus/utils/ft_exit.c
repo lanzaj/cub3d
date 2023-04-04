@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:37:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/30 15:43:20 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:41:53 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	leave_win(void *p)
+{
+	t_param	*prm;
+
+	prm = (t_param *)p;
+	if (prm->key.key_tab == 0)
+	{
+		prm->key.key_tab = 1;
+		leave_window(p);
+	}
+	else
+	{
+		prm->key.key_tab = 0;
+		enter_window(p);
+	}
+}
 
 int	close_win(void *p)
 {

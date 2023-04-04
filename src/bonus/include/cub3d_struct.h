@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 15:03:20 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 19:57:49 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ typedef struct s_key_stat {
 	char	key_d;
 	char	key_s;
 	char	key_space;
+	char	key_tab;
+	char	key_m;
 }				t_key_stat;
 
 typedef struct s_garb
@@ -126,6 +128,7 @@ typedef struct s_map
 	t_img	south_texture;
 	t_img	west_texture;
 	t_img	east_texture;
+	t_img	wall2_texture;
 	t_img	wall3_texture;
 	t_img	wall4_texture;
 	t_img	wall5_texture;
@@ -159,6 +162,12 @@ typedef struct s_door
 	int				count_open;
 }					t_door;
 
+typedef struct s_sprite
+{
+	t_coord			coord;
+	char			type;
+}				t_sprite;
+
 typedef struct s_param {
 	void		*mlx;
 	void		*win;
@@ -180,6 +189,7 @@ typedef struct s_param {
 	int			mm_res_x;
 	int			mm_res_y;
 	t_impact	*impact;
+	t_list		*sprite_lst;
 }				t_param;
 
 #endif

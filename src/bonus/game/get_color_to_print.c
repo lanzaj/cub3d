@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 14:30:53 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:23:43 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ double	pos_impact(t_param *prm, t_coord point)
 	if (!is_valid_coord(prm, point))
 		return (-1);
 	if (point.y == (int)point.y
-		&& ft_strchr("13456789D", prm->map.map[(int)point.y][(int)point.x]))
+		&& ft_strchr("123456789D", prm->map.map[(int)point.y][(int)point.x]))
 		return (1 - (point.x - (double)((int)point.x)));
 	if (point.y == (int)point.y && (int)point.y - 1 >= 0
-		&& ft_strchr("13456789D", prm->map.map[(int)point.y - 1][(int)point.x]))
+		&& ft_strchr("123456789D", prm->map.map[(int)point.y - 1][(int)point.x]))
 		return ((point.x - (double)((int)point.x)));
 	if (point.x == (int)point.x
-		&& ft_strchr("13456789D", prm->map.map[(int)point.y][(int)point.x]))
+		&& ft_strchr("123456789D", prm->map.map[(int)point.y][(int)point.x]))
 		return (point.y - (double)((int)point.y));
 	if (point.x == (int)point.x && (int)point.x - 1 >= 0
-		&& ft_strchr("13456789D", prm->map.map[(int)point.y][(int)point.x - 1]))
+		&& ft_strchr("123456789D", prm->map.map[(int)point.y][(int)point.x - 1]))
 		return (1 - (point.y - (double)((int)point.y)));
 	return (0);
 }

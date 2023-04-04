@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:26:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 14:34:18 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:24:31 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ int	has_hit_a_wall(t_param *prm, t_coord point)
 	if (!is_valid_coord(prm, point))
 		return (-1);
 	if (point.y == (int)point.y
-		&& ft_strchr("13456789", prm->map.map[(int)point.y][(int)point.x]))
+		&& ft_strchr("123456789", prm->map.map[(int)point.y][(int)point.x]))
 		return (SOUTH);
 	if (point.y == (int)point.y && (int)point.y - 1 >= 0
-		&& ft_strchr("13456789", prm->map.map[(int)point.y - 1][(int)point.x]))
+		&& ft_strchr("123456789", prm->map.map[(int)point.y - 1][(int)point.x]))
 		return (NORTH);
 	if (point.x == (int)point.x
-		&& ft_strchr("13456789", prm->map.map[(int)point.y][(int)point.x]))
+		&& ft_strchr("123456789", prm->map.map[(int)point.y][(int)point.x]))
 		return (EAST);
 	if (point.x == (int)point.x && (int)point.x - 1 >= 0
-		&& ft_strchr("13456789", prm->map.map[(int)point.y][(int)point.x - 1]))
+		&& ft_strchr("123456789", prm->map.map[(int)point.y][(int)point.x - 1]))
 		return (WEST);
 	return (has_hit_a_closed_door(prm, point));
 }

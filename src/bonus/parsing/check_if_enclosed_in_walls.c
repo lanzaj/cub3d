@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:00:47 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 14:39:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:19:41 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	is_first_line_only_wall(t_param *prm, char **map)
 	i = 0;
 	while (map[0][i])
 	{
-		if (!ft_strchr("13456789", map[0][i]) && map[0][i] != '2')
+		if (!ft_strchr("123456789", map[0][i]) && map[0][i] != 'M')
 			check_map_error(prm, "Error\nNot enclosed in walls\n");
 		i++;
 	}
@@ -34,8 +34,8 @@ static void	is_last_line_only_wall(t_param *prm, char **map)
 	i = 0;
 	while (map[last_line][i])
 	{
-		if (!ft_strchr("13456789", map[last_line][i])
-			&& map[last_line][i] != '2')
+		if (!ft_strchr("123456789", map[last_line][i])
+			&& map[last_line][i] != 'M')
 			check_map_error(prm, "Error\nNot enclosed in walls\n");
 		i++;
 	}
@@ -48,7 +48,7 @@ static void	is_first_column_only_wall(t_param *prm, char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (!ft_strchr("13456789", map[i][0]) && map[i][0] != '2')
+		if (!ft_strchr("123456789", map[i][0]) && map[i][0] != 'M')
 			check_map_error(prm, "Error\nNot enclosed in walls\n");
 		i++;
 	}
@@ -63,8 +63,8 @@ static void	is_last_column_only_wall(t_param *prm, char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (!ft_strchr("13456789", map[i][last_column])
-			&& map[i][last_column] != '2')
+		if (!ft_strchr("123456789", map[i][last_column])
+			&& map[i][last_column] != 'M')
 			check_map_error(prm, "Error\nNot enclosed in walls\n");
 		i++;
 	}

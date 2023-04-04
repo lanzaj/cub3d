@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 15:04:47 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:49:02 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,6 @@ char	**lst_to_tab(t_param *prm, t_list *lst, int fd)
 	}
 	return (map);
 }
-
-static void	check_import_textures_and_colors(t_param *prm, int fd)
-{
-	if (prm->map.north_texture.img == NULL
-		|| prm->map.south_texture.img == NULL
-		|| prm->map.east_texture.img == NULL
-		|| prm->map.west_texture.img == NULL
 		/* || prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
@@ -75,6 +68,13 @@ static void	check_import_textures_and_colors(t_param *prm, int fd)
 		|| prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL */
+static void	check_import_textures_and_colors(t_param *prm, int fd)
+{
+	if (prm->map.north_texture.img == NULL
+		|| prm->map.south_texture.img == NULL
+		|| prm->map.east_texture.img == NULL
+		|| prm->map.west_texture.img == NULL
+		|| prm->map.wall2_texture.img == NULL
 		|| prm->map.wall3_texture.img == NULL
 		|| prm->map.wall4_texture.img == NULL
 		|| prm->map.wall5_texture.img == NULL
@@ -97,7 +97,7 @@ void	fd_to_map(t_param *prm, int fd)
 	prm->map.ceiling_color = -1;
 	prm->map.floor_color = -1;
 	i = 0;
-	while (i < 26)
+	while (i < 27)
 	{
 		str = get_next_nonnull_line(prm, fd);
 		if (str == NULL)

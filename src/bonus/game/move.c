@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:17:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 19:05:14 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:36:17 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ static int	case_pos_buff(t_param *prm, double ang_move,
 	t_coord pos, double buf)
 {
 	if (ang_move > 0 && ang_move < PI
-		&& (ft_strchr("13456789", prm->map.map[(int)(pos.y) - 1][(int)(pos.x)])
+		&& (ft_strchr("123456789B", prm->map.map[(int)(pos.y) - 1][(int)(pos.x)])
 		|| (prm->map.map[(int)(pos.y) - 1][(int)(pos.x)] == 'D'
 			&& status_door(prm, (int)(pos.x), (int)(pos.y) - 1) != OPENED))
 			&& pos.y - (int)(pos.y) < buf)
 		return (1);
 	if (ang_move > PI && ang_move < 2 * PI
-		&& (ft_strchr("13456789", prm->map.map[(int)(pos.y) + 1][(int)(pos.x)])
+		&& (ft_strchr("123456789B", prm->map.map[(int)(pos.y) + 1][(int)(pos.x)])
 		|| (prm->map.map[(int)(pos.y) + 1][(int)(pos.x)] == 'D'
 			&& status_door(prm, (int)(pos.x), (int)(pos.y) + 1) != OPENED))
 			&& (int)(pos.y) + 1 - pos.y < buf)
@@ -85,13 +85,13 @@ t_coord	pos_buff(t_param *prm, t_coord pos)
 	if (case_pos_buff(prm, ang_move, pos, buf) == 2)
 		new_pos.y = (int)(pos.y) + 1 - buf;
 	if ((ang_move > (3 * PI) / 2 || ang_move < PI / 2)
-		&& (ft_strchr("13456789", prm->map.map[(int)(pos.y)][(int)(pos.x) + 1])
+		&& (ft_strchr("123456789B", prm->map.map[(int)(pos.y)][(int)(pos.x) + 1])
 		|| (prm->map.map[(int)(pos.y)][(int)(pos.x) + 1] == 'D'
 			&& status_door(prm, (int)(pos.x) + 1, (int)(pos.y)) != OPENED))
 			&& (int)(pos.x) + 1 - pos.x < buf)
 		new_pos.x = (int)(pos.x + 1) - buf;
 	if (ang_move > PI / 2 && ang_move < (3 * PI) / 2
-		&& (ft_strchr("13456789", prm->map.map[(int)(pos.y)][(int)(pos.x) - 1])
+		&& (ft_strchr("123456789B", prm->map.map[(int)(pos.y)][(int)(pos.x) - 1])
 		|| (prm->map.map[(int)(pos.y)][(int)(pos.x) - 1] == 'D'
 			&& status_door(prm, (int)(pos.x) - 1, (int)(pos.y)) != OPENED))
 			&& pos.x - (int)(pos.x) < buf)

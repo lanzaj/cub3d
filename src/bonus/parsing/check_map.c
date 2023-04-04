@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:52:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/31 18:31:17 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:10:35 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void	make_map_rectangular(t_param *prm, char **map)
 		if ((int)ft_strlen(map[i]) != prm->map.map_width)
 		{
 			str = ft_calloc_gc(prm, 0, prm->map.map_width + 1, sizeof(char));
-			ft_memset(str, '2', prm->map.map_width);
+			ft_memset(str, 'M', prm->map.map_width);
 			ft_memcpy(str, map[i], sizeof(char) * ft_strlen(map[i]));
 			map[i] = str;
 		}
-		search_and_replace(map[i], '2', ' ');
+		search_and_replace(map[i], 'M', ' ');
 		i++;
 	}
 }
@@ -67,9 +67,10 @@ static void	check_charset(t_param *prm, char **map, char *charset, char *msg)
 
 void	check_map(t_param *prm, char **map)
 {
-	check_charset(prm, map, "013456789NSEWD ", "Error\nInvalid character\n");
+	check_charset(prm, map, "0123456789 NSEW D BC R", "Error\nInvalid character\n");
 	make_map_rectangular(prm, map);
 	check_if_enclosed_in_walls(prm, map);
 	init_player_pos(prm);
-	check_charset(prm, map, "0123456789D", "Error\nTwo starting position\n");
+	init_sprites(prm);
+	check_charset(prm, map, "0123456789DBCRM", "Error\nTwo starting position\n");
 }

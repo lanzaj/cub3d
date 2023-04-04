@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 14:42:02 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:23:55 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	print_minimap(t_param *prm)
 		p.y = -1;
 		while (++p.y < prm->mini_map.height)
 		{
-			if (ft_strchr("13456789",
+			if (ft_strchr("123456789",
 					prm->map.map[p.y / prm->mm_res_y][p.x / prm->mm_res_x])
 				&& p.x < prm->mini_map.width && p.y < prm->mini_map.height)
 				my_mlx_pixel_put(&(prm->mini_map), p.x, p.y,

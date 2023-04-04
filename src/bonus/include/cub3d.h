@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 14:52:34 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 20:08:58 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "cub3d_struct.h"
 # include <math.h>
 # include <sys/stat.h>
-# include <limits.h>
+# include <limits.h> 
 # include <fcntl.h>
 # define KEY_LEFT_ARROW 65361
 # define KEY_RIGHT_ARROW 65363
@@ -27,6 +27,8 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_SPACE 32
+# define KEY_TAB 65289
+# define KEY_M 109
 # define KEY_ESC 0xFF1B
 # define LOOP 150
 # define TIME_CLOSE_DOOR 100
@@ -121,7 +123,7 @@ double			angle_move(t_param *prm);
 void			rotate_player(t_param *prm);
 
 /*	game ->	print_game.c */
-void			print_sprite(t_param *prm, t_coord sprite);
+void			print_every_sprite(t_param *prm);
 
 /*	minimap	*/
 /*	minimap -> print_minimap.c */
@@ -185,6 +187,9 @@ char			*get_next_nonnull_line(t_param *prm, int fd);
 /*	parsing -> init_player_pos.c */
 void			init_player_pos(t_param *prm);
 
+/*	parsing -> init_sprites_pos.c */
+void			init_sprites(t_param *prm);
+
 /*	parsing -> parsing_doors.c */
 int				get_id_door(t_param *prm, int x, int y);
 int				init_doors_tab(t_param *prm);
@@ -246,6 +251,7 @@ int				has_hit_a_closed_door(t_param *prm, t_coord point);
 void			destroy_images(t_param *prm);
 
 /*	utils -> ft_exit.c */
+void			leave_win(void *p);
 int				close_win(void *p);
 int				ft_exit(t_param *prm, int exit_code);
 int				ft_exit_error(t_param *prm, int exit_code);
@@ -276,5 +282,8 @@ t_coord			prod_vect(double factor, t_coord vect);
 /* vector_manipulation -> projection_minimap.c */
 t_point			get_minimap_pos(t_param *prm, t_coord coord, int color);
 double			convert_angle(double angle);
+
+int				leave_window(void *p);
+int				enter_window(void *p);
 
 #endif

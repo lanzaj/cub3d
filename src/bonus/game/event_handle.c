@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   event_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 19:08:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:17:56 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	update_key_m(t_param *prm)
+{
+	if (prm->key.key_m == 1)
+		prm->key.key_m = 0;
+	else
+		prm->key.key_m = 1;
+}
 
 int	key_press(int keycode, void *p)
 {
@@ -33,6 +41,10 @@ int	key_press(int keycode, void *p)
 		prm->key.left = 1;
 	if (keycode == KEY_SPACE)
 		prm->key.key_space = 1;
+	if (keycode == KEY_TAB)
+		leave_win(p);
+	if (keycode == KEY_M)
+		update_key_m(prm);
 	return (0);
 }
 
@@ -101,7 +113,7 @@ int	handle_mouse_move(int x, int y, void *param)
 
 int	is_valid_move(t_param *prm, t_coord pos)
 {
-	if (ft_strchr("13456789", prm->map.map[(int)(pos.y)][(int)(pos.x)]))
+	if (ft_strchr("123456789", prm->map.map[(int)(pos.y)][(int)(pos.x)]))
 		return (0);
 	if (prm->map.map[(int)(pos.y)][(int)(pos.x)] == 'D'
 		&& status_door(prm, (int)(pos.x), (int)(pos.y)) != OPENED)

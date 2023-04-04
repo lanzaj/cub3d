@@ -1,5 +1,5 @@
-build/bonus/mlx_functions/mlx_utils.o: \
-  src/bonus/mlx_functions/mlx_utils.c \
+build/bonus/mlx_functions/get_color.o: \
+  src/bonus/mlx_functions/get_color.c \
   src/bonus/mlx_functions/../include/cub3d.h \
   src/bonus/mlx_functions/../include/../../../libft/src/libft.h \
   src/bonus/mlx_functions/../include/../../../mlx_linux/mlx.h \

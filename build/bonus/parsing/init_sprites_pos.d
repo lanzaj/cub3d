@@ -1,5 +1,5 @@
-build/bonus/parsing/check_if_enclosed_in_walls.o: \
-  src/bonus/parsing/check_if_enclosed_in_walls.c \
+build/bonus/parsing/init_sprites_pos.o: \
+  src/bonus/parsing/init_sprites_pos.c \
   src/bonus/parsing/../include/cub3d.h \
   src/bonus/parsing/../include/../../../libft/src/libft.h \
   src/bonus/parsing/../include/../../../mlx_linux/mlx.h \

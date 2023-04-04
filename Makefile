@@ -6,7 +6,7 @@
 #    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/04 14:53:30 by jlanza           ###   ########.fr        #
+#    Updated: 2023/04/04 18:09:52 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/parsing/fd_to_map.c \
 				bonus/parsing/get_next_nonnull_line.c \
 				bonus/parsing/init_player_pos.c \
+				bonus/parsing/init_sprites_pos.c \
 				bonus/parsing/parsing_doors.c \
 				bonus/parsing/parsing_error.c \
 				bonus/parsing/parsing_map.c \
