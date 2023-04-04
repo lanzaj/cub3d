@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 14:12:34 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:33:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,16 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 void	print_game(t_param *prm)
 {
 	int			x;
+	t_bool		all_door_closed;
 
+	all_door_closed = all_doors_are_closed(prm);
 	ft_memset(prm->impact, 0, prm->width * sizeof(t_impact));
 	update_impact_tab(prm);
 	x = 0;
 	while (x < prm->width)
 	{
-		if (prm->impact[x].is_door == FALSE || (prm->impact[x].is_door == TRUE
+		if (all_door_closed || prm->impact[x].is_door == FALSE
+			|| (prm->impact[x].is_door == TRUE
 				&& prm->impact[x].status_door == CLOSED))
 			print_wall_slice(prm, x,
 				prm->impact[x].wall_and_door, prm->impact[x].ang);

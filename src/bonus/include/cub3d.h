@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 14:52:34 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 18:29:57 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <sys/stat.h>
 # include <limits.h>
+# include <time.h>
 # include <fcntl.h>
 # define KEY_LEFT_ARROW 65361
 # define KEY_RIGHT_ARROW 65363
@@ -30,7 +31,7 @@
 # define KEY_ESC 0xFF1B
 # define LOOP 150
 # define TIME_CLOSE_DOOR 100
-# define SPEED_MOVE_DOOR 10
+# define SPEED_MOVE_DOOR 20
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
 # define PI 3.14159f
@@ -62,6 +63,7 @@ void			change_door_status(t_param *prm);
 
 /*	game -> door_open.c */
 void			find_door_to_open(t_param *prm);
+t_bool			all_doors_are_closed(t_param *prm);
 
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
@@ -261,6 +263,7 @@ void			print_map(t_param *prm);
 /*	vector_manipulation	*/
 /*	vector_manipulation -> get_distance.c */
 double			get_distance(t_coord a, t_coord b);
+double			get_distance_point(t_point a, t_point b);
 int				ft_max(int a, int b);
 int				ft_min(int a, int b);
 double			ft_max_d(double a, double b);

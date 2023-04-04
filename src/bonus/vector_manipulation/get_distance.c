@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:05:38 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/23 12:15:45 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:29:34 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@ double	get_distance(t_coord a, t_coord b)
 	double	result;
 
 	result = sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+	return (result);
+}
+
+double	get_distance_point(t_point a, t_point b)
+{
+	double	result;
+
+	result = sqrt(pow((double)a.x - (double)b.x, 2)
+			+ pow((double)a.y - (double)b.y, 2));
 	return (result);
 }
 

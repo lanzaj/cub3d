@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sprites.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 14:51:12 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 15:27:04 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,5 @@ void	print_sprite(t_param *prm, t_coord sprite)
 	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
 				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
 	if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
-		put_img_to_front(prm, &prm->map.east_texture, dx, sprite);
+		put_img_to_front(prm, &prm->map.wall9_texture, dx, sprite);
 }

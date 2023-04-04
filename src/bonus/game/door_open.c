@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:17:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 22:02:08 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:10:28 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,18 @@ void	find_door_to_open(t_param *prm)
 		}
 	}
 	prm->key.key_space = 0;
+}
+
+t_bool	all_doors_are_closed(t_param *prm)
+{
+	int		i;
+
+	i = 0;
+	while (prm->tab_doors[i])
+	{
+		if (prm->tab_doors[i]->status != CLOSED)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }
