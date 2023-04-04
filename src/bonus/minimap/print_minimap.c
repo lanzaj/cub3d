@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/03 16:41:57 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 14:42:02 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_mini_map_grid(t_param *prm)
 	}
 }
 
-void	print_minimap(t_param *prm, int x, int y)
+void	print_minimap(t_param *prm)
 {
 	t_point	p;
 
@@ -75,8 +75,6 @@ void	print_minimap(t_param *prm, int x, int y)
 		}
 	}
 	print_player(prm);
-	(void)x;
-	(void)y;
 }
 
 void	print_player(t_param *prm)

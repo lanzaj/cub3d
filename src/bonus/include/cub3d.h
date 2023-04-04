@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/03 16:42:20 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 14:52:34 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int				get_texture_px_color_door(t_param *prm,
 					t_coord wall, double pos_y);
 int				get_color_px_door(t_param *prm,
 					t_px_col col, int y, t_coord wall);
-t_bool			is_a_door(t_param *prm, t_coord point);;
+t_bool			is_a_door(t_param *prm, t_coord point);
 
 /*	game -> get_color_to_print.c */
 double			pos_impact(t_param *prm, t_coord point);
@@ -127,11 +127,14 @@ void			print_sprite(t_param *prm, t_coord sprite);
 /*	minimap -> print_minimap.c */
 void			initiate_img_minimap(t_param *prm);
 void			print_mini_map_grid(t_param *prm);
-void			print_minimap(t_param *prm, int x, int y);
+void			print_minimap(t_param *prm);
 void			print_player(t_param *prm);
 void			print_raytracing(t_param *prm);
 
 /*	mlx_functions	*/
+/*	mlx_functions -> mlx_color.c */
+int				get_color(t_img *xpm, int x, int y);
+
 /*	mlx_functions -> mlx_color.c */
 int				create_trgb(unsigned char t, unsigned char r,
 					unsigned char g, unsigned char b);

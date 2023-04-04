@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_a_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:26:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 18:42:46 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:34:18 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,3 @@ int	has_hit_a_wall_or_door(t_param *prm, t_coord point)
 		return (has_hit_a_door(prm, point));
 	return (0);
 }
-

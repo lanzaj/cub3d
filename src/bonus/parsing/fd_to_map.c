@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/03 16:53:57 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 14:39:18 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	check_import_textures_and_colors(t_param *prm, int fd)
 		|| prm->map.south_texture.img == NULL
 		|| prm->map.east_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
-/* 		|| prm->map.west_texture.img == NULL
+		/* || prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_to_print.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 19:41:54 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:30:53 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	get_correct_xpm(t_param *prm, t_dir dir, t_img	*xpm)
 		xpm = &(prm->map.door_texture);
 }
 */
+
 int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
 {
 	int		px_x;

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/03 16:37:55 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 14:12:34 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,4 @@ void	print_game(t_param *prm)
 		}
 		x++;
 	}
-	//mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 }

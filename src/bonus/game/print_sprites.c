@@ -6,18 +6,11 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/03 20:50:00 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 14:51:12 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int get_color(t_img *xpm, int x, int y)
-{
-	if (x < 0 || x >= xpm->width || y < 0 || y >= xpm->height)
-		return (-1);
-	return (*(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8) + y * xpm->line_length)));
-}
 
 void	init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col)
 {
@@ -47,25 +40,35 @@ void	pixel_put_img(t_img *img, t_point pixel)
 int	check_distance_x(t_param *prm, t_coord sprite, t_coord_int i)
 {
 	if (prm->impact[i.x].is_door && prm->impact[i.x].status_door != CLOSED)
-		return (get_distance(sprite, prm->pos_player) < get_distance(prm->pos_player, prm->impact[i.x].wall_only) && get_distance(sprite, prm->pos_player) > 0.3);
+		return (get_distance(sprite, prm->pos_player)
+			< get_distance(prm->pos_player, prm->impact[i.x].wall_only)
+			&& get_distance(sprite, prm->pos_player) > 0.3);
 	else
-		return (get_distance(sprite, prm->pos_player) < get_distance(prm->pos_player, prm->impact[i.x].wall_and_door) && get_distance(sprite, prm->pos_player) > 0.3);
+		return (get_distance(sprite, prm->pos_player)
+			< get_distance(prm->pos_player, prm->impact[i.x].wall_and_door)
+			&& get_distance(sprite, prm->pos_player) > 0.3);
 }
 
 int	check_distance_y(t_param *prm, t_coord_int i)
 {
 	t_px_col	col;
 
-	init_col_px(prm, prm->impact[i.x].wall_and_door, prm->impact[i.x].ang, &col);
-	if (prm->impact[i.x].is_door && (prm->impact[i.x].status_door == OPENING || prm->impact[i.x].status_door == CLOSING))
+	init_col_px(prm, prm->impact[i.x].wall_and_door,
+		prm->impact[i.x].ang, &col);
+	if (prm->impact[i.x].is_door
+		&& (prm->impact[i.x].status_door == OPENING
+			|| prm->impact[i.x].status_door == CLOSING))
 	{
-		return ((col.px_wall * (100 - prm->tab_doors[find_door(prm, prm->impact[i.x].wall_and_door)]->percent_open)) / 100 - col.ofset + col.px_cell < i.y);
+		return (
+			(col.px_wall * (100 - prm->tab_doors[find_door(prm,
+							prm->impact[i.x].wall_and_door)
+					]->percent_open)) / 100 - col.ofset + col.px_cell < i.y);
 	}
 	else
 		return (1);
 }
 
-void	put_img_to_front(t_param *prm, t_img *xpm, int	dx, t_coord sprite)
+void	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 {
 	t_point		pixel;
 	t_coord_int	i;
@@ -85,8 +88,10 @@ void	put_img_to_front(t_param *prm, t_img *xpm, int	dx, t_coord sprite)
 		{
 			while (i.y < col.px_wall + start.y && i.y >= 0 && i.y < prm->height)
 			{
-				pixel.color = get_color(xpm, (i.x - start.x) * xpm->width / (col.px_wall),
-					(i.y - start.y + (col.ofset)) * xpm->height / (col.px_wall));
+				pixel.color = get_color(xpm,
+						(i.x - start.x) * xpm->width / (col.px_wall),
+						(i.y - start.y + (col.ofset))
+						* xpm->height / (col.px_wall));
 				pixel.x = i.x;
 				pixel.y = i.y;
 				if (check_distance_y(prm, i))
@@ -96,12 +101,12 @@ void	put_img_to_front(t_param *prm, t_img *xpm, int	dx, t_coord sprite)
 		}
 		i.x++;
 	}
-	(void)xpm;
 }
 
 double	get_angle_with_player_view(t_param *prm, t_coord sprite)
 {
-	return (convert_angle(-atan2((sprite.y - prm->pos_player.y), (sprite.x - prm->pos_player.x))));
+	return (convert_angle(-atan2((sprite.y - prm->pos_player.y),
+				sprite.x - prm->pos_player.x)));
 }
 
 void	print_sprite(t_param *prm, t_coord sprite)
@@ -113,10 +118,10 @@ void	print_sprite(t_param *prm, t_coord sprite)
 	dx = 0;
 	theta = get_angle_with_player_view(prm, sprite);
 	wall = find_wall(prm, theta);
-	put_segment_img(&prm->mini_map, get_minimap_pos(prm, prm->pos_player, 0x00000000), get_minimap_pos(prm, wall, 0x00000000));
-	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta)) * prm->width) / (2 * 0.5773502)) + (prm->width / 2);
+	put_segment_img(&prm->mini_map, get_minimap_pos(prm, prm->pos_player,
+			0x00000000), get_minimap_pos(prm, wall, 0x00000000));
+	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
+				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
 	if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 		put_img_to_front(prm, &prm->map.east_texture, dx, sprite);
 }
-
-
