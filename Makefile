@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/04 18:12:07 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/04 23:05:12 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,8 @@ DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3 
+#-fsanitize=address
 
 RM = rm -rf
 

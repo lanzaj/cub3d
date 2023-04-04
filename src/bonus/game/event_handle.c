@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 19:08:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:02:54 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ int	key_press(int keycode, void *p)
 		prm->key.left = 1;
 	if (keycode == KEY_SPACE)
 		prm->key.key_space = 1;
+	if (keycode == KEY_M && prm->print_minimap)
+		prm->print_minimap = FALSE;
+	else if (keycode == KEY_M)
+		prm->print_minimap = TRUE;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 15:27:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 21:40:33 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,14 @@ double	get_angle_with_player_view(t_param *prm, t_coord sprite)
 void	print_sprite(t_param *prm, t_coord sprite)
 {
 	double	theta;
-	t_coord	wall;
+	//t_coord	wall;
 	int		dx;
 
 	dx = 0;
 	theta = get_angle_with_player_view(prm, sprite);
-	wall = find_wall(prm, theta);
-	put_segment_img(&prm->mini_map, get_minimap_pos(prm, prm->pos_player,
-			0x00000000), get_minimap_pos(prm, wall, 0x00000000));
+	//wall = find_wall(prm, theta);
+	/*put_segment_img(&prm->mini_map, get_minimap_pos(prm, prm->pos_player,
+			0x00000000), get_minimap_pos(prm, wall, 0x00000000));*/
 	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
 				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
 	if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)

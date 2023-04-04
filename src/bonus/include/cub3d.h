@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 18:29:57 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:08:42 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_M 109
 # define KEY_SPACE 32
 # define KEY_ESC 0xFF1B
 # define LOOP 150
@@ -35,6 +36,7 @@
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
 # define PI 3.14159f
+# define DIST_DOOR 1.5f
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */

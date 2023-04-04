@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 15:03:20 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/04 23:01:13 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,9 @@ typedef struct s_param {
 	t_garb		*garb;
 	t_img		mini_map;
 	t_door		**tab_doors;
-	int			mm_res_x;
-	int			mm_res_y;
+	int			mm_res;
+	double		mm_ray;
+	t_bool		print_minimap;
 	t_impact	*impact;
 }				t_param;
 

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:37:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/30 15:43:20 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 21:41:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	close_win(void *p)
 	prm = (t_param *)p;
 	destroy_images(prm);
 	mlx_destroy_image(prm->mlx, prm->layer.front.img);
-	mlx_destroy_image(prm->mlx, prm->mini_map.img);
+	//mlx_destroy_image(prm->mlx, prm->mini_map.img);
 	mlx_destroy_window(prm->mlx, prm->win);
 	mlx_destroy_display(prm->mlx);
 	ft_printf("---- Goodbye, see you latter ! ----\n");

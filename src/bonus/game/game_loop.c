@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 18:50:33 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:03:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ int	game_loop(t_param *prm)
 	sprite.x = 4.5;
 	sprite.y = 4.5;
 	print_sprite(prm, sprite);
+	if (prm->print_minimap)
+		print_minimap(prm);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
-	print_minimap(prm);
-	mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img,
-		prm->width - 10 - prm->mini_map.width, 10);
+	//print_minimap(prm);
+	//mlx_put_image_to_window(prm->mlx, prm->win, prm->mini_map.img,
+	//	prm->width - 10 - prm->mini_map.width, 10);
 	return (0);
 }
 
