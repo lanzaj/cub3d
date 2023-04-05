@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sprites.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 20:16:46 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:49:18 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ static void	init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col)
 	col->color_cell = -1;
 	col->color_floor = -1;
 	col->ofset = (ft_max(0, (col->px_total - prm->height) / 2));
-}
-
-static void	pixel_put_img(t_img *img, t_point pixel)
-{
-	char	*dst;
-
-	if (!(pixel.x < 0 || pixel.x >= img->width || pixel.y < 0
-			|| pixel.y >= img->height
-			|| pixel.color == -1 || get_t(pixel.color) == 255))
-	{
-		dst = img->addr + (pixel.y * img->line_length
-				+ pixel.x * (img->bits_per_pixel / 8));
-		*(unsigned int *)dst = pixel.color;
-	}
 }
 
 static int	check_distance_x(t_param *prm, t_coord sprite, t_coord_int i)
@@ -116,10 +102,14 @@ static double	get_angle_with_player_view(t_param *prm, t_coord sprite)
 static void	print_sprite(t_param *prm, t_coord sprite, t_img *xpm)
 {
 	double	theta;
+	//t_coord	wall;
 	int		dx;
 
 	dx = 0;
 	theta = get_angle_with_player_view(prm, sprite);
+	//wall = find_wall(prm, theta);
+	/*put_segment_img(&prm->mini_map, get_minimap_pos(prm, prm->pos_player,
+			0x00000000), get_minimap_pos(prm, wall, 0x00000000));*/
 	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
 				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
 	if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)

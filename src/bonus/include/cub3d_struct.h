@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 19:57:49 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:50:34 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ typedef struct s_key_stat {
 	char	key_s;
 	char	key_space;
 	char	key_tab;
-	char	key_m;
 }				t_key_stat;
 
 typedef struct s_garb
@@ -169,27 +168,30 @@ typedef struct s_sprite
 }				t_sprite;
 
 typedef struct s_param {
-	void		*mlx;
-	void		*win;
-	int			width;
-	int			height;
-	int			frame;
-	t_img		*img_tab[128];
-	int			in_focus;
-	t_layer		layer;
-	t_key_stat	key;
-	t_map		map;
-	t_coord		pos_player;
-	t_coord		view_dir;
-	t_coord		screen_dir;
-	double		view_ang;
-	t_garb		*garb;
-	t_img		mini_map;
-	t_door		**tab_doors;
-	int			mm_res_x;
-	int			mm_res_y;
-	t_impact	*impact;
-	t_list		*sprite_lst;
-}				t_param;
+	void			*mlx;
+	void			*win;
+	int				width;
+	int				height;
+	int				frame;
+	struct timeval	last_time;
+	t_img			*img_tab[128];
+	int				in_focus;
+	t_layer			layer;
+	t_key_stat		key;
+	t_map			map;
+	t_coord			pos_player;
+	t_coord			view_dir;
+	t_coord			screen_dir;
+	double			view_ang;
+	t_garb			*garb;
+	t_img			mini_map;
+	t_door			**tab_doors;
+	int				mm_res;
+	double			mm_ray;
+	t_img			mm_window;
+	t_bool			print_minimap;
+	t_impact		*impact;
+	t_list			*sprite_lst;
+}					t_param;
 
 #endif

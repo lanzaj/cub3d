@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 20:17:56 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:45:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ int	key_press(int keycode, void *p)
 		prm->key.key_space = 1;
 	if (keycode == KEY_TAB)
 		leave_win(p);
-	if (keycode == KEY_M)
-		update_key_m(prm);
+	if (keycode == KEY_M && prm->print_minimap)
+		prm->print_minimap = FALSE;
+	else if (keycode == KEY_M)
+		prm->print_minimap = TRUE;
 	return (0);
 }
 

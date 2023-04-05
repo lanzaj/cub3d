@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_to_print.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 16:23:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:46:50 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,40 @@ double	pos_impact(t_param *prm, t_coord point)
 		return (1 - (point.y - (double)((int)point.y)));
 	return (0);
 }
-/*
-void	get_correct_xpm(t_param *prm, t_dir dir, t_img	*xpm)
+
+t_img	*get_correct_xpm_part2(t_param *prm, t_dir dir)
+{
+	if (dir == WALL_5)
+		return (&(prm->map.wall5_texture));
+	if (dir == WALL_6)
+		return (&(prm->map.wall6_texture));
+	if (dir == WALL_7)
+		return (&(prm->map.wall7_texture));
+	if (dir == WALL_8)
+		return (&(prm->map.wall8_texture));
+	if (dir == WALL_9)
+		return (&(prm->map.wall9_texture));
+	return (&(prm->map.door_texture));
+}
+
+t_img	*get_correct_xpm(t_param *prm, t_dir dir)
 {
 	if (dir == SOUTH)
-		xpm = &(prm->map.south_texture);
-	else if (dir == NORTH)
-		xpm = &(prm->map.north_texture);
-	else if (dir == EAST)
-		xpm = &(prm->map.east_texture);
-	else if (dir == WEST)
-		xpm = &(prm->map.west_texture);
-	else if (dir == WALL_3)
-		xpm = &(prm->map.wall3_texture);
-	else if (dir == WALL_4)
-		xpm = &(prm->map.wall4_texture);
-	else if (dir == WALL_5)
-		xpm = &(prm->map.wall5_texture);
-	else if (dir == WALL_6)
-		xpm = &(prm->map.wall6_texture);
-	else if (dir == WALL_7)
-		xpm = &(prm->map.wall7_texture);
-	else if (dir == WALL_8)
-		xpm = &(prm->map.wall8_texture);
-	else if (dir == WALL_9)
-		xpm = &(prm->map.wall9_texture);
-	else
-		xpm = &(prm->map.door_texture);
+		return (&(prm->map.south_texture));
+	if (dir == NORTH)
+		return (&(prm->map.north_texture));
+	if (dir == EAST)
+		return (&(prm->map.east_texture));
+	if (dir == WEST)
+		return (&(prm->map.west_texture));
+	/*if (dir == WALL_2)
+		return (&(prm->map.wall2_texture));*/
+	if (dir == WALL_3)
+		return (&(prm->map.wall3_texture));
+	if (dir == WALL_4)
+		return (&(prm->map.wall4_texture));
+	return (get_correct_xpm_part2(prm, dir));
 }
-*/
 
 int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
 {
@@ -69,30 +74,7 @@ int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
 
 	xpm = NULL;
 	dir = get_type_of_wall(prm, wall);
-	if (dir == SOUTH)
-		xpm = &(prm->map.south_texture);
-	else if (dir == NORTH)
-		xpm = &(prm->map.north_texture);
-	else if (dir == EAST)
-		xpm = &(prm->map.east_texture);
-	else if (dir == WEST)
-		xpm = &(prm->map.west_texture);
-	else if (dir == WALL_3)
-		xpm = &(prm->map.wall3_texture);
-	else if (dir == WALL_4)
-		xpm = &(prm->map.wall4_texture);
-	else if (dir == WALL_5)
-		xpm = &(prm->map.wall5_texture);
-	else if (dir == WALL_6)
-		xpm = &(prm->map.wall6_texture);
-	else if (dir == WALL_7)
-		xpm = &(prm->map.wall7_texture);
-	else if (dir == WALL_8)
-		xpm = &(prm->map.wall8_texture);
-	else if (dir == WALL_9)
-		xpm = &(prm->map.wall9_texture);
-	else
-		xpm = &(prm->map.door_texture);
+	xpm = get_correct_xpm(prm, dir);
 	px_x = (int)(pos_impact(prm, wall) * (double)xpm->width);
 	px_y = (int)(pos_y * (double)xpm->height);
 	if (px_x < 0 || px_x > xpm->width || px_y < 0 || px_y > xpm->height)

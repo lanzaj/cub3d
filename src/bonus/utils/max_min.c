@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection_minimap.c                               :+:      :+:    :+:   */
+/*   max_min.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 10:59:37 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 21:33:02 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/05 14:38:28 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/05 14:38:35 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_point	get_minimap_pos(t_param *prm, t_coord coord, int color)
+int	ft_max(int a, int b)
 {
-	t_point	proj;
-
-	proj.x = coord.x * prm->mm_res;
-	proj.y = coord.y * prm->mm_res;
-	proj.color = color;
-	return (proj);
+	if (a > b)
+		return (a);
+	return (b);
 }
 
-double	convert_angle(double angle)
+int	ft_min(int a, int b)
 {
-	if (angle < 0)
-		return (convert_angle(2 * PI + angle));
-	else if (angle >= 2 * PI)
-		return (convert_angle(angle - 2 * PI));
-	else
-		return (angle);
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+double	ft_max_d(double a, double b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+double	ft_min_d(double a, double b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }

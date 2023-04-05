@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 20:08:58 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:50:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "cub3d_struct.h"
 # include <math.h>
 # include <sys/stat.h>
-# include <limits.h> 
+# include <limits.h>
+# include <sys/time.h>
 # include <fcntl.h>
 # define KEY_LEFT_ARROW 65361
 # define KEY_RIGHT_ARROW 65363
@@ -26,16 +27,19 @@
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_M 109
 # define KEY_SPACE 32
 # define KEY_TAB 65289
 # define KEY_M 109
 # define KEY_ESC 0xFF1B
 # define LOOP 150
 # define TIME_CLOSE_DOOR 100
-# define SPEED_MOVE_DOOR 10
+# define SPEED_MOVE_DOOR 20
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
+# define FPS 25
 # define PI 3.14159f
+# define DIST_DOOR 1.5f
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */
@@ -64,6 +68,7 @@ void			change_door_status(t_param *prm);
 
 /*	game -> door_open.c */
 void			find_door_to_open(t_param *prm);
+t_bool			all_doors_are_closed(t_param *prm);
 
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
@@ -126,12 +131,20 @@ void			rotate_player(t_param *prm);
 void			print_every_sprite(t_param *prm);
 
 /*	minimap	*/
+/*	minimap -> print_minimap_utils.c */
+void			put_px_minimap(t_param *prm, t_point p, int color);
+t_bool			mm_is_wall_or_out(t_param *prm, t_coord coord);
+t_bool			mm_is_door(t_param *prm, t_coord coord);
+
+/*	minimap -> print_minimap_window.c */
+void			print_window_minimap(t_param *prm, int x, int y);
+
 /*	minimap -> print_minimap.c */
 void			initiate_img_minimap(t_param *prm);
-void			print_mini_map_grid(t_param *prm);
+void			init_print_mimimap(t_param *prm, t_point *p,
+					t_point *middle, t_coord *new_orig);
 void			print_minimap(t_param *prm);
 void			print_player(t_param *prm);
-void			print_raytracing(t_param *prm);
 
 /*	mlx_functions	*/
 /*	mlx_functions -> mlx_color.c */
@@ -152,6 +165,9 @@ void			put_segment_img(t_img *img, t_point start, t_point end);
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void			ft_swap_seg(t_seg *seg, t_point *delt);
 int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
+
+/*	mlx_functions -> pixel_put_img.c */
+void			pixel_put_img(t_img *img, t_point pixel);
 
 /*	parsing	*/
 /*	parsing -> check_extension.c */
@@ -259,6 +275,12 @@ int				ft_exit_error(t_param *prm, int exit_code);
 /*	utils -> import_img.c */
 int				import_img(t_param *prm, t_img *xpm, char *path);
 
+/*	utils -> max_min.c */
+int				ft_max(int a, int b);
+int				ft_min(int a, int b);
+double			ft_max_d(double a, double b);
+double			ft_min_d(double a, double b);
+
 /*	utils -> utils.c */
 int				get_nb_str(char **strs);
 void			ft_swap(int *a, int *b);
@@ -267,10 +289,7 @@ void			print_map(t_param *prm);
 /*	vector_manipulation	*/
 /*	vector_manipulation -> get_distance.c */
 double			get_distance(t_coord a, t_coord b);
-int				ft_max(int a, int b);
-int				ft_min(int a, int b);
-double			ft_max_d(double a, double b);
-double			ft_min_d(double a, double b);
+double			get_distance_point(t_point a, t_point b);
 
 /*	vector_manipulation -> matrix_vector_calc.c */
 t_coord			rotate(double angle, t_coord coord);

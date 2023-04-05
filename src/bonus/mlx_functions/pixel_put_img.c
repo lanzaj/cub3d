@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection_minimap.c                               :+:      :+:    :+:   */
+/*   pixel_put_img.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 10:59:37 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 21:33:02 by mbocquel         ###   ########.fr       */
+/*   Created: 2023/04/05 12:57:08 by mbocquel          #+#    #+#             */
+/*   Updated: 2023/04/05 14:41:03 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_point	get_minimap_pos(t_param *prm, t_coord coord, int color)
+void	pixel_put_img(t_img *img, t_point pixel)
 {
-	t_point	proj;
+	char	*dst;
 
-	proj.x = coord.x * prm->mm_res;
-	proj.y = coord.y * prm->mm_res;
-	proj.color = color;
-	return (proj);
-}
-
-double	convert_angle(double angle)
-{
-	if (angle < 0)
-		return (convert_angle(2 * PI + angle));
-	else if (angle >= 2 * PI)
-		return (convert_angle(angle - 2 * PI));
-	else
-		return (angle);
+	if (!(pixel.x < 0 || pixel.x >= img->width || pixel.y < 0
+			|| pixel.y >= img->height
+			|| pixel.color == -1 || get_t(pixel.color) == 255))
+	{
+		dst = img->addr + (pixel.y * img->line_length
+				+ pixel.x * (img->bits_per_pixel / 8));
+		*(unsigned int *)dst = pixel.color;
+	}
 }
