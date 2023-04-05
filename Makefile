@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/04 23:05:12 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/05 14:38:54 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,11 +71,14 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/print_game.c \
 				bonus/game/print_sprites.c \
 				bonus/game/rotate.c \
+				bonus/minimap/print_minimap_utils.c \
+				bonus/minimap/print_minimap_window.c \
 				bonus/minimap/print_minimap.c \
 				bonus/mlx_functions/get_color.c \
 				bonus/mlx_functions/mlx_print_seg.c \
 				bonus/mlx_functions/mlx_utils.c \
 				bonus/mlx_functions/mlx_color.c \
+				bonus/mlx_functions/pixel_put_img.c \
 				bonus/raytracing/find_first_wall_only.c \
 				bonus/raytracing/find_first.c \
 				bonus/raytracing/find_wall_only.c \
@@ -98,6 +101,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/utils/destroy_img.c \
 				bonus/utils/ft_exit.c \
 				bonus/utils/import_img.c \
+				bonus/utils/max_min.c \
 				bonus/utils/utils.c \
 				bonus/vector_manipulation/matrix_vector_calc.c \
 				bonus/vector_manipulation/projection_minimap.c \
@@ -194,6 +198,8 @@ fclean: clean
 	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
+
+re_bonus: fclean bonus
 
 avatar:
 	@echo "\n			Water. Earth. Fire. Air.\n"

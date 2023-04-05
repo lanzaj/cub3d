@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 21:40:33 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:56:15 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ void	init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col)
 	col->color_cell = -1;
 	col->color_floor = -1;
 	col->ofset = (ft_max(0, (col->px_total - prm->height) / 2));
-}
-
-void	pixel_put_img(t_img *img, t_point pixel)
-{
-	char	*dst;
-
-	if (!(pixel.x < 0 || pixel.x >= img->width || pixel.y < 0
-			|| pixel.y >= img->height
-			|| pixel.color == -1 || get_t(pixel.color) == 255))
-	{
-		dst = img->addr + (pixel.y * img->line_length
-				+ pixel.x * (img->bits_per_pixel / 8));
-		*(unsigned int *)dst = pixel.color;
-	}
 }
 
 int	check_distance_x(t_param *prm, t_coord sprite, t_coord_int i)
