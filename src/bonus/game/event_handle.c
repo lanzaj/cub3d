@@ -6,19 +6,11 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:45:09 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:53:56 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	update_key_m(t_param *prm)
-{
-	if (prm->key.key_m == 1)
-		prm->key.key_m = 0;
-	else
-		prm->key.key_m = 1;
-}
 
 int	key_press(int keycode, void *p)
 {

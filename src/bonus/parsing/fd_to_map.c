@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_to_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 16:49:02 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 15:04:32 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	**lst_to_tab(t_param *prm, t_list *lst, int fd)
 		|| prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL
 		|| prm->map.west_texture.img == NULL */
+
 static void	check_import_textures_and_colors(t_param *prm, int fd)
 {
 	if (prm->map.north_texture.img == NULL

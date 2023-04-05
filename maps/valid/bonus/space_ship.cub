@@ -11,12 +11,8 @@ W5 ./img/TECH_2B.xpm
 W6 ./img/GRID_2B.xpm
 W7 ./img/LIGHT_1B.xpm
 W8 ./img/SUPPORT_1D.xpm
-<<<<<<< HEAD
 W9 ./img/PIPES_2A.xpm
 
-=======
-W9 ./img/BARREL.xpm
->>>>>>> porte_plus_opti
 F1 ./img/front1.xpm
 F2 ./img/front2.xpm
 F3 ./img/front3.xpm
