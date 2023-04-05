@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 19:57:49 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:24:31 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@ typedef struct s_px_col
 	int				color_cell;
 	int				color_floor;
 }					t_px_col;
+
+typedef struct s_boundary
+{
+	t_coord_int	i;
+	t_coord_int	start;
+	t_coord_int	offset_start;
+	t_coord_int	stop;
+	t_coord_int	offset_stop;
+	t_px_col	col;
+}				t_boundary;
+
 
 typedef struct s_impact
 {

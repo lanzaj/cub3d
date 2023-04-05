@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 20:16:46 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:27:40 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static int	check_distance_y(t_param *prm, t_coord sprite, t_coord_int i)
 	t_px_col	col;
 
 	if (get_distance(sprite, prm->pos_player)
-			< get_distance(prm->pos_player, prm->impact[i.x].wall_and_door)
-			&& get_distance(sprite, prm->pos_player) > 0.3)
-			return (1);
+		< get_distance(prm->pos_player, prm->impact[i.x].wall_and_door)
+		&& get_distance(sprite, prm->pos_player) > 0.3)
+		return (1);
 	init_col_px(prm, prm->impact[i.x].wall_and_door,
 		prm->impact[i.x].ang, &col);
 	if (prm->impact[i.x].is_door
@@ -72,38 +72,58 @@ static int	check_distance_y(t_param *prm, t_coord sprite, t_coord_int i)
 		return (1);
 }
 
+static void	init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx)
+{
+	b->start.x = dx - (b->col.px_wall / 2);
+
+	b->start.y = b->col.px_cell;
+	b->stop.x = b->col.px_wall + b->start.x;
+	b->stop.y = b->col.px_wall + b->start.y;
+	b->offset_start.x = 0;
+	b->offset_start.y = 0;
+	if (xpm == &prm->map.barrel_texture)
+	{
+		b->offset_start.x = (18 * b->col.px_wall / 64);
+		//b->offset_stop
+		b->offset_start.y = (30 * b->col.px_wall / 64) - b->col.ofset;
+	}
+	b->i.x = b->start.x + b->offset_start.x;
+	if (b->i.x < 0)
+		b->i.x = 0;
+}
+
 static void	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 {
 	t_point		pixel;
-	t_coord_int	i;
-	t_coord_int	start;
-	t_px_col	col;
+	t_boundary	b;
 
-	init_col_px_sprite(prm, sprite, &col);
-	start.x = dx - (col.px_wall / 2);
-	start.y = col.px_cell;
-	i.x = start.x;
-	if (i.x < 0)
-		i.x = 0;
-	while (i.x < col.px_wall + start.x && i.x >= 0 && i.x < prm->width)
+	init_col_px_sprite(prm, sprite, &b.col);
+	init_boundary(prm, xpm, &b, dx);
+	while (b.i.x < b.stop.x && b.i.x >= 0 && b.i.x < prm->width)
 	{
-		i.y = start.y;
-		if (check_distance_x(prm, sprite, i))
+		b.i.y = b.start.y + b.offset_start.y;
+		if (check_distance_x(prm, sprite, b.i))
 		{
-			while (i.y < col.px_wall + start.y && i.y >= 0 && i.y < prm->height)
+			while (b.i.y < b.stop.y && b.i.y >= 0 && b.i.y < prm->height)
 			{
 				pixel.color = get_color(xpm,
-						(i.x - start.x) * xpm->width / (col.px_wall),
-						(i.y - start.y + (col.ofset))
-						* xpm->height / (col.px_wall));
-				pixel.x = i.x;
-				pixel.y = i.y;
-				if (check_distance_y(prm, sprite, i))
+						(b.i.x - b.start.x) * xpm->width / (b.col.px_wall),
+						(b.i.y - b.start.y + (b.col.ofset))
+						* xpm->height / (b.col.px_wall));
+				pixel.x = b.i.x;
+				pixel.y = b.i.y;
+				if (check_distance_y(prm, sprite, b.i))
+				{
+					int tmp = pixel.color;
+					pixel.color = 0x00000000;
 					pixel_put_img(&(prm->layer.front), pixel);
-				i.y++;
+					pixel.color = tmp;
+					pixel_put_img(&(prm->layer.front), pixel);
+				}
+				b.i.y++;
 			}
 		}
-		i.x++;
+		b.i.x++;
 	}
 }
 
