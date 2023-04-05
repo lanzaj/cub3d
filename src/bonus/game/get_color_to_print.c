@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_to_print.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 15:28:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:13:15 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,10 @@ int	get_color_px(t_param *prm, t_px_col col, int y, t_coord wall)
 
 	y_bis = y + col.ofset;
 	if (y_bis < col.px_cell)
-		return (prm->map.ceiling_color);
+		return (-1);
 	if (y_bis >= col.px_cell + col.px_wall)
-		return (prm->map.floor_color);
+		return (-1);
 	pos_v_in_wall = (double)(y_bis - col.px_cell) / (double)col.px_wall;
-	return (get_texture_px_color(prm, wall, pos_v_in_wall));
+	return (darken_color(get_texture_px_color(prm, wall, pos_v_in_wall),
+			wall, prm->pos_player));
 }

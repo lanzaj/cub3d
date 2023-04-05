@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 15:37:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:41:25 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	print_fps(t_param *prm)
 	time_past = get_timediff_us(tv, prm->last_time);
 	fps = (int)((double)1 / ((double)time_past / (double)1000000));
 	if (prm->last_time.tv_sec && prm->frame % 5 == 0)
-		printf("fps : %d\n", fps);
+		ft_printf("\rfps : %d", fps);
 }
 
 static void	update_frame(t_param *prm)
@@ -59,6 +59,8 @@ static void	update_frame(t_param *prm)
 
 int	game_loop(t_param *prm)
 {
+	ft_memcpy(prm->layer.front.addr, prm->layer.back.addr, 3686399);
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	update_frame(prm);
 	move_player(prm);
 	rotate_player(prm);
@@ -71,6 +73,7 @@ int	game_loop(t_param *prm)
 		print_minimap(prm);
 		print_window_minimap(prm, prm->width - 20 - prm->mini_map.width, 20);
 	}
-	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+	// mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.back.img, 0, 0);
+	//mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	return (0);
 }

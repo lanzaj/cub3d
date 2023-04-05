@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 18:27:05 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 18:14:37 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	main(int argc, char *argv[])
 	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
+	print_floor_and_sky(&prm, prm.map.ceiling_color, prm.map.floor_color);
 	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);
 	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
