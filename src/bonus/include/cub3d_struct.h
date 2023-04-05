@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 15:32:30 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:27:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,15 @@ typedef struct s_sprite
 	char			type;
 }				t_sprite;
 
+typedef struct s_gun
+{
+	t_img		gun1;
+	t_img		gun2;
+	int			select;
+	int			frame_count;
+	t_bool		shooting;
+}				t_gun;
+
 typedef struct s_param {
 	void			*mlx;
 	void			*win;
@@ -200,9 +209,12 @@ typedef struct s_param {
 	int				mm_res;
 	double			mm_ray;
 	t_img			mm_window;
+	t_img			img_heart;
 	t_bool			print_minimap;
 	t_impact		*impact;
 	t_list			*sprite_lst;
+	int				n_life;
+	t_gun			gun;
 }					t_param;
 
 #endif

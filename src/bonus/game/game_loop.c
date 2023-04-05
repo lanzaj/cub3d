@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 15:37:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:43:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	game_loop(t_param *prm)
 		print_minimap(prm);
 		print_window_minimap(prm, prm->width - 20 - prm->mini_map.width, 20);
 	}
+	print_hearts(prm);
+	print_gun(prm);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	return (0);
 }

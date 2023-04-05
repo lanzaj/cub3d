@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 15:35:22 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:51:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define PI 3.14159f
 # define DIST_DOOR 1.5f
 # define BUF 0.2f
+# define LIFE_NUMBER 5
+# define SHOOT_FRAME 3
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */
@@ -74,7 +76,6 @@ t_bool			all_doors_are_closed(t_param *prm);
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
 int				key_release(int keycode, void *p);
-int				handle_mouse_move(int x, int y, void *param);
 
 /*	game -> game_loop.c */
 int				game_loop(t_param *prm);
@@ -104,6 +105,10 @@ int				allocate_impact_tab(t_param *prm);
 void			update_impact_tab(t_param *prm);
 void			update_impact_tab_part2(t_param *prm);
 
+/*	game -> mouse_event.c */
+int				handle_mouse_move(int x, int y, void *param);
+int				handle_mouse_click(int button, int x, int y, void *p);
+
 /*	game -> move.c */
 void			move_player(t_param *prm);
 t_coord			get_wanted_move_dir(t_param *prm);
@@ -124,9 +129,21 @@ void			init_col_px(t_param *prm, t_coord wall,
 void			print_wall_slice(t_param *prm, int x, t_coord wall, double ang);
 void			print_game(t_param *prm);
 
+/*	game ->	print_gun.c */
+void			init_gun(t_param *prm);
+void			print_gun(t_param *prm);
+
+/*	game ->	print_heart.c */
+void			init_life(t_param *prm);
+void			print_single_heart(t_param *prm, int x, int y);
+void			print_hearts(t_param *prm);
+
 /*	game ->	rotate.c */
 double			angle_move(t_param *prm);
 void			rotate_player(t_param *prm);
+
+/*	game ->	shoot_enemy.c */
+void			shoot_enemy(t_param *prm, int x, int y);
 
 /*	game ->	print_game.c */
 void			print_every_sprite(t_param *prm);

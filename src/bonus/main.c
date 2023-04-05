@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/04 18:27:05 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 18:09:08 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	main(int argc, char *argv[])
 	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
+	init_life(&prm);
+	init_gun(&prm);
 	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);
 	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
@@ -85,6 +87,7 @@ int	main(int argc, char *argv[])
 	mlx_hook(prm.win, 9, 1L << 21, enter_window, &prm);
 	mlx_hook(prm.win, 10, 1L << 21, leave_window, &prm);
 	mlx_hook(prm.win, 6, 1L << 6, handle_mouse_move, &prm);
+	mlx_hook(prm.win, 4, 1L << 2, handle_mouse_click, &prm);
 	mlx_loop_hook(prm.mlx, game_loop, &prm);
 	mlx_loop(prm.mlx);
 	return (0);

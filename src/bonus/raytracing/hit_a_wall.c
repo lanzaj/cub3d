@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_a_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:26:31 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 16:24:31 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 15:55:11 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	is_valid_coord(t_param *prm, t_coord coord)
 {
 	if (coord.x < 0 || coord.y < 0)
 		return (0);
-	if (coord.x > prm->map.map_width - 1)
+	if (coord.x >= prm->map.map_width)
 		return (0);
-	if (coord.y > prm->map.map_height - 1)
+	if (coord.y >= prm->map.map_height)
 		return (0);
 	return (1);
 }

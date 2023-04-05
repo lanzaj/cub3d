@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:21:39 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:29:00 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:39:29 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	put_px_minimap(t_param *prm, t_point p, int color)
 
 t_bool	mm_is_wall_or_out(t_param *prm, t_coord coord)
 {
-	if (!is_valid_coord(prm, coord) || (ft_strchr("13456789",
-				prm->map.map[(int)coord.y][(int)coord.x])))
+	if (!is_valid_coord(prm, coord) || ft_strchr("123456789M",
+			prm->map.map[(int)coord.y][(int)coord.x]))
 		return (TRUE);
 	return (FALSE);
 }
