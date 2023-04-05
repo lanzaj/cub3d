@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 14:27:40 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/05 15:09:16 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,19 @@ static void	init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx)
 	b->stop.y = b->col.px_wall + b->start.y;
 	b->offset_start.x = 0;
 	b->offset_start.y = 0;
+	b->offset_stop.x = 0;
+	b->offset_stop.y = 0;
 	if (xpm == &prm->map.barrel_texture)
 	{
 		b->offset_start.x = (18 * b->col.px_wall / 64);
-		//b->offset_stop
+		b->offset_stop.x = (18 * b->col.px_wall / 64);
 		b->offset_start.y = (30 * b->col.px_wall / 64) - b->col.ofset;
+	}
+	if (xpm == &prm->map.cables_texture)
+	{
+		b->offset_stop.y = (50 * b->col.px_wall / 64) + b->col.ofset;
+		b->offset_start.x = (15 * b->col.px_wall / 64);
+		b->offset_stop.x = (14 * b->col.px_wall / 64);
 	}
 	b->i.x = b->start.x + b->offset_start.x;
 	if (b->i.x < 0)
@@ -99,12 +107,12 @@ static void	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 
 	init_col_px_sprite(prm, sprite, &b.col);
 	init_boundary(prm, xpm, &b, dx);
-	while (b.i.x < b.stop.x && b.i.x >= 0 && b.i.x < prm->width)
+	while (b.i.x < b.stop.x - b.offset_stop.x && b.i.x >= 0 && b.i.x < prm->width)
 	{
 		b.i.y = b.start.y + b.offset_start.y;
 		if (check_distance_x(prm, sprite, b.i))
 		{
-			while (b.i.y < b.stop.y && b.i.y >= 0 && b.i.y < prm->height)
+			while (b.i.y < b.stop.y - b.offset_stop.y && b.i.y >= 0 && b.i.y < prm->height)
 			{
 				pixel.color = get_color(xpm,
 						(b.i.x - b.start.x) * xpm->width / (b.col.px_wall),
@@ -113,13 +121,7 @@ static void	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 				pixel.x = b.i.x;
 				pixel.y = b.i.y;
 				if (check_distance_y(prm, sprite, b.i))
-				{
-					int tmp = pixel.color;
-					pixel.color = 0x00000000;
 					pixel_put_img(&(prm->layer.front), pixel);
-					pixel.color = tmp;
-					pixel_put_img(&(prm->layer.front), pixel);
-				}
 				b.i.y++;
 			}
 		}
@@ -146,12 +148,54 @@ static void	print_sprite(t_param *prm, t_coord sprite, t_img *xpm)
 		put_img_to_front(prm, xpm, dx, sprite);
 }
 
+void	ft_memswap(void **a, void **b)
+{
+	void	*tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void		ft_lstsort(t_param *prm, t_list *lst, int (*fcmp)(t_param *prm, t_list *a, t_list *b))
+{
+	t_list		*start;
+	char		not_sorted;
+
+	not_sorted = 1;
+	if (!lst)
+		return ;
+	start = lst;
+	while (not_sorted)
+	{
+		not_sorted = 0;
+		lst = start;
+		while (lst->next)
+		{
+			if (fcmp(prm, lst, lst->next) > 0)
+			{
+				not_sorted = 1;
+				ft_memswap(&(lst->content), &(lst->next->content));
+			}
+			lst = lst->next;
+		}
+	}
+}
+
+int	cmp_distance(t_param *prm, t_list *a, t_list *b)
+{
+	return (get_distance(prm->pos_player,
+			((t_sprite *)a->content)->coord) < get_distance(prm->pos_player,
+			((t_sprite *)b->content)->coord));
+}
+
 void	print_every_sprite(t_param *prm)
 {
 	t_list		*current;
 	t_sprite	*sprite;
 
 	current = prm->sprite_lst;
+	ft_lstsort(prm, current, &cmp_distance);
 	while (current)
 	{
 		sprite = (t_sprite *)current->content;
