@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:40:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/31 20:02:04 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:29:46 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,14 @@ t_dir	get_type_of_wall_part_5(t_param *prm, t_coord point)
 		|| (point.x == (int)point.x && (int)point.x - 1 >= 0
 			&& prm->map.map[(int)point.y][(int)point.x - 1] == '9'))
 		return (WALL_9);
+	if ((point.y == (int)point.y
+			&& prm->map.map[(int)point.y][(int)point.x] == '2')
+		|| (point.y == (int)point.y && (int)point.y - 1 >= 0
+			&& prm->map.map[(int)point.y - 1][(int)point.x] == '2')
+		|| (point.x == (int)point.x
+			&& prm->map.map[(int)point.y][(int)point.x] == '2')
+		|| (point.x == (int)point.x && (int)point.x - 1 >= 0
+			&& prm->map.map[(int)point.y][(int)point.x - 1] == '2'))
+		return (WALL_2);
 	return (0);
 }

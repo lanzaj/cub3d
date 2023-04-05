@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:46:50 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:28:31 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ double	pos_impact(t_param *prm, t_coord point)
 		&& ft_strchr("123456789D", prm->map.map[(int)point.y][(int)point.x]))
 		return (1 - (point.x - (double)((int)point.x)));
 	if (point.y == (int)point.y && (int)point.y - 1 >= 0
-		&& ft_strchr("123456789D", prm->map.map[(int)point.y - 1][(int)point.x]))
+		&& ft_strchr("123456789D",
+			prm->map.map[(int)point.y - 1][(int)point.x]))
 		return ((point.x - (double)((int)point.x)));
 	if (point.x == (int)point.x
 		&& ft_strchr("123456789D", prm->map.map[(int)point.y][(int)point.x]))
 		return (point.y - (double)((int)point.y));
 	if (point.x == (int)point.x && (int)point.x - 1 >= 0
-		&& ft_strchr("123456789D", prm->map.map[(int)point.y][(int)point.x - 1]))
+		&& ft_strchr("123456789D",
+			prm->map.map[(int)point.y][(int)point.x - 1]))
 		return (1 - (point.y - (double)((int)point.y)));
 	return (0);
 }
@@ -56,8 +58,8 @@ t_img	*get_correct_xpm(t_param *prm, t_dir dir)
 		return (&(prm->map.east_texture));
 	if (dir == WEST)
 		return (&(prm->map.west_texture));
-	/*if (dir == WALL_2)
-		return (&(prm->map.wall2_texture));*/
+	if (dir == WALL_2)
+		return (&(prm->map.wall2_texture));
 	if (dir == WALL_3)
 		return (&(prm->map.wall3_texture));
 	if (dir == WALL_4)

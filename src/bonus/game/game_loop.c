@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 15:04:01 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:37:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	update_frame(t_param *prm)
 			usleep(time_to_wait - time_past);
 	}
 	print_fps(prm);
+	gettimeofday(&tv, NULL);
 	prm->last_time = tv;
 	prm->frame++;
 	if ((prm->frame) > LOOP)

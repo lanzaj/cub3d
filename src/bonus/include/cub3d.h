@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 14:50:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:35:22 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define FPS 25
 # define PI 3.14159f
 # define DIST_DOOR 1.5f
+# define BUF 0.2f
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */
@@ -73,7 +74,6 @@ t_bool			all_doors_are_closed(t_param *prm);
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
 int				key_release(int keycode, void *p);
-int				is_valid_move(t_param *prm, t_coord pos);
 int				handle_mouse_move(int x, int y, void *param);
 
 /*	game -> game_loop.c */
@@ -108,6 +108,7 @@ void			update_impact_tab_part2(t_param *prm);
 void			move_player(t_param *prm);
 t_coord			get_wanted_move_dir(t_param *prm);
 t_coord			pos_buff(t_param *prm, t_coord pos);
+int				is_valid_move(t_param *prm, t_coord pos);
 
 /*	game ->	print_door.c */
 int				find_door(t_param *prm, t_coord door);

@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 15:15:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:32:30 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_dir {
 	NORTH,
 	EAST,
 	WEST,
+	WALL_2,
 	WALL_3,
 	WALL_4,
 	WALL_5,
@@ -73,7 +74,6 @@ typedef struct s_boundary
 	t_coord_int	offset_stop;
 	t_px_col	col;
 }				t_boundary;
-
 
 typedef struct s_impact
 {
