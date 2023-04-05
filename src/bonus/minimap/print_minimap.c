@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:52:00 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:12:45 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	initiate_img_minimap(t_param *prm)
 	middle.y = prm->mini_map.height / 2;
 	prm->mm_ray = get_distance_point(p, middle);
 	import_img(prm, &(prm->mm_window), "./img/hublot2.xpm");
+	prm->print_minimap = TRUE;
 }
 
 void	init_print_mimimap(t_param *prm, t_point *p,
