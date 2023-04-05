@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 18:51:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 21:42:33 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ void			init_col_px_door(t_param *prm,
 void			print_door_slice(t_param *prm, int x,
 					t_coord door, double ang);
 
+/*	game ->	print_floor_and_sky.c */
+void			print_floor_and_sky(t_param *prm, int sky, int floor);
+
 /*	game ->	print_game.c */
 void			initiate_img_game(t_param *prm);
 void			init_col_px(t_param *prm, t_coord wall,
@@ -145,8 +148,16 @@ void			rotate_player(t_param *prm);
 /*	game ->	shoot_enemy.c */
 void			shoot_enemy(t_param *prm, int x, int y);
 
-/*	game ->	print_game.c */
+/*	game ->	print_sprites.c */
 void			print_every_sprite(t_param *prm);
+
+/*	game ->	print_sprites2.c */
+void			init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col);
+int				check_distance_x(t_param *prm, t_coord sprite, t_coord_int i);
+int				check_distance_y(t_param *prm, t_coord sprite, t_coord_int i);
+void			init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx);
+void			put_on_one_pixel(t_param *prm, t_img *xpm,
+					t_boundary b, t_coord sprite);
 
 /*	minimap	*/
 /*	minimap -> print_minimap_utils.c */
@@ -167,6 +178,8 @@ void			print_player(t_param *prm);
 /*	mlx_functions	*/
 /*	mlx_functions -> mlx_color.c */
 int				get_color(t_img *xpm, int x, int y);
+int				darken_color(int color, t_coord wall, t_coord player);
+int				darken_color_floor(int color, int x);
 
 /*	mlx_functions -> mlx_color.c */
 int				create_trgb(unsigned char t, unsigned char r,
@@ -283,6 +296,11 @@ int				has_hit_a_closed_door(t_param *prm, t_coord point);
 /*	utils	*/
 /*	utils -> destroy_img.c */
 void			destroy_images(t_param *prm);
+
+/*	utils -> ft_lstsort.c */
+void			ft_lstsort(t_param *prm, t_list *lst,
+					int (*fcmp)(t_param *prm, t_list *a, t_list *b));
+int				cmp_distance(t_param *prm, t_list *a, t_list *b);
 
 /*	utils -> ft_exit.c */
 void			leave_win(void *p);

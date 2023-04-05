@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 18:09:08 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 21:38:56 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	main(int argc, char *argv[])
 	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
+	print_floor_and_sky(&prm, prm.map.ceiling_color, prm.map.floor_color);
 	init_life(&prm);
 	init_gun(&prm);
 	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);

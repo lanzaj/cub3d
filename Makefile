@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/05 18:45:53 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/05 21:37:23 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,10 +69,12 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/mouse_event.c \
 				bonus/game/move.c \
 				bonus/game/print_door.c \
+				bonus/game/print_floor_and_sky.c \
 				bonus/game/print_game.c \
 				bonus/game/print_gun.c \
 				bonus/game/print_hearts.c \
 				bonus/game/print_sprites.c \
+				bonus/game/print_sprites2.c \
 				bonus/game/rotate.c \
 				bonus/game/shoot_enemy.c \
 				bonus/minimap/print_minimap_utils.c \
@@ -105,6 +107,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/parsing/parsing_utils.c \
 				bonus/utils/destroy_img.c \
 				bonus/utils/ft_exit.c \
+				bonus/utils/ft_lstsort.c \
 				bonus/utils/import_img.c \
 				bonus/utils/max_min.c \
 				bonus/utils/utils.c \
@@ -123,7 +126,7 @@ DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3 
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3
 #-fsanitize=address
 
 RM = rm -rf

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 16:33:09 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/05 19:12:22 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void	initiate_img_game(t_param *prm)
 	prm->layer.front.addr = mlx_get_data_addr(prm->layer.front.img,
 			&(prm->layer.front.bits_per_pixel), &(prm->layer.front.line_length),
 			&(prm->layer.front.endian));
+	prm->layer.back.img = mlx_new_image(prm->mlx, prm->width,
+			prm->height);
+	prm->layer.back.width = prm->width;
+	prm->layer.back.height = prm->height;
+	prm->layer.back.addr = mlx_get_data_addr(prm->layer.back.img,
+			&(prm->layer.back.bits_per_pixel), &(prm->layer.back.line_length),
+			&(prm->layer.back.endian));
 }
 
 void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
