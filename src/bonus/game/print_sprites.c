@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sprites.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 16:56:08 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 17:39:41 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ static void print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta)) * prm->width) / (2 * 0.5773502)) + (prm->width / 2);
 	if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 		seen = put_img_to_front(prm, xpm, dx, sprite->coord);
-	if (sprite->type == 'B' && seen && (prm->gun.shooting || sprite->health == 0) && convert_angle(prm->view_ang - theta - PI / 2) >= PI / 4)
+	if (sprite->type == 'B' && seen && (prm->gun.shooting || sprite->health == 0)
+		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI && dx > prm->width / 2 - 100
+		&& dx < prm->width / 2 + 100)
 	{
 		if (sprite->health != 0)
 			sprite->health--;
