@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sprites.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 17:57:15 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:43:51 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 static int	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 {
-	t_boundary b;
-	int ret;
+	t_boundary	b;
+	int			ret;
 
 	ret = 0;
 	init_col_px_sprite(prm, sprite, &b.col);
 	init_boundary(prm, xpm, &b, dx);
-	while (b.i.x < b.stop.x - b.offset_stop.x && b.i.x >= 0 && b.i.x < prm->width)
+	while (b.i.x < b.stop.x - b.offset_stop.x
+		&& b.i.x >= 0 && b.i.x < prm->width)
 	{
 		b.i.y = b.start.y + b.offset_start.y;
 		if (check_distance_x(prm, sprite, b.i))
 		{
-			while (b.i.y < b.stop.y - b.offset_stop.y && b.i.y >= 0 && b.i.y < prm->height)
+			while (b.i.y < b.stop.y - b.offset_stop.y
+				&& b.i.y >= 0 && b.i.y < prm->height)
 			{
 				ret += put_on_one_pixel(prm, xpm, b, sprite);
 				b.i.y++;
@@ -39,39 +41,53 @@ static int	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 static double get_angle_with_player_view(t_param *prm, t_coord sprite)
 {
 	return (convert_angle(-atan2((sprite.y - prm->pos_player.y),
-								 sprite.x - prm->pos_player.x)));
+				sprite.x - prm->pos_player.x)));
 }
 
 static void print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 {
-	double theta;
-	int dx;
-	int seen;
+	double	theta;
+	int		dx;
+	int		seen;
 
 	dx = 0;
 	theta = get_angle_with_player_view(prm, sprite->coord);
-	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta)) * prm->width) / (2 * 0.5773502)) + (prm->width / 2);
-	if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
+	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
+				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
+	if (!sprite->dead && convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 		seen = put_img_to_front(prm, xpm, dx, sprite->coord);
-	if (sprite->type == 'B' && seen && (prm->gun.shooting || sprite->health == 0)
-		&& convert_angle(v_abs_dbl(prm->view_ang - theta)) <= SHOOT_ANG)
+	if ((sprite->type == 'B' || sprite->type == 'R') && seen
+		&& (prm->gun.frame_count == 1 || sprite->health == 0)
+		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 	{
-		if (sprite->health != 0)
+		if (prm->gun.frame_count == 1 && sprite->health > 0
+			&& convert_angle(v_abs_dbl(prm->view_ang - theta)) <= SHOOT_ANG)
 			sprite->health--;
-		if (sprite->health == 0)
+		if (sprite->health == 0 && sprite->type == 'B')
 		{
-			put_img_to_front(prm, &prm->gun.explo[sprite->frame], dx, sprite->coord);
+			put_img_to_front(prm, &prm->gun.explo[sprite->frame],
+				dx, sprite->coord);
 			sprite->frame++;
 			if (sprite->frame == 7)
 				sprite->dead = 1;
+			prm->map.map[(int)sprite->coord.y][(int)sprite->coord.x] = '0';
 		}
+	}
+	if (sprite->health == 0 && sprite->type == 'R'
+		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI)
+	{
+		put_img_to_front(prm, &prm->map.die_texture[sprite->frame],
+			dx, sprite->coord);
+		if (sprite->frame < 3)
+			sprite->frame++;
+		sprite->dead = 1;
 	}
 }
 
 void print_every_sprite(t_param *prm)
 {
-	t_list *current;
-	t_sprite *sprite;
+	t_list		*current;
+	t_sprite	*sprite;
 
 	current = prm->sprite_lst;
 	ft_lstsort(prm, current, &cmp_distance);
@@ -88,7 +104,7 @@ void print_every_sprite(t_param *prm)
 		}
 		if (sprite->type == 'R')
 		{
-			print_sprite(prm, sprite, &prm->map.front1_texture);
+			print_sprite(prm, sprite, &prm->map.front_texture[0]);
 		}
 		current = current->next;
 	}

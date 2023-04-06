@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_to_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 15:04:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:12:27 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	fd_to_map(t_param *prm, int fd)
 	prm->map.ceiling_color = -1;
 	prm->map.floor_color = -1;
 	i = 0;
-	while (i < 27)
+	while (i < 29)
 	{
 		str = get_next_nonnull_line(prm, fd);
 		if (str == NULL)

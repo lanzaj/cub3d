@@ -13,18 +13,20 @@ W7 ./img/LIGHT_1B.xpm
 W8 ./img/SUPPORT_1D.xpm
 W9 ./img/PIPES_2A.xpm
 
+F0 ./img/front0A.xpm
 F1 ./img/front1A.xpm
-F2 ./img/front2.xpm
-F3 ./img/front3.xpm
-F4 ./img/front4.xpm
+F2 ./img/front2A.xpm
+F3 ./img/front3A.xpm
 
-A1 ./img/attack1.xpm
-A2 ./img/attack2.xpm
-A3 ./img/attack3.xpm
+A0 ./img/attack0A.xpm
+A1 ./img/attack1A.xpm
+A2 ./img/attack2A.xpm
+A3 ./img/attack3A.xpm
 
-D1 ./img/die1.xpm
-D2 ./img/die2.xpm
-D3 ./img/die3.xpm
+D0 ./img/die0A.xpm
+D1 ./img/die1A.xpm
+D2 ./img/die2A.xpm
+D3 ./img/die3A.xpm
 
 BA ./img/BARREL.xpm
 CA ./img/CABLES_1.xpm
