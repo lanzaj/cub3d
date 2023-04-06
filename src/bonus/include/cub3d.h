@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 16:44:18 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 17:54:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <sys/stat.h>
 # include <limits.h>
+# include <float.h>
 # include <sys/time.h>
 # include <fcntl.h>
 # define KEY_LEFT_ARROW 65361
@@ -47,6 +48,7 @@
 # define BUF 0.2f
 # define LIFE_NUMBER 5
 # define SHOOT_FRAME 3
+# define SHOOT_ANG 0.18f
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */
@@ -320,6 +322,7 @@ int				ft_max(int a, int b);
 int				ft_min(int a, int b);
 double			ft_max_d(double a, double b);
 double			ft_min_d(double a, double b);
+double			v_abs_dbl(double a);
 
 /*	utils -> utils.c */
 int				get_nb_str(char **strs);
