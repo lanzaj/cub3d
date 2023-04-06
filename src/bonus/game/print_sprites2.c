@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 04:43:52 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:44:51 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx)
 		b->i.x = 0;
 }
 
-void	put_on_one_pixel(t_param *prm, t_img *xpm, t_boundary b, t_coord sprite)
+int	put_on_one_pixel(t_param *prm, t_img *xpm, t_boundary b, t_coord sprite)
 {
 	t_point		pixel;
 	double		dist;
@@ -101,5 +101,6 @@ void	put_on_one_pixel(t_param *prm, t_img *xpm, t_boundary b, t_coord sprite)
 	pixel.x = b.i.x;
 	pixel.y = b.i.y;
 	if (check_distance_y(prm, sprite, b.i))
-		pixel_put_img(&(prm->layer.front), pixel);
+		return (pixel_put_img(&(prm->layer.front), pixel));
+	return (0);
 }

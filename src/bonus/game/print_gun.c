@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_gun.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:54:14 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 18:42:54 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:12:43 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ void	init_gun(t_param *prm)
 {
 	import_img(prm, &(prm->gun.gun1), "./img/gun_bis.xpm");
 	import_img(prm, &(prm->gun.gun2), "./img/gun_shoot_bis2.xpm");
+	import_img(prm, &(prm->gun.explo[0]), "./img/Explosion0.xpm");
+	import_img(prm, &(prm->gun.explo[1]), "./img/Explosion1.xpm");
+	import_img(prm, &(prm->gun.explo[2]), "./img/Explosion2.xpm");
+	import_img(prm, &(prm->gun.explo[3]), "./img/Explosion3.xpm");
+	import_img(prm, &(prm->gun.explo[4]), "./img/Explosion4.xpm");
+	import_img(prm, &(prm->gun.explo[5]), "./img/Explosion5.xpm");
+	import_img(prm, &(prm->gun.explo[6]), "./img/Explosion6.xpm");
 	prm->gun.select = 1;
 }
 

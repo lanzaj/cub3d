@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 13:30:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:18:50 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,9 @@ typedef struct s_sprite
 {
 	t_coord			coord;
 	char			type;
+	char			health;
+	char			dead;
+	int				frame;
 }				t_sprite;
 
 typedef struct s_gun
@@ -186,6 +189,7 @@ typedef struct s_gun
 	int			select;
 	int			frame_count;
 	t_bool		shooting;
+	t_img		explo[7];
 }				t_gun;
 
 typedef struct s_param {

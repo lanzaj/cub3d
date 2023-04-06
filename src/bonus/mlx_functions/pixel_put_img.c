@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_put_img.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:57:08 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:41:03 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:43:58 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	pixel_put_img(t_img *img, t_point pixel)
+int	pixel_put_img(t_img *img, t_point pixel)
 {
 	char	*dst;
 
@@ -23,5 +23,7 @@ void	pixel_put_img(t_img *img, t_point pixel)
 		dst = img->addr + (pixel.y * img->line_length
 				+ pixel.x * (img->bits_per_pixel / 8));
 		*(unsigned int *)dst = pixel.color;
+		return (1);
 	}
+	return (0);
 }

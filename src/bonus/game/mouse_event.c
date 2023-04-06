@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:58:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 04:57:52 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 13:51:48 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	rotate_mouse_player(t_param *prm, double speed)
 		speed = -speed;
 		if (prm->view_ang == 2 * PI)
 			prm->view_ang = 0;
-		prm->view_dir = rotate((double)PI * speed / 36000, prm->view_dir);
-		prm->screen_dir = rotate((double)PI * speed / 36000, prm->screen_dir);
-		prm->view_ang += (double)PI * speed / 36000;
+		prm->view_dir = rotate((double)PI * speed / MOUSE_SPEED, prm->view_dir);
+		prm->screen_dir = rotate((double)PI * speed / MOUSE_SPEED, prm->screen_dir);
+		prm->view_ang += (double)PI * speed / MOUSE_SPEED;
 		if (prm->view_ang == 2 * PI)
 			prm->view_ang = 0;
 	}
@@ -29,10 +29,10 @@ static void	rotate_mouse_player(t_param *prm, double speed)
 	{
 		if (prm->view_ang == 0)
 			prm->view_ang = 2 * PI;
-		prm->view_dir = rotate((double)(-PI * speed / 36000), prm->view_dir);
-		prm->screen_dir = rotate((double)(-PI * speed / 36000),
+		prm->view_dir = rotate((double)(-PI * speed / MOUSE_SPEED), prm->view_dir);
+		prm->screen_dir = rotate((double)(-PI * speed / MOUSE_SPEED),
 				prm->screen_dir);
-		prm->view_ang -= (double)PI * speed / 36000;
+		prm->view_ang -= (double)PI * speed / MOUSE_SPEED;
 		if (prm->view_ang == 0)
 			prm->view_ang = 2 * PI;
 	}

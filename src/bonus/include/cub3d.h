@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 07:48:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:44:18 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define SPEED_MOVE_DOOR 20
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
+# define MOUSE_SPEED 3600
 # define FPS 25
 # define PI 3.14159f
 # define DIST_DOOR 1.5f
@@ -158,7 +159,7 @@ void			init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col);
 int				check_distance_x(t_param *prm, t_coord sprite, t_coord_int i);
 int				check_distance_y(t_param *prm, t_coord sprite, t_coord_int i);
 void			init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx);
-void			put_on_one_pixel(t_param *prm, t_img *xpm,
+int				put_on_one_pixel(t_param *prm, t_img *xpm,
 					t_boundary b, t_coord sprite);
 
 /*	minimap	*/
@@ -201,7 +202,7 @@ void			ft_swap_seg(t_seg *seg, t_point *delt);
 int				get_color_gradian(t_point p_s, t_point p_e, t_point p);
 
 /*	mlx_functions -> pixel_put_img.c */
-void			pixel_put_img(t_img *img, t_point pixel);
+int				pixel_put_img(t_img *img, t_point pixel);
 
 /*	parsing	*/
 /*	parsing -> check_extension.c */
