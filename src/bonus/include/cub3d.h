@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 03:09:29 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 03:51:09 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void			change_door_status(t_param *prm);
 
 /*	game -> door_open.c */
 void			find_door_to_open(t_param *prm);
-t_bool			all_doors_are_closed(t_param *prm);
 
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
@@ -86,7 +85,6 @@ int				get_texture_px_color_door(t_param *prm,
 					t_coord wall, double pos_y);
 int				get_color_px_door(t_param *prm,
 					t_px_col col, int y, t_coord wall);
-t_bool			is_a_door(t_param *prm, t_coord point);
 
 /*	game -> get_color_to_print.c */
 double			pos_impact(t_param *prm, t_coord point);

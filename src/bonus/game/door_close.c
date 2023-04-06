@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:39:32 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 03:10:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 03:49:23 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static void	change_state_closing(t_param *prm, int id)
 {
 	(prm->tab_doors[id])->percent_open -= SPEED_MOVE_DOOR;
 	if ((prm->tab_doors[id])->percent_open == 0)
+	{
 		(prm->tab_doors[id])->status = CLOSED;
+		prm->nbr_door_open--;
+	}
 }
 
 int	ok_to_close_door(t_param *prm, int id)

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 03:13:19 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 04:43:52 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col)
 
 int	check_distance_x(t_param *prm, t_coord sprite, t_coord_int i)
 {
-	if (prm->impact[i.x].is_door && prm->impact[i.x].status_door != CLOSED)
+	if (prm->impact[i.x].is_door
+		&& prm->impact[i.x].status_door != CLOSED)
 		return (get_distance_square(sprite, prm->pos_player)
 			< get_distance_square(prm->pos_player, prm->impact[i.x].wall_only)
 			&& get_distance_square(sprite, prm->pos_player) > 0.3 * 0.3);

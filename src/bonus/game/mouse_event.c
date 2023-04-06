@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_event.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:58:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 18:44:33 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 04:57:52 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,13 @@ int	handle_mouse_click(int button, int x, int y, void *p)
 	(void)y;
 	if (button == 1 && prm->gun.shooting == FALSE)
 	{
-		prm->gun.shooting = TRUE;
-		shoot_enemy(prm, x, y);
+		if (prm->in_focus)
+		{
+			prm->gun.shooting = TRUE;
+			shoot_enemy(prm, x, y);
+		}
+		else
+			enter_window(p);
 	}
 	return (0);
 }

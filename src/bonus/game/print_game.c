@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 19:12:22 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 04:25:17 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,13 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 void	print_game(t_param *prm)
 {
 	int			x;
-	t_bool		all_door_closed;
 
-	all_door_closed = all_doors_are_closed(prm);
 	ft_memset(prm->impact, 0, prm->width * sizeof(t_impact));
 	update_impact_tab(prm);
 	x = 0;
 	while (x < prm->width)
 	{
-		if (all_door_closed || prm->impact[x].is_door == FALSE
+		if (!prm->nbr_door_open || prm->impact[x].is_door == FALSE
 			|| (prm->impact[x].is_door == TRUE
 				&& prm->impact[x].status_door == CLOSED))
 			print_wall_slice(prm, x,
