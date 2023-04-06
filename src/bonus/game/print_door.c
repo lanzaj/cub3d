@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:19:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/03 20:37:36 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 06:05:49 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,15 @@ void	print_door_slice(t_param *prm, int x, t_coord door, double ang)
 {
 	int			y;
 	t_px_col	col;
+	int			color;
 
 	init_col_px_door(prm, door, ang, &col);
 	y = 0;
 	while (x > 0 && x < prm->width && y < prm->height)
 	{
-		if (get_color_px_door(prm, col, y, door) != -1)
-			my_mlx_pixel_put(&(prm->layer.front), x, y,
-				get_color_px_door(prm, col, y, door));
+		color = get_color_px_door(prm, col, y, door);
+		if (color != -1)
+			my_mlx_pixel_put(&(prm->layer.front), x, y, color);
 		y++;
 	}
 }

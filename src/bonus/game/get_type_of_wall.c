@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 18:40:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 04:38:56 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 07:08:13 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@ t_dir	get_type_of_wall(t_param *prm, t_coord point)
 {
 	int	dir;
 
-	if (point.y == (int)point.y
-		&& prm->map.map[(int)point.y][(int)point.x] == '1')
-		return (SOUTH);
-	if (point.y == (int)point.y && (int)point.y - 1 >= 0
-		&& prm->map.map[(int)point.y - 1][(int)point.x] == '1')
-		return (NORTH);
-	if (point.x == (int)point.x
-		&& prm->map.map[(int)point.y][(int)point.x] == '1')
-		return (EAST);
-	if (point.x == (int)point.x && (int)point.x - 1 >= 0
-		&& prm->map.map[(int)point.y][(int)point.x - 1] == '1')
-		return (WEST);
+	if (point.y == (int)point.y)
+	{
+		if (point.y - 1 >= 0
+			&& prm->map.map[(int)point.y - 1][(int)point.x] == '1')
+			return (NORTH);
+		if (prm->map.map[(int)point.y][(int)point.x] == '1')
+			return (SOUTH);
+	}
+	if (point.x == (int)point.x)
+	{
+		if (point.x - 1 >= 0
+			&& prm->map.map[(int)point.y][(int)point.x - 1] == '1')
+			return (WEST);
+		if (prm->map.map[(int)point.y][(int)point.x] == '1')
+			return (EAST);
+	}
 	dir = has_hit_a_closed_door(prm, point);
 	if (dir)
 		return (dir);

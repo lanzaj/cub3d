@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 04:14:04 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 07:52:16 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	print_fps(t_param *prm)
 	time_past = get_timediff_us(tv, prm->last_time);
 	fps = (int)((double)1 / ((double)time_past / (double)1000000));
 	if (prm->last_time.tv_sec && prm->frame % 5 == 0)
-		ft_printf("\rfps : %d    %d   ", fps, prm->nbr_door_open);
+		ft_printf("\rfps : %d", fps);
 }
 
 static void	update_frame(t_param *prm)
@@ -49,7 +49,8 @@ static void	update_frame(t_param *prm)
 		if (time_past < time_to_wait)
 			usleep(time_to_wait - time_past);
 	}
-	print_fps(prm);
+	if (prm->print_fps)
+		print_fps(prm);
 	gettimeofday(&tv, NULL);
 	prm->last_time = tv;
 	prm->frame++;

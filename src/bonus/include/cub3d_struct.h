@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 03:44:25 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 07:47:12 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_key_stat {
 	char	key_s;
 	char	key_space;
 	char	key_tab;
+	char	key_shift;
 }				t_key_stat;
 
 typedef struct s_garb
@@ -211,11 +212,13 @@ typedef struct s_param {
 	t_img			mm_window;
 	t_img			img_heart;
 	t_bool			print_minimap;
+	t_bool			print_fps;
 	t_impact		*impact;
 	t_list			*sprite_lst;
 	int				n_life;
 	t_gun			gun;
 	int				nbr_door_open;
+	t_img			*tab_xpm[16];
 }					t_param;
 
 #endif

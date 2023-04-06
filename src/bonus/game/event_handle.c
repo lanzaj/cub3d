@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:21:36 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 17:58:27 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 07:53:48 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ static int	key_press_part2(int keycode, void *p)
 		prm->print_minimap = FALSE;
 	else if (keycode == KEY_M)
 		prm->print_minimap = TRUE;
+	if (keycode == KEY_CTRL)
+		handle_mouse_click(1, 0, 0, p);
+	if (keycode == KEY_SHIFT)
+		prm->key.key_shift = 1;
+	if (keycode == KEY_F && prm->print_fps && ft_printf("\r                  \r"))
+		prm->print_fps = FALSE;
+	else if (keycode == KEY_F)
+		prm->print_fps = TRUE;
 	return (0);
 }
 
@@ -69,5 +77,7 @@ int	key_release(int keycode, void *p)
 		prm->key.right = 0;
 	if (keycode == KEY_LEFT_ARROW)
 		prm->key.left = 0;
+	if (keycode == KEY_SHIFT)
+		prm->key.key_shift = 0;
 	return (0);
 }

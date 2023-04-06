@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 03:51:09 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 07:48:43 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@
 # define KEY_M 109
 # define KEY_SPACE 32
 # define KEY_TAB 65289
+# define KEY_CTRL 65507
+# define KEY_SHIFT 65505
 # define KEY_M 109
+# define KEY_F 102
 # define KEY_ESC 0xFF1B
 # define LOOP 150
 # define TIME_CLOSE_DOOR 100
@@ -81,6 +84,7 @@ int				game_loop(t_param *prm);
 
 /*	game -> get_color_to_print_door.c */
 double			pos_impact_door(t_param *prm, t_coord point);
+void			init_tab_xpm(t_param *prm);
 int				get_texture_px_color_door(t_param *prm,
 					t_coord wall, double pos_y);
 int				get_color_px_door(t_param *prm,

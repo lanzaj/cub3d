@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_hearts.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:20:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 16:42:13 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 05:47:00 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	print_hearts(t_param *prm)
 	i = 0;
 	while (i < prm->n_life)
 	{
-		p.x = 40 + i * (10 + prm->img_heart.width);
+		p.x = 40 + i * (5 + prm->img_heart.width);
 		p.y = 30;
 		print_single_heart(prm, p.x, p.y);
 		i++;

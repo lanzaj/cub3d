@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:17:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 15:35:28 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 07:38:40 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	move_player(t_param *prm)
 	t_coord	move_dir;
 
 	speed = 0.1;
+	if (prm->key.key_shift)
+		speed = 0.15;
 	move_dir = get_wanted_move_dir(prm);
 	if (!(move_dir.x == 0 && move_dir.y == 0) && is_valid_move(prm,
 			sum_vect(prm->pos_player, prod_vect(speed, move_dir))))

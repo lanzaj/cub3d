@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 04:25:17 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 06:46:51 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	initiate_img_game(t_param *prm)
 	prm->layer.back.addr = mlx_get_data_addr(prm->layer.back.img,
 			&(prm->layer.back.bits_per_pixel), &(prm->layer.back.line_length),
 			&(prm->layer.back.endian));
+	init_tab_xpm(prm);
 }
 
 void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
