@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 19:43:51 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 20:01:51 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,16 @@ static double get_angle_with_player_view(t_param *prm, t_coord sprite)
 				sprite.x - prm->pos_player.x)));
 }
 
-static void print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
+static void	explode(t_param *prm, t_sprite *sprite)
+{
+	t_list	*current;
+
+	current = prm->sprite_lst;
+	while (current)
+	
+}
+
+static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 {
 	double	theta;
 	int		dx;
@@ -63,22 +72,26 @@ static void print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 		if (prm->gun.frame_count == 1 && sprite->health > 0
 			&& convert_angle(v_abs_dbl(prm->view_ang - theta)) <= SHOOT_ANG)
 			sprite->health--;
-		if (sprite->health == 0 && sprite->type == 'B')
-		{
-			put_img_to_front(prm, &prm->gun.explo[sprite->frame],
-				dx, sprite->coord);
-			sprite->frame++;
-			if (sprite->frame == 7)
-				sprite->dead = 1;
-			prm->map.map[(int)sprite->coord.y][(int)sprite->coord.x] = '0';
-		}
 	}
-	if (sprite->health == 0 && sprite->type == 'R'
-		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI)
+	if (sprite->health == 0 && sprite->type == 'B')
 	{
-		put_img_to_front(prm, &prm->map.die_texture[sprite->frame],
+		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
+			put_img_to_front(prm, &prm->gun.explo[sprite->frame],
 			dx, sprite->coord);
-		if (sprite->frame < 3)
+		sprite->frame++;
+		if (sprite->frame == 7)
+		{
+			sprite->dead = 1;
+			explode(prm, sprite);
+		}
+		prm->map.map[(int)sprite->coord.y][(int)sprite->coord.x] = '0';
+	}
+	if (sprite->health == 0 && sprite->type == 'R')
+	{
+		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
+			put_img_to_front(prm, &prm->map.die_texture[sprite->frame / 2],
+				dx, sprite->coord);
+		if (sprite->frame < 3 * 2)
 			sprite->frame++;
 		sprite->dead = 1;
 	}
