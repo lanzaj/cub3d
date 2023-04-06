@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 17:28:14 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 02:39:57 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_texture_px_color_door(t_param *prm, t_coord wall, double pos_y)
 	if (px_x < 0 || px_x >= xpm->width || px_y < 0 || px_y >= xpm->height)
 		return (-1);
 	return (darken_color(*(int *)(xpm->addr + (px_x * (xpm->bits_per_pixel / 8)
-			+ px_y * xpm->line_length)), wall, prm->pos_player));
+				+ px_y * xpm->line_length)), wall, prm->pos_player));
 }
 
 int	get_color_px_door(t_param *prm, t_px_col col, int y, t_coord door)

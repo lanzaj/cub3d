@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:56:04 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 19:36:03 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 02:41:16 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ void	print_floor_and_sky(t_param *prm, int sky, int floor)
 			p.y = y;
 			if (y < prm->height / 2)
 				p.color = darken_color_floor(sky,
-						get_distance_int(x, y, prm->width / 2, -3 * prm->height));
+						get_distance_int(x, y, prm->width / 2,
+							-3 * prm->height));
 			else
 				p.color = darken_color_floor(floor,
-						get_distance_int(x, y, prm->width / 2, prm->height * 4));
+						get_distance_int(x, y, prm->width / 2,
+							prm->height * 4));
 			pixel_put_img(&prm->layer.back, p);
 			x++;
 		}

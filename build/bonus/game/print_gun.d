@@ -1,4 +1,4 @@
-build/bonus/game/print_game.o: src/bonus/game/print_game.c \
+build/bonus/game/print_gun.o: src/bonus/game/print_gun.c \
  src/bonus/game/../include/cub3d.h \
  src/bonus/game/../include/../../../libft/src/libft.h \
  src/bonus/game/../include/../../../mlx_linux/mlx.h \

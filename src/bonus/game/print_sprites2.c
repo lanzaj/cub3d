@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 17:35:24 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 02:29:34 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,14 @@ void	init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx)
 void	put_on_one_pixel(t_param *prm, t_img *xpm, t_boundary b, t_coord sprite)
 {
 	t_point		pixel;
+	double		dist;
 
-	pixel.color = darken_color(get_color(xpm,
-				(b.i.x - b.start.x) * xpm->width / (b.col.px_wall),
-				(b.i.y - b.start.y + (b.col.ofset))
-				* xpm->height / (b.col.px_wall)), sprite, prm->pos_player);
+	dist = (sprite.x - prm->pos_player.x) * (sprite.x - prm->pos_player.x)
+		+ (sprite.y - prm->pos_player.y) * (sprite.y - prm->pos_player.y);
+	pixel.color = get_darken_color(xpm,
+			(b.i.x - b.start.x) * xpm->width / (b.col.px_wall),
+			(b.i.y - b.start.y + (b.col.ofset))
+			* xpm->height / (b.col.px_wall), dist);
 	pixel.x = b.i.x;
 	pixel.y = b.i.y;
 	if (check_distance_y(prm, sprite, b.i))
