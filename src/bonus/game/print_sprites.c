@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 20:01:51 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 20:24:13 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ static void	explode(t_param *prm, t_sprite *sprite)
 
 	current = prm->sprite_lst;
 	while (current)
-	
+	{
+		if (current->content != sprite && get_distance(((t_sprite *)current->content)->coord, sprite->coord) < 1.5)
+			((t_sprite *)current->content)->health--;
+		current = current->next;
+	}
+	if (get_distance(sprite->coord, prm->pos_player) < 1.5)
+		prm->n_life--;
 }
 
 static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
