@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_close.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:39:32 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 23:08:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:10:43 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	ok_to_close_door(t_param *prm, int id)
 
 	coord_door.x = (double)(prm->tab_doors[id])->x + 0.5;
 	coord_door.y = (double)(prm->tab_doors[id])->y + 0.5;
-	if (get_distance(coord_door, prm->pos_player) < DIST_DOOR)
+	if (get_distance_square(coord_door, prm->pos_player)
+		< DIST_DOOR * DIST_DOOR)
 		return (0);
 	return (1);
 }

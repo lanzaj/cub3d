@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_distance.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:05:38 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:38:19 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:19:55 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 double	get_distance(t_coord a, t_coord b)
 {
-	double	result;
+	return (sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)));
+}
 
-	result = sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
-	return (result);
+double	get_distance_square(t_coord a, t_coord b)
+{
+	return ((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
 double	get_distance_point(t_point a, t_point b)

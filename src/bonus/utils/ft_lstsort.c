@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:44:51 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 15:47:59 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 03:15:04 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	ft_lstsort(t_param *prm, t_list *lst,
 
 int	cmp_distance(t_param *prm, t_list *a, t_list *b)
 {
-	return (get_distance(prm->pos_player,
-			((t_sprite *)a->content)->coord) < get_distance(prm->pos_player,
+	return (get_distance_square(prm->pos_player,
+			((t_sprite *)a->content)->coord)
+		< get_distance_square(prm->pos_player,
 			((t_sprite *)b->content)->coord));
 }

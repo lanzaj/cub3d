@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 02:29:34 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 03:13:19 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,23 @@ void	init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col)
 int	check_distance_x(t_param *prm, t_coord sprite, t_coord_int i)
 {
 	if (prm->impact[i.x].is_door && prm->impact[i.x].status_door != CLOSED)
-		return (get_distance(sprite, prm->pos_player)
-			< get_distance(prm->pos_player, prm->impact[i.x].wall_only)
-			&& get_distance(sprite, prm->pos_player) > 0.3);
+		return (get_distance_square(sprite, prm->pos_player)
+			< get_distance_square(prm->pos_player, prm->impact[i.x].wall_only)
+			&& get_distance_square(sprite, prm->pos_player) > 0.3 * 0.3);
 	else
-		return (get_distance(sprite, prm->pos_player)
-			< get_distance(prm->pos_player, prm->impact[i.x].wall_and_door)
-			&& get_distance(sprite, prm->pos_player) > 0.3);
+		return (get_distance_square(sprite, prm->pos_player)
+			< get_distance_square(prm->pos_player,
+				prm->impact[i.x].wall_and_door)
+			&& get_distance_square(sprite, prm->pos_player) > 0.3 * 0.3);
 }
 
 int	check_distance_y(t_param *prm, t_coord sprite, t_coord_int i)
 {
 	t_px_col	col;
 
-	if (get_distance(sprite, prm->pos_player)
-		< get_distance(prm->pos_player, prm->impact[i.x].wall_and_door)
-		&& get_distance(sprite, prm->pos_player) > 0.3)
+	if (get_distance_square(sprite, prm->pos_player)
+		< get_distance_square(prm->pos_player, prm->impact[i.x].wall_and_door)
+		&& get_distance_square(sprite, prm->pos_player) > 0.3 * 0.3)
 		return (1);
 	init_col_px(prm, prm->impact[i.x].wall_and_door,
 		prm->impact[i.x].ang, &col);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_open.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:17:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/04 16:10:28 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:11:18 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	find_door_to_open(t_param *prm)
 		{
 			coord_door.x = (double)(prm->tab_doors[id_door]->x) + 0.5;
 			coord_door.y = (double)(prm->tab_doors[id_door]->y) + 0.5;
-			if (get_distance(coord_door, prm->pos_player) < 2.5
+			if (get_distance_square(coord_door, prm->pos_player) < 2.5 * 2.5
 				&& (prm->tab_doors[id_door])->status == CLOSED)
 				(prm->tab_doors[id_door])->status = OPENING;
 			id_door++;

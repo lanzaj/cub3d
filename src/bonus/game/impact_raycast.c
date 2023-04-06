@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   impact_raycast.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:57:54 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/30 18:12:29 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:34:50 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	update_impact_tab(t_param *prm)
 		prm->impact[x - dx].ang = atan((dx * 2 * 0.5773502) / prm->width);
 		prm->impact[x - dx].wall_and_door = find_wall(prm,
 				convert_angle(prm->view_ang + prm->impact[x - dx].ang));
-		if (is_a_door(prm, prm->impact[x - dx].wall_and_door))
+		if (has_hit_a_door(prm, prm->impact[x - dx].wall_and_door))
 		{
 			prm->impact[x - dx].is_door = TRUE;
 			prm->impact[x - dx].id_door = find_door(prm,
@@ -61,7 +61,7 @@ void	update_impact_tab_part2(t_param *prm)
 		prm->impact[x + dx].ang = atan((dx * 2 * 0.5773502) / prm->width);
 		prm->impact[x + dx].wall_and_door = find_wall(prm,
 				convert_angle(prm->view_ang - prm->impact[x + dx].ang));
-		if (is_a_door(prm, prm->impact[x + dx].wall_and_door))
+		if (has_hit_a_door(prm, prm->impact[x + dx].wall_and_door))
 		{
 			prm->impact[x + dx].is_door = TRUE;
 			prm->impact[x + dx].id_door = find_door(prm,

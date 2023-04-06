@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 02:30:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 03:09:29 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,6 +326,7 @@ void			print_map(t_param *prm);
 /*	vector_manipulation	*/
 /*	vector_manipulation -> get_distance.c */
 double			get_distance(t_coord a, t_coord b);
+double			get_distance_square(t_coord a, t_coord b);
 double			get_distance_point(t_point a, t_point b);
 
 /*	vector_manipulation -> matrix_vector_calc.c */

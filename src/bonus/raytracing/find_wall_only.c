@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_wall_only.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:28:40 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/03/29 18:53:25 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:13:43 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ t_coord	find_wall_only(t_param *prm, double ray_ang)
 		return (delt_h);
 	if (!is_valid_coord(prm, delt_h) && is_valid_coord(prm, delt_v))
 		return (delt_v);
-	if (get_distance(prm->pos_player, delt_v)
-		< get_distance(prm->pos_player, delt_h))
+	if (get_distance_square(prm->pos_player, delt_v)
+		< get_distance_square(prm->pos_player, delt_h))
 		return (delt_v);
 	return (delt_h);
 }
