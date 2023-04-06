@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 07:47:12 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 13:30:43 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ typedef struct s_param {
 	int				n_life;
 	t_gun			gun;
 	int				nbr_door_open;
-	t_img			*tab_xpm[16];
+	t_img			*tab_xpm[17];
 }					t_param;
 
 #endif
