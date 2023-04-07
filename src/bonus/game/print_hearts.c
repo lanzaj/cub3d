@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:20:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 05:47:00 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 15:16:33 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,36 @@
 
 void	init_life(t_param *prm)
 {
-	import_img(prm, &(prm->img_heart), "./img/heart.xpm");
+	if (import_img(prm, &(prm->health_bar[0]), "./img/health0.xpm"))
+		ft_printf("error\n");
+	if (import_img(prm, &(prm->health_bar[1]), "./img/health1bis.xpm"))
+		ft_printf("error\n");
+	if (import_img(prm, &(prm->health_bar[2]), "./img/health2.xpm"))
+		ft_printf("error\n");
+	if (import_img(prm, &(prm->health_bar[3]), "./img/health3.xpm"))
+		ft_printf("error\n");
+	if (import_img(prm, &(prm->health_bar[4]), "./img/health4.xpm"))
+		ft_printf("error\n");
 	prm->n_life = LIFE_NUMBER;
 }
 
-void	print_single_heart(t_param *prm, int x, int y)
+void	print_health_bar(t_param *prm, int x, int y)
 {
 	t_point	p;
 
 	p.y = y;
-	while (p.y < prm->img_heart.height + y)
+	while (p.y < prm->health_bar[prm->n_life].height + y)
 	{
 		p.x = x;
-		while (p.x < prm->img_heart.width + x)
+		while (p.x < prm->health_bar[prm->n_life].width + x)
 		{
-			p.color = get_color(&(prm->img_heart), p.x - x, p.y - y);
+			if (prm->n_life == 1 && prm->frame % 10 < 4)
+				p.color = get_color(&(prm->health_bar[0]), p.x - x, p.y - y);
+			else
+				p.color = get_color(&(prm->health_bar[prm->n_life]), p.x - x, p.y - y);
 			pixel_put_img(&(prm->layer.front), p);
 			(p.x)++;
 		}
 		(p.y)++;
-	}
-}
-
-void	print_hearts(t_param *prm)
-{
-	int		i;
-	t_point	p;
-
-	i = 0;
-	while (i < prm->n_life)
-	{
-		p.x = 40 + i * (5 + prm->img_heart.width);
-		p.y = 30;
-		print_single_heart(prm, p.x, p.y);
-		i++;
 	}
 }

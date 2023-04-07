@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 18:04:23 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 15:15:23 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define PI 3.14159f
 # define DIST_DOOR 1.5f
 # define BUF 0.2f
-# define LIFE_NUMBER 5
+# define LIFE_NUMBER 4
 # define SHOOT_FRAME 3
 # define SHOOT_ANG 0.14f
 
@@ -143,8 +143,7 @@ void			print_gun(t_param *prm);
 
 /*	game ->	print_heart.c */
 void			init_life(t_param *prm);
-void			print_single_heart(t_param *prm, int x, int y);
-void			print_hearts(t_param *prm);
+void			print_health_bar(t_param *prm, int x, int y);
 
 /*	game ->	rotate.c */
 double			angle_move(t_param *prm);

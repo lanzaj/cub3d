@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 06:46:51 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 15:47:56 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	initiate_img_game(t_param *prm)
 			&(prm->layer.back.bits_per_pixel), &(prm->layer.back.line_length),
 			&(prm->layer.back.endian));
 	init_tab_xpm(prm);
+	import_img(prm, &prm->layer.lost[0], "./img/loose0.xpm");
+	import_img(prm, &prm->layer.lost[1], "./img/loose1.xpm");
 }
 
 void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
@@ -60,7 +62,7 @@ void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 
 void	print_game(t_param *prm)
 {
-	int			x;
+	int	x;
 
 	ft_memset(prm->impact, 0, prm->width * sizeof(t_impact));
 	update_impact_tab(prm);
