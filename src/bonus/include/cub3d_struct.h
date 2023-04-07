@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 16:13:13 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 16:17:16 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,8 @@ typedef struct s_sprite
 	char			health;
 	char			dead;
 	int				frame;
+	t_bool			follow;
+	t_bool			ok_to_shoot;
 }				t_sprite;
 
 typedef struct s_gun

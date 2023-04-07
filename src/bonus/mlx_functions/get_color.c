@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:46:20 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 16:13:07 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 16:18:31 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	get_darken_color(t_img *xpm, int x, int y, double dist)
 		return (-1);
 	color = *(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8)
 				+ y * xpm->line_length));
-	//return(color);
 	if (dist < 25)
 		dist = 0;
 	else
@@ -55,7 +54,6 @@ int	darken_color(int color, t_coord wall, t_coord player)
 	int		b;
 	double	dist;
 
-	//return (color);
 	dist = (wall.x - player.x) * (wall.x - player.x)
 		+ (wall.y - player.y) * (wall.y - player.y);
 	if (dist < 25)
@@ -82,7 +80,6 @@ int	darken_color_floor(int color, int x)
 	unsigned int		b;
 	int					gradient;
 
-	//return (color);
 	gradient = 2420;
 	if (x < gradient)
 		x = 0;

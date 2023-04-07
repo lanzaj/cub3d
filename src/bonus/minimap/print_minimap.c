@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 05:42:29 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 10:35:10 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	init_print_mimimap(t_param *prm, t_point *p,
 		- (double)(prm->mini_map.height / 2) / prm->mm_res;
 	p->x = -1;
 }
-
 
 void	print_minimap(t_param *prm)
 {
@@ -167,4 +166,3 @@ void	print_player(t_param *prm)
 		get_minimap_pos(prm, sum_vect(prm->pos_player,
 				prod_vect(0.7, prm->view_dir)), p.color));
 }*/
-

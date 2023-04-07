@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
+#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/05 21:37:23 by jlanza           ###   ########.fr        #
+#    Updated: 2023/04/07 15:27:08 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,8 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/alloc_garbage/garbage.c \
 				bonus/game/door_close.c \
 				bonus/game/door_open.c \
+				bonus/game/enemy_in_room.c \
+				bonus/game/enemy_move.c \
 				bonus/game/event_handle.c \
 				bonus/game/game_loop.c \
 				bonus/game/get_color_to_print_door.c \
@@ -76,7 +78,6 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/print_sprites.c \
 				bonus/game/print_sprites2.c \
 				bonus/game/rotate.c \
-				bonus/game/shoot_enemy.c \
 				bonus/minimap/print_minimap_utils.c \
 				bonus/minimap/print_minimap_window.c \
 				bonus/minimap/print_minimap.c \
@@ -126,7 +127,7 @@ DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g3 
 #-fsanitize=address
 
 RM = rm -rf

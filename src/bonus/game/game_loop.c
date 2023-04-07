@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 15:37:38 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 16:16:03 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	game_loop(t_param *prm)
 		}
 		print_health_bar(prm, 10, 10);
 		print_gun(prm);
+		move_all_enemies(prm);
 		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	}
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_to_card.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:12:11 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 18:58:17 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 11:29:35 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static void	fd_to_card_part4(t_param *prm, int fd, char *str)
 {
+	if (!ft_strncmp(str, "A3 ", 3) && prm->map.attack_texture[3].img == NULL
+		&& import_img(prm, &(prm->map.attack_texture[3]), &str[3]))
+		fd_to_map_error(prm, fd, "Error\nInvalid attack3 texture\n");
 	if (!ft_strncmp(str, "D0 ", 3) && prm->map.die_texture[0].img == NULL
 		&& import_img(prm, &(prm->map.die_texture[0]), &str[3]))
 		fd_to_map_error(prm, fd, "Error\nInvalid die0 texture\n");
@@ -60,9 +63,6 @@ static void	fd_to_card_part3(t_param *prm, int fd, char *str)
 	if (!ft_strncmp(str, "A2 ", 3) && prm->map.attack_texture[2].img == NULL
 		&& import_img(prm, &(prm->map.attack_texture[2]), &str[3]))
 		fd_to_map_error(prm, fd, "Error\nInvalid attack2 texture\n");
-	if (!ft_strncmp(str, "A3 ", 3) && prm->map.attack_texture[3].img == NULL
-		&& import_img(prm, &(prm->map.attack_texture[3]), &str[3]))
-		fd_to_map_error(prm, fd, "Error\nInvalid attack3 texture\n");
 	fd_to_card_part4(prm, fd, str);
 }
 
