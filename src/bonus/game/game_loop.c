@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 16:16:03 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 16:54:23 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,28 @@ static void	update_frame(t_param *prm)
 		prm->frame = 0;
 }
 
+static void	update_red_color(t_param *prm)
+{
+	static int	last_health = LIFE_NUMBER;
+	int			*red_color;
+
+	red_color = get_red_color();
+	if (last_health != prm->n_life)
+	{
+		*red_color = 255;
+		last_health = prm->n_life;
+	}
+	else
+	{
+		if (*red_color > 0)
+			*red_color -= 20;
+	}
+}
+
 int	game_loop(t_param *prm)
 {
 	update_frame(prm);
+	update_red_color(prm);
 	if (prm->n_life > 0)
 	{
 		ft_memcpy(prm->layer.front.addr, prm->layer.back.addr, 3686399);

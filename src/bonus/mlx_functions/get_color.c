@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:46:20 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 16:18:31 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 16:53:42 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,22 @@ int	get_color(t_img *xpm, int x, int y)
 			+ y * xpm->line_length)));
 }
 
+int	*get_red_color(void)
+{
+	static int	red_color = 0;
+
+	return (&red_color);
+}
+
 int	get_darken_color(t_img *xpm, int x, int y, double dist)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	color;
+	int	*red_color;
 
+	red_color = get_red_color();
 	if (x < 0 || x >= xpm->width || y < 0 || y >= xpm->height)
 		return (-1);
 	color = *(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8)
@@ -35,13 +44,13 @@ int	get_darken_color(t_img *xpm, int x, int y, double dist)
 		dist = 0;
 	else
 		dist = dist - 25;
-	r = ((unsigned char *)&color)[2] - dist;
+	r = ((unsigned char *)&color)[2] - dist + *red_color;
 	if (r < 0)
 		r = 0;
-	g = ((unsigned char *)&color)[1] - dist;
+	g = ((unsigned char *)&color)[1] - dist - *red_color;
 	if (g < 0)
 		g = 0;
-	b = ((unsigned char *)&color)[0] - dist;
+	b = ((unsigned char *)&color)[0] - dist - *red_color;
 	if (b < 0)
 		b = 0;
 	return (*(int *)(unsigned char [4]){b, g, r, ((unsigned char *)&color)[3]});
@@ -53,20 +62,24 @@ int	darken_color(int color, t_coord wall, t_coord player)
 	int		g;
 	int		b;
 	double	dist;
+	int		*red_color;
 
+	red_color = get_red_color();
 	dist = (wall.x - player.x) * (wall.x - player.x)
 		+ (wall.y - player.y) * (wall.y - player.y);
 	if (dist < 25)
 		dist = 0;
 	else
 		dist = dist - 25;
-	r = ((unsigned char *)&color)[2] - dist;
+	r = ((unsigned char *)&color)[2] - dist + *red_color;
 	if (r < 0)
 		r = 0;
-	g = ((unsigned char *)&color)[1] - dist;
+	if (r > 255)
+		r = 255;
+	g = ((unsigned char *)&color)[1] - dist - *red_color;
 	if (g < 0)
 		g = 0;
-	b = ((unsigned char *)&color)[0] - dist;
+	b = ((unsigned char *)&color)[0] - dist - *red_color;
 	if (b < 0)
 		b = 0;
 	return (*(int *)(unsigned char [4]){b, g, r, ((unsigned char *)&color)[3]});

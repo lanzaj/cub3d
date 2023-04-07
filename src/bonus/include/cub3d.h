@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 16:18:05 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 16:51:00 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void			print_player(t_param *prm);
 /*	mlx_functions	*/
 /*	mlx_functions -> mlx_color.c */
 int				get_color(t_img *xpm, int x, int y);
+int				*get_red_color(void);
 int				get_darken_color(t_img *xpm, int x, int y, double dist);
 int				darken_color(int color, t_coord wall, t_coord player);
 int				darken_color_floor(int color, int x);
