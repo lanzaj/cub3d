@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:27:16 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/05 19:14:56 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 10:33:23 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
+
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	if (color != -1)
 		*(unsigned int *)dst = color;

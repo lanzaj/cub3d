@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sprites.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 20:24:13 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 10:37:05 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 	return (ret);
 }
 
-static double get_angle_with_player_view(t_param *prm, t_coord sprite)
+static double	get_angle_with_player_view(t_param *prm, t_coord sprite)
 {
 	return (convert_angle(-atan2((sprite.y - prm->pos_player.y),
 				sprite.x - prm->pos_player.x)));
@@ -51,7 +51,9 @@ static void	explode(t_param *prm, t_sprite *sprite)
 	current = prm->sprite_lst;
 	while (current)
 	{
-		if (current->content != sprite && get_distance(((t_sprite *)current->content)->coord, sprite->coord) < 1.5)
+		if (current->content != sprite
+			&& get_distance(((t_sprite *)current->content)->coord,
+				sprite->coord) < 1.5)
 			((t_sprite *)current->content)->health--;
 		current = current->next;
 	}
@@ -83,7 +85,7 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	{
 		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 			put_img_to_front(prm, &prm->gun.explo[sprite->frame],
-			dx, sprite->coord);
+				dx, sprite->coord);
 		sprite->frame++;
 		if (sprite->frame == 7)
 		{
@@ -103,7 +105,7 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	}
 }
 
-void print_every_sprite(t_param *prm)
+void	print_every_sprite(t_param *prm)
 {
 	t_list		*current;
 	t_sprite	*sprite;
@@ -114,17 +116,11 @@ void print_every_sprite(t_param *prm)
 	{
 		sprite = (t_sprite *)current->content;
 		if (sprite->type == 'B' && !sprite->dead)
-		{
 			print_sprite(prm, sprite, &prm->map.barrel_texture);
-		}
 		if (sprite->type == 'C')
-		{
 			print_sprite(prm, sprite, &prm->map.cables_texture);
-		}
 		if (sprite->type == 'R')
-		{
 			print_sprite(prm, sprite, &prm->map.front_texture[0]);
-		}
 		current = current->next;
 	}
 }
