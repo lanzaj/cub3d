@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 20:24:13 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/06 22:17:06 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
 	return (ret);
 }
 
-static double get_angle_with_player_view(t_param *prm, t_coord sprite)
+static double	get_angle_with_player_view(t_param *prm, t_coord sprite)
 {
 	return (convert_angle(-atan2((sprite.y - prm->pos_player.y),
 				sprite.x - prm->pos_player.x)));
@@ -51,7 +51,10 @@ static void	explode(t_param *prm, t_sprite *sprite)
 	current = prm->sprite_lst;
 	while (current)
 	{
-		if (current->content != sprite && get_distance(((t_sprite *)current->content)->coord, sprite->coord) < 1.5)
+		if (current->content != sprite
+			&& get_distance(((t_sprite *)current->content)->coord,
+				sprite->coord) < 1.5
+			&& ((t_sprite *)current->content)->health != 0)
 			((t_sprite *)current->content)->health--;
 		current = current->next;
 	}
