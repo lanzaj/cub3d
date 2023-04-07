@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 10:39:39 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:57:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ typedef struct s_sprite
 	char			dead;
 	int				frame;
 	t_bool			follow;
+	t_bool			ok_to_shoot;
 }				t_sprite;
 
 typedef struct s_gun

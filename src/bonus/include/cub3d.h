@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 18:04:23 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 15:30:09 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,16 @@
 # define SPEED_MOVE_DOOR 20
 # define MOUSE_ROLL_ZOOM 4
 # define MOUSE_ROLL_UNZOOM 5
-# define MOUSE_SPEED 3600
+# define MOUSE_SPEED 8000
 # define FPS 25
 # define PI 3.14159f
 # define DIST_DOOR 1.5f
 # define BUF 0.2f
+# define BUF_ENEMY 1
 # define LIFE_NUMBER 5
 # define SHOOT_FRAME 3
 # define SHOOT_ANG 0.14f
+# define SHOOT_DST_SQ 25
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */
@@ -77,6 +79,12 @@ void			change_door_status(t_param *prm);
 
 /*	game -> door_open.c */
 void			find_door_to_open(t_param *prm);
+
+/*	game -> enemy_in_room.c */
+t_bool			we_are_in_same_room(t_param *prm, t_sprite *sprite);
+
+/*	game -> enemy_move.c */
+void			move_all_enemies(t_param *prm);
 
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
@@ -155,6 +163,7 @@ void			shoot_enemy(t_param *prm, int x, int y);
 
 /*	game ->	print_sprites.c */
 void			print_every_sprite(t_param *prm);
+double			get_angle_with_player_view(t_param *prm, t_coord sprite);
 
 /*	game ->	print_sprites2.c */
 void			init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col);

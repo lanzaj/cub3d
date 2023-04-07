@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/06 15:53:01 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 15:29:24 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	game_loop(t_param *prm)
 	}
 	print_hearts(prm);
 	print_gun(prm);
+	move_all_enemies(prm);
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	return (0);
 }

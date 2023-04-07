@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:58:53 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 10:32:44 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:45:28 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int	handle_mouse_click(int button, int x, int y, void *p)
 	if (button == 1 && prm->gun.shooting == FALSE)
 	{
 		if (prm->in_focus)
-		{
 			prm->gun.shooting = TRUE;
-			shoot_enemy(prm, x, y);
-		}
 		else
 			enter_window(p);
 	}
