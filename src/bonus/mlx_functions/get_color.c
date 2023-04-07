@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:46:20 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 16:53:42 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 17:02:47 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	get_darken_color(t_img *xpm, int x, int y, double dist)
 	r = ((unsigned char *)&color)[2] - dist + *red_color;
 	if (r < 0)
 		r = 0;
+	if (r > 255)
+		r = 255;
 	g = ((unsigned char *)&color)[1] - dist - *red_color;
 	if (g < 0)
 		g = 0;

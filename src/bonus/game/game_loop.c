@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 16:54:23 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 17:09:37 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,11 @@ static void	update_red_color(t_param *prm)
 	}
 	else
 	{
-		if (*red_color > 0)
-			*red_color -= 20;
+		if ((prm->n_life != 1 && *red_color > 0)||  *red_color > 30)
+			*red_color -= 30;
 	}
+	if (*red_color < 0)
+		*red_color = 0;
 }
 
 int	game_loop(t_param *prm)
