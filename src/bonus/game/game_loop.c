@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 23:51:10 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:18:05 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,16 @@ static void	update_red_color(t_param *prm)
 		*red_color = 0;
 }
 
+void	print_game_over(t_param *prm)
+{
+	if (prm->frame % 40 > 20)
+		mlx_put_image_to_window(prm->mlx, prm->win,
+			prm->layer.lost[0].img, 0, 0);
+	else
+		mlx_put_image_to_window(prm->mlx, prm->win,
+			prm->layer.lost[1].img, 0, 0);
+}
+
 int	game_loop(t_param *prm)
 {
 	update_frame(prm);
@@ -93,21 +103,13 @@ int	game_loop(t_param *prm)
 		print_game(prm);
 		print_every_sprite(prm);
 		if (prm->print_minimap)
-		{
 			print_minimap(prm);
-			print_window_minimap(prm, prm->width - 20 - prm->mini_map.width, 20);
-		}
 		print_health_bar(prm, 10, 10);
 		print_gun(prm);
 		move_all_enemies(prm);
 		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	}
 	else
-	{
-		if (prm->frame % 40 > 20)
-			mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.lost[0].img, 0, 0);
-		else
-			mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.lost[1].img, 0, 0);
-	}
+		print_game_over(prm);
 	return (0);
 }

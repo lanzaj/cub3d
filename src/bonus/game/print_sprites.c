@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 16:16:58 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/08 14:11:07 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,33 +62,40 @@ static void	explode(t_param *prm, t_sprite *sprite)
 		prm->n_life--;
 }
 
-static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
+void	ai_enemies(t_param *prm, t_sprite *sprite, int seen)
 {
-	double	theta;
-	int		dx;
-	int		seen;
+	static int	has_been_seen = 0;
 
-	dx = 0;
-	theta = get_angle_with_player_view(prm, sprite->coord);
-	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
-				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
-	if (!sprite->dead && convert_angle(prm->view_ang - theta - PI / 2) >= PI)
-		seen = put_img_to_front(prm, xpm, dx, sprite->coord);
-	if (sprite->type == 'R' && seen)
+	if (seen)
+		has_been_seen = 50000;
+	if (sprite->type == 'R' && has_been_seen && !sprite->ok_to_shoot)
+	{
 		sprite->follow = TRUE;
+		has_been_seen--;
+	}
 	if (sprite->type == 'R' && seen
 		&& get_distance_square(sprite->coord, prm->pos_player) < SHOOT_DST_SQ)
+	{
 		sprite->ok_to_shoot = TRUE;
+		sprite->follow = FALSE;
+	}
 	else
 		sprite->ok_to_shoot = FALSE;
+}
+
+void	do_gun_damage(t_param *prm, t_sprite *sprite, double theta, int seen)
+{
 	if ((sprite->type == 'B' || sprite->type == 'R') && seen
-		&& (prm->gun.frame_count == 1 || sprite->health == 0)
-		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI)
+		&& (prm->gun.frame_count == 1 && sprite->health > 0)
+		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI
+		&& convert_angle(v_abs_dbl(prm->view_ang - theta)) <= SHOOT_ANG)
 	{
-		if (prm->gun.frame_count == 1 && sprite->health > 0
-			&& convert_angle(v_abs_dbl(prm->view_ang - theta)) <= SHOOT_ANG)
 			sprite->health--;
 	}
+}
+
+void	kill_baril(t_param *prm, t_sprite *sprite, double theta, int dx)
+{
 	if (sprite->health == 0 && sprite->type == 'B')
 	{
 		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
@@ -102,6 +109,10 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 		}
 		prm->map.map[(int)sprite->coord.y][(int)sprite->coord.x] = '0';
 	}
+}
+
+void	kill_enemies(t_param *prm, t_sprite *sprite, double theta, int dx)
+{
 	if (sprite->health == 0 && sprite->type == 'R')
 	{
 		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
@@ -111,6 +122,24 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 			sprite->frame++;
 		sprite->dead = 1;
 	}
+}
+
+static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
+{
+	double	theta;
+	int		dx;
+	int		seen;
+
+	dx = 0;
+	theta = get_angle_with_player_view(prm, sprite->coord);
+	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
+				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
+	if (!sprite->dead && convert_angle(prm->view_ang - theta - PI / 2) >= PI)
+		seen = put_img_to_front(prm, xpm, dx, sprite->coord);
+	ai_enemies(prm, sprite, seen);
+	do_gun_damage(prm, sprite, theta, seen);
+	kill_baril(prm, sprite, theta, dx);
+	kill_enemies(prm, sprite, theta, dx);
 }
 
 void	print_every_sprite(t_param *prm)
@@ -128,7 +157,16 @@ void	print_every_sprite(t_param *prm)
 		if (sprite->type == 'C')
 			print_sprite(prm, sprite, &prm->map.cables_texture);
 		if (sprite->type == 'R')
-			print_sprite(prm, sprite, &prm->map.front_texture[0]);
+		{
+			if (sprite->follow)
+				print_sprite(prm, sprite,
+					&prm->map.front_texture[prm->frame / 4 % 4]);
+			else if (sprite->ok_to_shoot)
+				print_sprite(prm, sprite,
+					&prm->map.attack_texture[prm->frame / 4 % 4]);
+			else
+				print_sprite(prm, sprite, &prm->map.front_texture[0]);
+		}
 		current = current->next;
 	}
 }

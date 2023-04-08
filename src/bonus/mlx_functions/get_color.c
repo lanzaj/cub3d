@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:46:20 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 23:56:45 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:27:42 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,15 @@ int	*get_red_color(void)
 	return (&red_color);
 }
 
-int	get_darken_color(t_img *xpm, int x, int y, double dist)
+int	get_darken_color(t_img *xpm, t_coord_int coord, double dist, int *red_color)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	color;
-	int	*red_color;
 
-	red_color = get_red_color();
-	if (x < 0 || x >= xpm->width || y < 0 || y >= xpm->height)
-		return (-1);
-	color = *(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8)
-				+ y * xpm->line_length));
+	color = *(int *)(xpm->addr + (coord.x * (xpm->bits_per_pixel / 8)
+				+ coord.y * xpm->line_length));
 	if (dist < 25)
 		dist = 0;
 	else

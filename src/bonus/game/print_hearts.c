@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:20:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 15:16:33 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:11:16 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	print_health_bar(t_param *prm, int x, int y)
 			if (prm->n_life == 1 && prm->frame % 10 < 4)
 				p.color = get_color(&(prm->health_bar[0]), p.x - x, p.y - y);
 			else
-				p.color = get_color(&(prm->health_bar[prm->n_life]), p.x - x, p.y - y);
+				p.color = get_color(&(prm->health_bar[prm->n_life]),
+						p.x - x, p.y - y);
 			pixel_put_img(&(prm->layer.front), p);
 			(p.x)++;
 		}

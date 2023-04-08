@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 16:30:58 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:48:09 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,16 @@ int	put_on_one_pixel(t_param *prm, t_img *xpm, t_boundary b, t_coord sprite)
 {
 	t_point		pixel;
 	double		dist;
+	t_coord_int	coord;
 
 	dist = (sprite.x - prm->pos_player.x) * (sprite.x - prm->pos_player.x)
 		+ (sprite.y - prm->pos_player.y) * (sprite.y - prm->pos_player.y);
-	pixel.color = get_darken_color(xpm,
-			(b.i.x - b.start.x) * xpm->width / (b.col.px_wall),
-			(b.i.y - b.start.y + (b.col.ofset))
-			* xpm->height / (b.col.px_wall), dist);
+	coord.x = (b.i.x - b.start.x) * xpm->width / (b.col.px_wall);
+	coord.y = (b.i.y - b.start.y + b.col.ofset) * xpm->height / (b.col.px_wall);
+	if (coord.x < 0 || coord.x >= xpm->width
+		|| coord.y < 0 || coord.y >= xpm->height)
+		return (-1);
+	pixel.color = get_darken_color(xpm, coord, dist, get_red_color());
 	pixel.x = b.i.x;
 	pixel.y = b.i.y;
 	if (check_distance_y(prm, sprite, b.i))

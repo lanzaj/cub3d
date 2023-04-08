@@ -169,7 +169,7 @@ static void	move_one_enemy(t_param *prm, t_sprite *sprite)
 	move_dir = get_wanted_move_dir_enemy(ang);
 	if (!(move_dir.x == 0 && move_dir.y == 0) && is_valid_move_enemy(prm,
 			sum_vect(sprite->coord, prod_vect(speed, move_dir))))
-		sprite->coord = pos_buff_enemy(prm, 
+		sprite->coord = pos_buff_enemy(prm,
 				sum_vect(sprite->coord, prod_vect(speed, move_dir)), ang);
 	if (!we_are_in_same_room(prm, sprite))
 		sprite->follow = FALSE;

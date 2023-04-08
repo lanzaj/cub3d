@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:34:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 10:35:10 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/08 13:16:59 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	print_player(t_param *prm)
 		}
 		del.x++;
 	}
+	print_window_minimap(prm, prm->width - 20 - prm->mini_map.width, 20);
 }
 
 /* void	print_raytracing(t_param *prm)
