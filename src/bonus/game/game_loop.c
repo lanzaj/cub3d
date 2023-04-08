@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 17:09:37 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 23:51:10 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	print_fps(t_param *prm)
 	time_past = get_timediff_us(tv, prm->last_time);
 	fps = (int)((double)1 / ((double)time_past / (double)1000000));
 	if (prm->last_time.tv_sec && prm->frame % 5 == 0)
-		ft_printf("\rfps : %d", fps);
+		ft_printf("\rfps : %d      \r", fps);
 }
 
 static void	update_frame(t_param *prm)
@@ -71,8 +71,8 @@ static void	update_red_color(t_param *prm)
 	}
 	else
 	{
-		if ((prm->n_life != 1 && *red_color > 0)||  *red_color > 30)
-			*red_color -= 30;
+		if (*red_color > 0)
+			*red_color -= 70;
 	}
 	if (*red_color < 0)
 		*red_color = 0;
@@ -84,7 +84,8 @@ int	game_loop(t_param *prm)
 	update_red_color(prm);
 	if (prm->n_life > 0)
 	{
-		ft_memcpy(prm->layer.front.addr, prm->layer.back.addr, 3686399);
+		if (!(*get_red_color()))
+			ft_memcpy(prm->layer.front.addr, prm->layer.back.addr, 3686399);
 		move_player(prm);
 		rotate_player(prm);
 		find_door_to_open(prm);

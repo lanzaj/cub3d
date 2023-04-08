@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 16:51:32 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 23:44:02 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,21 @@ int	get_texture_px_color(t_param *prm, t_coord wall, double pos_y)
 			+ px_y * prm->tab_xpm[dir]->line_length)));
 }
 
-int	get_color_px(t_param *prm, t_px_col col, int y, t_coord wall)
+int	get_color_px(t_param *prm, t_px_col col, t_coord_int coord, t_coord wall)
 {
 	int		y_bis;
 	double	pos_v_in_wall;
+	int		*red_color;
 
-	y_bis = y + col.ofset;
-	if (y_bis < col.px_cell)
-		return (-1);
-	if (y_bis >= col.px_cell + col.px_wall)
-		return (-1);
+	y_bis = coord.y + col.ofset;
+	if ((y_bis < col.px_cell || y_bis >= col.px_cell + col.px_wall))
+	{
+		red_color = get_red_color();
+		if (*red_color != 0)
+			return (red_filter(prm, coord));
+		else
+			return (-1);
+	}
 	pos_v_in_wall = (double)(y_bis - col.px_cell) / (double)col.px_wall;
 	return (darken_color(get_texture_px_color(prm, wall, pos_v_in_wall),
 			wall, prm->pos_player));

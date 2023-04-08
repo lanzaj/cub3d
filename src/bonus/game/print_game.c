@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 15:47:56 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 23:25:47 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,17 @@ void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)
 
 void	print_wall_slice(t_param *prm, int x, t_coord wall, double ang)
 {
-	int			y;
+	t_coord_int	coord;
 	t_px_col	col;
 
 	init_col_px(prm, wall, ang, &col);
-	y = 0;
-	while (x > 0 && x < prm->width && y < prm->height)
+	coord.x = x;
+	coord.y = 0;
+	while (x > 0 && x < prm->width && coord.y < prm->height)
 	{
-		my_mlx_pixel_put(&(prm->layer.front), x, y,
-			get_color_px(prm, col, y, wall));
-		y++;
+		my_mlx_pixel_put(&(prm->layer.front), x, coord.y,
+			get_color_px(prm, col, coord, wall));
+		coord.y++;
 	}
 }
 

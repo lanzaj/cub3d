@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:46:20 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 17:02:47 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/07 23:56:45 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,28 @@ int	darken_color_floor(int color, int x)
 	g = ft_max(get_g(color) - x, 0);
 	b = ft_max(get_b(color) - x, 0);
 	return (create_trgb(t, r, g, b));
+}
+
+int	red_filter(t_param *prm, t_coord_int coord)
+{
+	int		r;
+	int		g;
+	int		b;
+	int		*red_color;
+	int		color;
+
+	color = get_color(&prm->layer.back, coord.x, coord.y);
+	red_color = get_red_color();
+	r = ((unsigned char *)&color)[2] + *red_color;
+	if (r < 0)
+		r = 0;
+	if (r > 255)
+		r = 255;
+	g = ((unsigned char *)&color)[1] - *red_color;
+	if (g < 0)
+		g = 0;
+	b = ((unsigned char *)&color)[0] - *red_color;
+	if (b < 0)
+		b = 0;
+	return (*(int *)(unsigned char [4]){b, g, r, ((unsigned char *)&color)[3]});
 }
