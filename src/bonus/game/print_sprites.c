@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/08 14:11:07 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/08 14:30:24 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	explode(t_param *prm, t_sprite *sprite)
 void	ai_enemies(t_param *prm, t_sprite *sprite, int seen)
 {
 	static int	has_been_seen = 0;
+	static int	shooting = 0;
 
 	if (seen)
 		has_been_seen = 50000;
@@ -74,10 +75,17 @@ void	ai_enemies(t_param *prm, t_sprite *sprite, int seen)
 		has_been_seen--;
 	}
 	if (sprite->type == 'R' && seen
-		&& get_distance_square(sprite->coord, prm->pos_player) < SHOOT_DST_SQ)
+		&& get_distance_square(sprite->coord, prm->pos_player) < SHOOT_DST_SQ
+		&& sprite->health > 0)
 	{
 		sprite->ok_to_shoot = TRUE;
 		sprite->follow = FALSE;
+		shooting++;
+		if (shooting > 40)
+		{
+			shooting = 0;
+			prm->n_life--;
+		}
 	}
 	else
 		sprite->ok_to_shoot = FALSE;
