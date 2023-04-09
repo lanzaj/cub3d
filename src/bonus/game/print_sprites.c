@@ -6,30 +6,30 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/08 14:30:24 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/09 13:25:35 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_coord sprite)
+static int	put_img_to_front(t_param *prm, t_img *xpm, int dx, t_sprite *s)
 {
 	t_boundary	b;
 	int			ret;
 
 	ret = 0;
-	init_col_px_sprite(prm, sprite, &b.col);
+	init_col_px_sprite(prm, s->coord, &b.col);
 	init_boundary(prm, xpm, &b, dx);
 	while (b.i.x < b.stop.x - b.offset_stop.x
 		&& b.i.x >= 0 && b.i.x < prm->width)
 	{
 		b.i.y = b.start.y + b.offset_start.y;
-		if (check_distance_x(prm, sprite, b.i))
+		if (check_distance_x(prm, s->coord, b.i))
 		{
 			while (b.i.y < b.stop.y - b.offset_stop.y
 				&& b.i.y >= 0 && b.i.y < prm->height)
 			{
-				ret += put_on_one_pixel(prm, xpm, b, sprite);
+				ret += put_on_one_pixel(prm, xpm, b, s);
 				b.i.y++;
 			}
 		}
@@ -97,8 +97,11 @@ void	do_gun_damage(t_param *prm, t_sprite *sprite, double theta, int seen)
 		&& (prm->gun.frame_count == 1 && sprite->health > 0)
 		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI
 		&& convert_angle(v_abs_dbl(prm->view_ang - theta)) <= SHOOT_ANG)
+		sprite->health--;
+	if (sprite->type == 'R' && sprite->last_health != sprite->health)
 	{
-			sprite->health--;
+		sprite->red_color = 255;
+		sprite->last_health = sprite->health;
 	}
 }
 
@@ -108,7 +111,7 @@ void	kill_baril(t_param *prm, t_sprite *sprite, double theta, int dx)
 	{
 		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 			put_img_to_front(prm, &prm->gun.explo[sprite->frame],
-				dx, sprite->coord);
+				dx, sprite);
 		sprite->frame++;
 		if (sprite->frame == 7)
 		{
@@ -125,7 +128,7 @@ void	kill_enemies(t_param *prm, t_sprite *sprite, double theta, int dx)
 	{
 		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 			put_img_to_front(prm, &prm->map.die_texture[sprite->frame / 2],
-				dx, sprite->coord);
+				dx, sprite);
 		if (sprite->frame < 3 * 2)
 			sprite->frame++;
 		sprite->dead = 1;
@@ -139,15 +142,20 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	int		seen;
 
 	dx = 0;
+	seen = 0;
 	theta = get_angle_with_player_view(prm, sprite->coord);
 	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
 				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
 	if (!sprite->dead && convert_angle(prm->view_ang - theta - PI / 2) >= PI)
-		seen = put_img_to_front(prm, xpm, dx, sprite->coord);
+		seen = put_img_to_front(prm, xpm, dx, sprite);
 	ai_enemies(prm, sprite, seen);
 	do_gun_damage(prm, sprite, theta, seen);
 	kill_baril(prm, sprite, theta, dx);
 	kill_enemies(prm, sprite, theta, dx);
+	if (sprite->red_color > 0)
+		sprite->red_color -= 80;
+	if (sprite->red_color < 0)
+		sprite->red_color = 0;
 }
 
 void	print_every_sprite(t_param *prm)

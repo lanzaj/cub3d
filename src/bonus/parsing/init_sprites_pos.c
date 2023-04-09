@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:55:49 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/06 18:22:42 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/09 13:25:01 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	add_sprite(t_param *prm, char type, int x, int y)
 	if (type == 'B')
 		content->health = 1;
 	if (type == 'R')
+	{
 		content->health = 3;
+		content->last_health = 3;
+	}
 	new = ft_lstnew(content);
 	garbage_col(prm, 0, new);
 	ft_lstadd_front(&prm->sprite_lst, new);

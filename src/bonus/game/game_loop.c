@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/08 13:18:05 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/09 03:10:20 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void	print_game_over(t_param *prm)
 int	game_loop(t_param *prm)
 {
 	update_frame(prm);
-	update_red_color(prm);
-	if (prm->n_life > 0)
+	if (prm->n_life > 0 && prm->in_focus)
 	{
+		update_red_color(prm);
 		if (!(*get_red_color()))
 			ft_memcpy(prm->layer.front.addr, prm->layer.back.addr, 3686399);
 		move_player(prm);
@@ -109,7 +109,7 @@ int	game_loop(t_param *prm)
 		move_all_enemies(prm);
 		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	}
-	else
+	else if (prm->n_life <= 0)
 		print_game_over(prm);
 	return (0);
 }

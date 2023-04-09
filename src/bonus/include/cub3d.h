@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/08 13:29:29 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/08 21:56:14 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int				check_distance_x(t_param *prm, t_coord sprite, t_coord_int i);
 int				check_distance_y(t_param *prm, t_coord sprite, t_coord_int i);
 void			init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx);
 int				put_on_one_pixel(t_param *prm, t_img *xpm,
-					t_boundary b, t_coord sprite);
+					t_boundary b, t_sprite *s);
 
 /*	minimap	*/
 /*	minimap -> print_minimap_utils.c */

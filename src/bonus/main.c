@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 21:38:56 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/09 19:35:18 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ int	leave_window(void *p)
 	return (0);
 }
 
+void	print_command_list(void)
+{
+	ft_printf("\n############################### - COMMANDS - ###############################\n");
+	ft_printf("#\e[1;37m      ⬆                                                                   #\n");
+	ft_printf("#\e[0;37m     🇼                  \e[0;36m Left click \e[0mShoot      \e[0;36m  TAB \e[0mPause       \e[0m         #\n");
+	ft_printf("#\e[0;37m ⬅ 🇦 🇸 🇩  ➡     ⬅ 🖱  ➡  \e[0;36m Ctrl       \e[0mShoot    \e[0;36m    F \e[0m  Hide / display fps\e[0m   #\n");
+	ft_printf("#\e[0;37m      ⬇                 \e[0;36m Space      \e[0mOpen door   \e[0;36m M   \e[0mHide / display map\e[0m   #\n");
+	ft_printf("#   Moving        View   \e[0;36m Shift      \e[0mSprint      \e[0;36m ESC \e[0mExit           \e[0m      #\n");
+	ft_printf("#                                                                          #\n");
+	ft_printf("############################################################################\n");
+}
+
 int	main(int argc, char *argv[])
 {
 	t_param	prm;
@@ -81,6 +93,7 @@ int	main(int argc, char *argv[])
 	print_floor_and_sky(&prm, prm.map.ceiling_color, prm.map.floor_color);
 	init_life(&prm);
 	init_gun(&prm);
+	print_command_list();
 	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);
 	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
