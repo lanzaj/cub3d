@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/09 19:35:18 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/09 19:45:22 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,22 @@ int	leave_window(void *p)
 
 void	print_command_list(void)
 {
-	ft_printf("\n############################### - COMMANDS - ###############################\n");
-	ft_printf("#\e[1;37m      ⬆                                                                   #\n");
-	ft_printf("#\e[0;37m     🇼                  \e[0;36m Left click \e[0mShoot      \e[0;36m  TAB \e[0mPause       \e[0m         #\n");
-	ft_printf("#\e[0;37m ⬅ 🇦 🇸 🇩  ➡     ⬅ 🖱  ➡  \e[0;36m Ctrl       \e[0mShoot    \e[0;36m    F \e[0m  Hide / display fps\e[0m   #\n");
-	ft_printf("#\e[0;37m      ⬇                 \e[0;36m Space      \e[0mOpen door   \e[0;36m M   \e[0mHide / display map\e[0m   #\n");
-	ft_printf("#   Moving        View   \e[0;36m Shift      \e[0mSprint      \e[0;36m ESC \e[0mExit           \e[0m      #\n");
-	ft_printf("#                                                                          #\n");
-	ft_printf("############################################################################\n");
+	ft_printf("\n############################### - COMMANDS -\
+ ###############################\n");
+	ft_printf("#\e[1;37m      ⬆                              \
+                                     #\n");
+	ft_printf("#\e[0;37m     🇼                  \e[0;36m Lef\
+t click \e[0mShoot      \e[0;36m  TAB \e[0mPause       \e[0m         #\n");
+	ft_printf("#\e[0;37m ⬅ 🇦 🇸 🇩  ➡     ⬅ 🖱  ➡  \e[0;36m \
+Ctrl       \e[0mShoot    \e[0;36m    F \e[0m  Hide / display fps\e[0m   #\n");
+	ft_printf("#\e[0;37m      ⬇                 \e[0;36m Space\
+      \e[0mOpen door   \e[0;36m M   \e[0mHide / display map\e[0m   #\n");
+	ft_printf("#   Moving        View   \e[0;36m Shift      \e[0mSprint\
+      \e[0;36m ESC \e[0mExit           \e[0m      #\n");
+	ft_printf("#                                              \
+                            #\n");
+	ft_printf("###############################################\
+#############################\n");
 }
 
 int	main(int argc, char *argv[])
