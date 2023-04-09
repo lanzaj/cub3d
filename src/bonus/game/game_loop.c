@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/09 03:10:20 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/09 20:20:32 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,26 @@ void	print_game_over(t_param *prm)
 			prm->layer.lost[1].img, 0, 0);
 }
 
+void	print_pause(t_param *prm)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < prm->height)
+	{
+		x = 0;
+		while (x < prm->width)
+		{
+			my_mlx_pixel_put(&prm->layer.front, x, y,
+				get_grey_color(&prm->layer.front, x, y));
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+}
+
 int	game_loop(t_param *prm)
 {
 	update_frame(prm);
@@ -111,5 +131,7 @@ int	game_loop(t_param *prm)
 	}
 	else if (prm->n_life <= 0)
 		print_game_over(prm);
+	else if (!prm->in_focus)
+		print_pause(prm);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:46:20 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/08 13:27:42 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/09 20:18:47 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,26 @@ int	get_color(t_img *xpm, int x, int y)
 		return (-1);
 	return (*(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8)
 			+ y * xpm->line_length)));
+}
+
+int	get_grey_color(t_img *xpm, int x, int y)
+{
+	int	color;
+	int	r;
+	int	g;
+	int	b;
+
+	if (x < 0 || x >= xpm->width || y < 0 || y >= xpm->height)
+		return (-1);
+	color = *(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8)
+				+ y * xpm->line_length));
+	r = ((unsigned char *)&color)[2];
+	g = ((unsigned char *)&color)[1];
+	b = ((unsigned char *)&color)[0];
+	if (r == g && g == b)
+		return (*(int *)(unsigned char [4]){b, g, r, 0});
+	color = (r + g + b) / 3;
+	return (*(int *)(unsigned char [4]){color, color, color, 0});
 }
 
 int	*get_red_color(void)
