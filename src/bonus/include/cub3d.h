@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/10 14:38:33 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:18:06 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ t_bool			we_are_in_same_room(t_param *prm, t_sprite *sprite);
 /*	game -> enemy_move_utils.c */
 t_coord			pos_buff_enemy(t_param *prm, t_coord pos, double ang_move);
 t_coord			get_wanted_move_dir_enemy(double ang);
-t_bool			is_valid_move_enemy(t_param *prm, t_coord pos);
 
 /*	game -> enemy_move.c */
 void			move_all_enemies(t_param *prm);
+t_bool			is_valid_move_enemy(t_param *prm, t_coord pos);
 
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);

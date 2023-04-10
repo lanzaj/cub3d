@@ -43,3 +43,10 @@ void	move_all_enemies(t_param *prm)
 		current = current->next;
 	}
 }
+
+t_bool	is_valid_move_enemy(t_param *prm, t_coord pos)
+{
+	if (ft_strchr("123456789D", prm->map.map[(int)(pos.y)][(int)(pos.x)]))
+		return (FALSE);
+	return (TRUE);
+}
