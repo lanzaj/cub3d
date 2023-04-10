@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/09 20:12:02 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/10 14:25:52 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define PI 3.14159f
 # define DIST_DOOR 1.5f
 # define BUF 0.2f
-# define BUF_ENEMY 1
+# define BUF_ENEMY 0.45f
 # define LIFE_NUMBER 4
 # define SHOOT_FRAME 3
 # define SHOOT_ANG 0.14f
@@ -82,6 +82,11 @@ void			find_door_to_open(t_param *prm);
 
 /*	game -> enemy_in_room.c */
 t_bool			we_are_in_same_room(t_param *prm, t_sprite *sprite);
+
+/*	game -> enemy_move_utils.c */
+t_coord			pos_buff_enemy(t_param *prm, t_coord pos);
+t_coord			get_wanted_move_dir_enemy(double ang);
+t_bool			is_valid_move_enemy(t_param *prm, t_coord pos);
 
 /*	game -> enemy_move.c */
 void			move_all_enemies(t_param *prm);
