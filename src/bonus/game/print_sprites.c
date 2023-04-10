@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/10 14:21:18 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/10 15:03:54 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ai_enemies(t_param *prm, t_sprite *sprite, int seen)
 		sprite->follow = TRUE;
 		sprite->has_been_seen--;
 	}
-	if (sprite->type == 'R' && seen
+	if (sprite->type == 'R' && seen > 100000
 		&& get_distance_square(sprite->coord, prm->pos_player) < SHOOT_DST_SQ
 		&& sprite->health > 0)
 	{
