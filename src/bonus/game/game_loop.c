@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/11 05:24:07 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:02:21 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	print_fps(t_param *prm)
 	time_past = get_timediff_us(tv, prm->last_time);
 	fps = (int)((double)1 / ((double)time_past / (double)1000000));
 	if (prm->last_time.tv_sec && prm->frame % 5 == 0)
-		ft_printf("\rfps : %d      \r", fps);
+		ft_printf("\rfps : %d      %d\r", fps, prm->map.ceiling_color);
 }
 
 static void	update_frame(t_param *prm)
@@ -66,7 +66,8 @@ static void	update_red_color(t_param *prm)
 	red_color = get_red_color();
 	if (last_health != prm->n_life)
 	{
-		*red_color = 255;
+		if (last_health > prm->n_life)
+			*red_color = 255;
 		last_health = prm->n_life;
 	}
 	else
@@ -125,6 +126,11 @@ int	fade_to_dark_start_screen(t_param *prm)
 	if (fade < 255)
 	{
 		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+		fade += 10;
+	}
+	if (fade > 255 && fade < 500)
+	{
+		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.goal.img, 0, 0);
 		fade += 10;
 	}
 	return (fade);
@@ -196,7 +202,7 @@ void	print_start(t_param *prm)
 			prm->layer.start[prm->frame % 40 > 20].img, 0, 0);
 	else
 	{
-		if (fade_to_dark_start_screen(prm) >= 255)
+		if (fade_to_dark_start_screen(prm) >= 500)
 			prm->start = 1;
 	}
 

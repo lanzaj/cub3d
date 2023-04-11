@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/09 00:45:42 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:34:44 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ void	init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx)
 		b->offset_stop.y = (50 * b->col.px_wall / 64) + b->col.ofset;
 		b->offset_start.x = (15 * b->col.px_wall / 64);
 		b->offset_stop.x = (14 * b->col.px_wall / 64);
+	}
+	if (xpm == &prm->map.health_texture)
+	{
+		b->offset_start.y = (44 * b->col.px_wall / 64);
+		b->offset_start.x = (21 * b->col.px_wall / 64);
+		b->offset_stop.x = (21 * b->col.px_wall / 64);
 	}
 	b->i.x = b->start.x + b->offset_start.x;
 	if (b->i.x < 0)

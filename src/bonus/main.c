@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 05:35:22 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:22:25 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ int	main(int argc, char *argv[])
 	ft_memset(&prm, 0, sizeof(t_param));
 	if (initiate_mlx(&prm, 1280, 720) || allocate_impact_tab(&prm))
 		return (ft_exit(&prm, EXIT_FAILURE));
-	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
 	initiate_img_minimap(&prm);
-	print_floor_and_sky(&prm, prm.map.ceiling_color, prm.map.floor_color);
 	init_life(&prm);
 	init_gun(&prm);
+	parsing_map(&prm, argv[1]);
+	print_floor_and_sky(&prm, prm.map.ceiling_color, prm.map.floor_color);
 	print_command_list();
 	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);
 	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);

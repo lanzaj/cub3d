@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 05:20:08 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:56:36 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_layer {
 	t_img	win[2];
 	t_img	pause[3];
 	t_img	loading;
+	t_img	goal;
 }				t_layer;
 
 typedef struct s_key_stat {
@@ -153,11 +154,12 @@ typedef struct s_map
 	t_img	wall8_texture;
 	t_img	wall9_texture;
 	t_img	door_texture;
-	t_img	front_texture[5];
-	t_img	attack_texture[5];
-	t_img	die_texture[5];
+	t_img	front_texture[4];
+	t_img	attack_texture[4];
+	t_img	die_texture[4];
 	t_img	barrel_texture;
 	t_img	cables_texture;
+	t_img	health_texture;
 	int		floor_color;
 	int		ceiling_color;
 }					t_map;

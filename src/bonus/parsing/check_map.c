@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:52:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/05 15:04:47 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:27:56 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ static void	check_charset(t_param *prm, char **map, char *charset, char *msg)
 
 void	check_map(t_param *prm, char **map)
 {
-	check_charset(prm, map, "0123456789 NSEW D BC R",
+	check_charset(prm, map, "0123456789 NSEW D BCH R",
 		"Error\nInvalid character\n");
 	make_map_rectangular(prm, map);
 	check_if_enclosed_in_walls(prm, map);
 	init_player_pos(prm);
 	init_sprites(prm);
-	check_charset(prm, map, "0123456789DBCRM", "Error\nTwo starting position\n");
+	check_charset(prm, map, "0123456789DBCHRM", "Error\nTwo starting position\n");
 }

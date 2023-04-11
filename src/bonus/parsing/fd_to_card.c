@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_to_card.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:12:11 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/07 11:29:35 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:31:51 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static void	fd_to_card_part4(t_param *prm, int fd, char *str)
 	if (!ft_strncmp(str, "CA ", 3) && prm->map.cables_texture.img == NULL
 		&& import_img(prm, &(prm->map.cables_texture), &str[3]))
 		fd_to_map_error(prm, fd, "Error\nInvalid cables texture\n");
+	if (!ft_strncmp(str, "PV ", 3) && prm->map.health_texture.img == NULL
+		&& import_img(prm, &(prm->map.health_texture), &str[3]))
+		fd_to_map_error(prm, fd, "Error\nInvalid health texture\n");
 }
 
 static void	fd_to_card_part3(t_param *prm, int fd, char *str)

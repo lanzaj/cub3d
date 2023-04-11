@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:12:52 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 23:44:02 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 14:33:01 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,6 @@ double	pos_impact(t_param *prm, t_coord point)
 	}
 	return (0);
 }
-
-/* t_img	*get_correct_xpm_part2(t_param *prm, t_dir dir)
-{
-	if (dir == WALL_5)
-		return (&(prm->map.wall5_texture));
-	if (dir == WALL_6)
-		return (&(prm->map.wall6_texture));
-	if (dir == WALL_7)
-		return (&(prm->map.wall7_texture));
-	if (dir == WALL_8)
-		return (&(prm->map.wall8_texture));
-	if (dir == WALL_9)
-		return (&(prm->map.wall9_texture));
-	return (&(prm->map.door_texture));
-}
-
-static t_img	*get_correct_xpm(t_param *prm, t_dir dir)
-{
-	if (dir == SOUTH)
-		return (&(prm->map.south_texture));
-	if (dir == NORTH)
-		return (&(prm->map.north_texture));
-	if (dir == EAST)
-		return (&(prm->map.east_texture));
-	if (dir == WEST)
-		return (&(prm->map.west_texture));
-	if (dir == WALL_2)
-		return (&(prm->map.wall2_texture));
-	if (dir == WALL_3)
-		return (&(prm->map.wall3_texture));
-	if (dir == WALL_4)
-		return (&(prm->map.wall4_texture));
-	return (get_correct_xpm_part2(prm, dir));
-} */
 
 void	init_tab_xpm(t_param *prm)
 {

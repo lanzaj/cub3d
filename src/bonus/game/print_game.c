@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:15:55 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/11 05:00:00 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:57:12 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	initiate_img_game(t_param *prm)
 	import_img(prm, &prm->layer.pause[0], "./img/pause0.xpm");
 	import_img(prm, &prm->layer.pause[1], "./img/pause1.xpm");
 	import_img(prm, &prm->layer.pause[2], "./img/pause2.xpm");
+	import_img(prm, &prm->layer.goal, "./img/goal.xpm");
 }
 
 void	init_col_px(t_param *prm, t_coord wall, double ang, t_px_col *col)

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 03:56:53 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:12:17 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,22 @@ void	kill_enemies(t_param *prm, t_sprite *sprite, double theta, int dx)
 	if (sprite->health == 0 && sprite->type == 'R')
 	{
 		if (convert_angle(prm->view_ang - theta - PI / 2) >= PI)
-			put_img_to_front(prm, &prm->map.die_texture[sprite->frame / 2],
-				dx, sprite);
-		if (sprite->frame < 3 * 2)
+			put_img_to_front(prm,
+				&prm->map.die_texture[(sprite->frame / 2)], dx, sprite);
+		if (sprite->frame < 6)
 			sprite->frame++;
 		sprite->dead = 1;
+	}
+}
+
+void	collect_health(t_param *prm, t_sprite *sprite)
+{
+	if (sprite->type == 'H'
+		&& get_distance_square(sprite->coord, prm->pos_player) < 1
+		&& prm->n_life != LIFE_NUMBER)
+	{
+		sprite->dead = 1;
+		prm->n_life++;
 	}
 }
 
@@ -145,12 +156,13 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	theta = get_angle_with_player_view(prm, sprite->coord);
 	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
 				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
+	kill_enemies(prm, sprite, theta, dx);
 	if (!sprite->dead && convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 		seen = put_img_to_front(prm, xpm, dx, sprite);
 	ai_enemies(prm, sprite, seen);
 	do_gun_damage(prm, sprite, theta, seen);
 	kill_baril(prm, sprite, theta, dx);
-	kill_enemies(prm, sprite, theta, dx);
+	collect_health(prm, sprite);
 	if (sprite->red_color > 0)
 		sprite->red_color -= 80;
 	if (sprite->red_color < 0)
@@ -186,6 +198,8 @@ void	print_every_sprite(t_param *prm)
 			else
 				print_sprite(prm, sprite, &prm->map.front_texture[0]);
 		}
+		if (sprite->type == 'H' && !sprite->dead)
+			print_sprite(prm, sprite, &prm->map.health_texture);
 		current = current->next;
 	}
 }
