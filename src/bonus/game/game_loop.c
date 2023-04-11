@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/11 04:03:02 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 04:45:17 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void	print_red(t_param *prm)
 		y++;
 	}
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
-
 }
 
 void	print_game_over(t_param *prm)
@@ -175,6 +174,16 @@ void	print_pause(t_param *prm)
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.pause[2].img, 0, 0);
 }
 
+void	print_special_screen(t_param *prm)
+{
+	if (prm->n_life <= 0)
+		print_game_over(prm);
+	else if (prm->nbr_enemies <= 0)
+		print_win(prm);
+	else if (!prm->in_focus)
+		print_pause(prm);
+}
+
 int	game_loop(t_param *prm)
 {
 	update_frame(prm);
@@ -196,11 +205,7 @@ int	game_loop(t_param *prm)
 		move_all_enemies(prm);
 		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
 	}
-	else if (prm->n_life <= 0)
-		print_game_over(prm);
-	else if (prm->nbr_enemies <= 0)
-		print_win(prm);
-	else if (!prm->in_focus)
-		print_pause(prm);
+	else
+		print_special_screen(prm);
 	return (0);
 }
