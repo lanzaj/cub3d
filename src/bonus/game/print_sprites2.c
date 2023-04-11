@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 15:34:44 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:43:28 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,25 @@ int	check_distance_y(t_param *prm, t_coord sprite, t_coord_int i)
 		return (1);
 }
 
+void	init_boundary_part2(t_param *prm, t_img *xpm, t_boundary *b)
+{
+	if (xpm == &prm->map.cables_texture)
+	{
+		b->offset_stop.y = (50 * b->col.px_wall / 64) + b->col.ofset;
+		b->offset_start.x = (15 * b->col.px_wall / 64);
+		b->offset_stop.x = (14 * b->col.px_wall / 64);
+	}
+	if (xpm == &prm->map.health_texture)
+	{
+		b->offset_start.y = (44 * b->col.px_wall / 64) - b->col.ofset;
+		b->offset_start.x = (21 * b->col.px_wall / 64);
+		b->offset_stop.x = (21 * b->col.px_wall / 64);
+	}
+	b->i.x = b->start.x + b->offset_start.x;
+	if (b->i.x < 0)
+		b->i.x = 0;
+}
+
 void	init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx)
 {
 	b->start.x = dx - (b->col.px_wall / 2);
@@ -76,21 +95,7 @@ void	init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx)
 		b->offset_stop.x = (18 * b->col.px_wall / 64);
 		b->offset_start.y = (30 * b->col.px_wall / 64) - b->col.ofset;
 	}
-	if (xpm == &prm->map.cables_texture)
-	{
-		b->offset_stop.y = (50 * b->col.px_wall / 64) + b->col.ofset;
-		b->offset_start.x = (15 * b->col.px_wall / 64);
-		b->offset_stop.x = (14 * b->col.px_wall / 64);
-	}
-	if (xpm == &prm->map.health_texture)
-	{
-		b->offset_start.y = (44 * b->col.px_wall / 64);
-		b->offset_start.x = (21 * b->col.px_wall / 64);
-		b->offset_stop.x = (21 * b->col.px_wall / 64);
-	}
-	b->i.x = b->start.x + b->offset_start.x;
-	if (b->i.x < 0)
-		b->i.x = 0;
+	init_boundary_part2(prm, xpm, b);
 }
 
 int	put_on_one_pixel(t_param *prm, t_img *xpm, t_boundary b, t_sprite *s)

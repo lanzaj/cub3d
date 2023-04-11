@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/11 16:02:21 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:45:05 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,16 +123,12 @@ int	fade_to_dark_start_screen(t_param *prm)
 		}
 		y++;
 	}
+	if (fade < 500)
+		fade += 10;
 	if (fade < 255)
-	{
 		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
-		fade += 10;
-	}
 	if (fade > 255 && fade < 500)
-	{
 		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.goal.img, 0, 0);
-		fade += 10;
-	}
 	return (fade);
 }
 
@@ -205,7 +201,6 @@ void	print_start(t_param *prm)
 		if (fade_to_dark_start_screen(prm) >= 500)
 			prm->start = 1;
 	}
-
 }
 
 void	print_pause(t_param *prm)

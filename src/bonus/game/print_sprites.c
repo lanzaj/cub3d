@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 16:30:14 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 17:05:20 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,27 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	}
 }
 
+void	select_sprite(t_param *prm, t_sprite *sprite)
+{
+	if (sprite->type == 'B' && !sprite->dead)
+		print_sprite(prm, sprite, &prm->map.barrel_texture);
+	if (sprite->type == 'C')
+		print_sprite(prm, sprite, &prm->map.cables_texture);
+	if (sprite->type == 'R')
+	{
+		if (sprite->follow)
+			print_sprite(prm, sprite,
+				&prm->map.front_texture[prm->frame / 4 % 4]);
+		else if (sprite->ok_to_shoot)
+			print_sprite(prm, sprite,
+				&prm->map.attack_texture[prm->frame / 4 % 4]);
+		else
+			print_sprite(prm, sprite, &prm->map.front_texture[0]);
+	}
+	if (sprite->type == 'H' && !sprite->dead)
+		print_sprite(prm, sprite, &prm->map.health_texture);
+}
+
 void	print_every_sprite(t_param *prm)
 {
 	t_list		*current;
@@ -183,23 +204,7 @@ void	print_every_sprite(t_param *prm)
 	while (current)
 	{
 		sprite = (t_sprite *)current->content;
-		if (sprite->type == 'B' && !sprite->dead)
-			print_sprite(prm, sprite, &prm->map.barrel_texture);
-		if (sprite->type == 'C')
-			print_sprite(prm, sprite, &prm->map.cables_texture);
-		if (sprite->type == 'R')
-		{
-			if (sprite->follow)
-				print_sprite(prm, sprite,
-					&prm->map.front_texture[prm->frame / 4 % 4]);
-			else if (sprite->ok_to_shoot)
-				print_sprite(prm, sprite,
-					&prm->map.attack_texture[prm->frame / 4 % 4]);
-			else
-				print_sprite(prm, sprite, &prm->map.front_texture[0]);
-		}
-		if (sprite->type == 'H' && !sprite->dead)
-			print_sprite(prm, sprite, &prm->map.health_texture);
+		select_sprite(prm, sprite);
 		current = current->next;
 	}
 }
