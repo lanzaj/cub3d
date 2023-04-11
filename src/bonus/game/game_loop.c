@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/11 04:45:17 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 05:24:07 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,32 @@ int	fade_to_dark(t_param *prm)
 	return (fade);
 }
 
+int	fade_to_dark_start_screen(t_param *prm)
+{
+	int			x;
+	int			y;
+	static int	fade = 0;
+
+	y = 0;
+	while (fade < 255 && y < prm->height)
+	{
+		x = 0;
+		while (x < prm->width)
+		{
+			my_mlx_pixel_put(&prm->layer.front, x, y,
+				get_fade_color(&prm->layer.front, x, y));
+			x++;
+		}
+		y++;
+	}
+	if (fade < 255)
+	{
+		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+		fade += 10;
+	}
+	return (fade);
+}
+
 void	print_red(t_param *prm)
 {
 	int			x;
@@ -154,6 +180,28 @@ void	print_win(t_param *prm)
 			prm->layer.win[1].img, 0, 0);
 }
 
+void	print_start(t_param *prm)
+{
+	static int	starting = 0;
+
+	if (prm->key.key_space == 1)
+	{
+		if (starting == 0)
+			ft_memcpy(prm->layer.front.addr,
+				prm->layer.start[prm->frame % 40 > 20].addr, 3686399);
+		starting = 1;
+	}
+	if (starting == 0)
+		mlx_put_image_to_window(prm->mlx, prm->win,
+			prm->layer.start[prm->frame % 40 > 20].img, 0, 0);
+	else
+	{
+		if (fade_to_dark_start_screen(prm) >= 255)
+			prm->start = 1;
+	}
+
+}
+
 void	print_pause(t_param *prm)
 {
 	int		x;
@@ -176,7 +224,9 @@ void	print_pause(t_param *prm)
 
 void	print_special_screen(t_param *prm)
 {
-	if (prm->n_life <= 0)
+	if (prm->start == 0)
+		print_start(prm);
+	else if (prm->n_life <= 0)
 		print_game_over(prm);
 	else if (prm->nbr_enemies <= 0)
 		print_win(prm);
@@ -187,7 +237,7 @@ void	print_special_screen(t_param *prm)
 int	game_loop(t_param *prm)
 {
 	update_frame(prm);
-	if (prm->nbr_enemies != 0 && prm->n_life > 0 && prm->in_focus)
+	if (prm->start && prm->nbr_enemies != 0 && prm->n_life > 0 && prm->in_focus)
 	{
 		update_red_color(prm);
 		if (!(*get_red_color()))

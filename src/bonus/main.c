@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 04:34:15 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 05:22:10 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	initiate_mlx(t_param *prm, int width, int height)
 	}
 	prm->width = width;
 	prm->height = height;
+	import_img(prm, &prm->layer.loading, "./img/loading.xpm");
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.loading.img, 0, 0);
 	return (0);
 }
 

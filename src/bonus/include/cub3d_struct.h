@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 02:33:48 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 05:20:08 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,11 @@ typedef struct s_img {
 typedef struct s_layer {
 	t_img	front;
 	t_img	back;
+	t_img	start[2];
 	t_img	lost[2];
 	t_img	win[2];
 	t_img	pause[3];
+	t_img	loading;
 }				t_layer;
 
 typedef struct s_key_stat {
@@ -225,6 +227,7 @@ typedef struct s_param {
 	int				nbr_door_open;
 	t_img			*tab_xpm[17];
 	int				nbr_enemies;
+	int				start;
 }					t_param;
 
 #endif
