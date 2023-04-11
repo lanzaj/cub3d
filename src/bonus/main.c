@@ -6,13 +6,11 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 15:22:25 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:29:20 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub3d.h"
-
-/*Besoin de garbage collecter la partie parsing*/
 
 int	initiate_mlx(t_param *prm, int width, int height)
 {

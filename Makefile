@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/07 15:27:08 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/10 14:26:24 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/door_close.c \
 				bonus/game/door_open.c \
 				bonus/game/enemy_in_room.c \
+				bonus/game/enemy_move_utils.c \
 				bonus/game/enemy_move.c \
 				bonus/game/event_handle.c \
 				bonus/game/game_loop.c \

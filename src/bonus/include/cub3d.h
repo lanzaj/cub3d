@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 03:04:09 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:30:35 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define PI 3.14159f
 # define DIST_DOOR 1.5f
 # define BUF 0.2f
-# define BUF_ENEMY 1
+# define BUF_ENEMY 0.45f
 # define LIFE_NUMBER 4
 # define SHOOT_FRAME 3
 # define SHOOT_ANG 0.14f
@@ -83,8 +83,13 @@ void			find_door_to_open(t_param *prm);
 /*	game -> enemy_in_room.c */
 t_bool			we_are_in_same_room(t_param *prm, t_sprite *sprite);
 
+/*	game -> enemy_move_utils.c */
+t_coord			pos_buff_enemy(t_param *prm, t_coord pos, double ang_move);
+t_coord			get_wanted_move_dir_enemy(double ang);
+
 /*	game -> enemy_move.c */
 void			move_all_enemies(t_param *prm);
+t_bool			is_valid_move_enemy(t_param *prm, t_coord pos);
 
 /*	game -> event_handle.c */
 int				key_press(int keycode, void *p);
