@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/11 16:45:05 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 18:17:44 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	print_fps(t_param *prm)
 	time_past = get_timediff_us(tv, prm->last_time);
 	fps = (int)((double)1 / ((double)time_past / (double)1000000));
 	if (prm->last_time.tv_sec && prm->frame % 5 == 0)
-		ft_printf("\rfps : %d      %d\r", fps, prm->map.ceiling_color);
+		ft_printf("\rfps : %d      \r", fps);
 }
 
 static void	update_frame(t_param *prm)
