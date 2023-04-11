@@ -28,7 +28,7 @@ D1 ./img/die2.xpm
 D2 ./img/die4.xpm
 D3 ./img/die5.xpm
 
-BA ./img/BARREL.xpm
+BA ./img/BARREL2.xpm
 CA ./img/CABLES_1.xpm
 PV ./img/health_v2.xpm
 
