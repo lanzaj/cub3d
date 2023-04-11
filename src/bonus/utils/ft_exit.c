@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:37:07 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/09 19:29:43 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 02:53:32 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	close_win(void *p)
 	mlx_destroy_image(prm->mlx, prm->layer.back.img);
 	mlx_destroy_window(prm->mlx, prm->win);
 	mlx_destroy_display(prm->mlx);
-	ft_printf("\r                    ---- Goodbye, see you latter ! ----\n");
+	ft_printf("\r                    ---- Goodbye, see you latter ! ----\n\n");
 	return (ft_exit(prm, EXIT_SUCCESS));
 }
 

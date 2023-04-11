@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:46:20 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/09 20:18:47 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 03:32:12 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_color(t_img *xpm, int x, int y)
 			+ y * xpm->line_length)));
 }
 
-int	get_grey_color(t_img *xpm, int x, int y)
+int	get_fade_color(t_img *xpm, int x, int y)
 {
 	int	color;
 	int	r;
@@ -29,6 +29,31 @@ int	get_grey_color(t_img *xpm, int x, int y)
 
 	if (x < 0 || x >= xpm->width || y < 0 || y >= xpm->height)
 		return (-1);
+	color = *(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8)
+				+ y * xpm->line_length));
+	r = ((unsigned char *)&color)[2] - 30;
+	if (r < 0)
+		r = 0;
+	g = ((unsigned char *)&color)[1] - 30;
+	if (g < 0)
+		g = 0;
+	b = ((unsigned char *)&color)[0] - 30;
+	if (b < 0)
+		b = 0;
+	return (*(int *)(unsigned char [4]){b, g, r, 0});
+}
+
+int	get_grey_color(t_param *prm, t_img *xpm, int x, int y)
+{
+	int	color;
+	int	r;
+	int	g;
+	int	b;
+
+	if (x < 0 || x >= xpm->width || y < 0 || y >= xpm->height)
+		return (-1);
+	if (get_t(get_color(&prm->layer.pause[prm->frame % 40 > 20], x, y)) != 255)
+		return (get_color(&prm->layer.pause[prm->frame % 40 > 20], x, y));
 	color = *(int *)(xpm->addr + (x * (xpm->bits_per_pixel / 8)
 				+ y * xpm->line_length));
 	r = ((unsigned char *)&color)[2];

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:02:26 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/09 20:20:32 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 04:03:02 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,81 @@ static void	update_red_color(t_param *prm)
 		*red_color = 0;
 }
 
+int	fade_to_dark(t_param *prm)
+{
+	int			x;
+	int			y;
+	static int	fade = 0;
+
+	y = 0;
+	while (fade < 255 && y < prm->height)
+	{
+		x = 0;
+		while (x < prm->width)
+		{
+			my_mlx_pixel_put(&prm->layer.front, x, y,
+				get_fade_color(&prm->layer.front, x, y));
+			x++;
+		}
+		y++;
+	}
+	if (fade < 255)
+	{
+		mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+		fade += 10;
+	}
+	return (fade);
+}
+
+void	print_red(t_param *prm)
+{
+	int			x;
+	int			y;
+
+	y = 0;
+	while (y < prm->height)
+	{
+		x = 0;
+		while (x < prm->width)
+		{
+			my_mlx_pixel_put(&prm->layer.front, x, y, 0x00FF0000);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+
+}
+
 void	print_game_over(t_param *prm)
 {
+	static int	t0 = 1;
+
+	if (t0 == 1)
+	{
+		print_red(prm);
+		t0 = 0;
+	}
+	if (fade_to_dark(prm) < 255)
+		return ;
 	if (prm->frame % 40 > 20)
 		mlx_put_image_to_window(prm->mlx, prm->win,
 			prm->layer.lost[0].img, 0, 0);
 	else
 		mlx_put_image_to_window(prm->mlx, prm->win,
 			prm->layer.lost[1].img, 0, 0);
+}
+
+void	print_win(t_param *prm)
+{
+	if (fade_to_dark(prm) < 255)
+		return ;
+	if (prm->frame % 40 > 20)
+		mlx_put_image_to_window(prm->mlx, prm->win,
+			prm->layer.win[0].img, 0, 0);
+	else
+		mlx_put_image_to_window(prm->mlx, prm->win,
+			prm->layer.win[1].img, 0, 0);
 }
 
 void	print_pause(t_param *prm)
@@ -99,19 +166,19 @@ void	print_pause(t_param *prm)
 		x = 0;
 		while (x < prm->width)
 		{
-			my_mlx_pixel_put(&prm->layer.front, x, y,
-				get_grey_color(&prm->layer.front, x, y));
+			my_mlx_pixel_put(&prm->layer.pause[2], x, y,
+				get_grey_color(prm, &prm->layer.front, x, y));
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.front.img, 0, 0);
+	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.pause[2].img, 0, 0);
 }
 
 int	game_loop(t_param *prm)
 {
 	update_frame(prm);
-	if (prm->n_life > 0 && prm->in_focus)
+	if (prm->nbr_enemies != 0 && prm->n_life > 0 && prm->in_focus)
 	{
 		update_red_color(prm);
 		if (!(*get_red_color()))
@@ -131,6 +198,8 @@ int	game_loop(t_param *prm)
 	}
 	else if (prm->n_life <= 0)
 		print_game_over(prm);
+	else if (prm->nbr_enemies <= 0)
+		print_win(prm);
 	else if (!prm->in_focus)
 		print_pause(prm);
 	return (0);

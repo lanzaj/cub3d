@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/09 20:26:28 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 04:34:15 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	initiate_mlx(t_param *prm, int width, int height)
 	if (prm->mlx == NULL)
 		return (ft_printf_fd(2, "Error\nInit mlx"), 1);
 	garbage_col(prm, 0, prm->mlx);
-	prm->win = mlx_new_window(prm->mlx, width, height, "Cub 3D");
+	prm->win = mlx_new_window(prm->mlx, width, height, "CUB3D");
 	if (prm->win == NULL)
 	{
 		mlx_destroy_display(prm->mlx);

@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/09 19:48:44 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/11 03:56:53 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,11 @@ static void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	if (sprite->red_color > 0)
 		sprite->red_color -= 80;
 	if (sprite->red_color < 0)
+	{
 		sprite->red_color = 0;
+		if (sprite->type == 'R' && sprite->health == 0)
+			prm->nbr_enemies--;
+	}
 }
 
 void	print_every_sprite(t_param *prm)
