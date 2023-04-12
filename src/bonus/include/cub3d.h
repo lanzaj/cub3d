@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 16:30:35 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/12 11:34:05 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,24 +159,51 @@ void			print_gun(t_param *prm);
 void			init_life(t_param *prm);
 void			print_health_bar(t_param *prm, int x, int y);
 
-/*	game ->	rotate.c */
-double			angle_move(t_param *prm);
-void			rotate_player(t_param *prm);
+/*	game ->	print_screen_1.c */
+void			print_red(t_param *prm);
+void			print_game_over(t_param *prm);
+void			print_win(t_param *prm);
+void			print_start(t_param *prm);
+void			print_pause(t_param *prm);
 
-/*	game ->	shoot_enemy.c */
-void			shoot_enemy(t_param *prm, int x, int y);
+/*	game ->	print_screen_2.c */
+void			print_special_screen(t_param *prm);
+void			update_red_color(t_param *prm);
+int				fade_to_dark(t_param *prm);
+int				fade_to_dark_start_screen(t_param *prm);
 
-/*	game ->	print_sprites.c */
-void			print_every_sprite(t_param *prm);
+/*	game ->	print_sprites_1.c */
+int				put_img_to_front(t_param *prm, t_img *xpm, int dx, t_sprite *s);
 double			get_angle_with_player_view(t_param *prm, t_coord sprite);
+void			explode(t_param *prm, t_sprite *sprite);
+void			ai_enemies(t_param *prm, t_sprite *sprite, int seen);
+void			do_gun_damage(t_param *prm, t_sprite *sprite,
+					double theta, int seen);
 
-/*	game ->	print_sprites2.c */
+/*	game ->	print_sprites_2.c */
+void			kill_baril(t_param *prm, t_sprite *sprite,
+					double theta, int dx);
+void			kill_enemies(t_param *prm, t_sprite *sprite,
+					double theta, int dx);
+void			collect_health(t_param *prm, t_sprite *sprite);
+void			print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm);
+void			select_sprite(t_param *prm, t_sprite *sprite);
+
+/*	game ->	print_sprites_3.c */
+void			print_every_sprite(t_param *prm);
 void			init_col_px_sprite(t_param *prm, t_coord sprite, t_px_col *col);
 int				check_distance_x(t_param *prm, t_coord sprite, t_coord_int i);
 int				check_distance_y(t_param *prm, t_coord sprite, t_coord_int i);
+
+/*	game ->	print_sprites_4.c */
+void			init_boundary_part2(t_param *prm, t_img *xpm, t_boundary *b);
 void			init_boundary(t_param *prm, t_img *xpm, t_boundary *b, int dx);
 int				put_on_one_pixel(t_param *prm, t_img *xpm,
 					t_boundary b, t_sprite *s);
+
+/*	game ->	rotate.c */
+double			angle_move(t_param *prm);
+void			rotate_player(t_param *prm);
 
 /*	minimap	*/
 /*	minimap -> print_minimap_utils.c */
@@ -195,13 +222,15 @@ void			print_minimap(t_param *prm);
 void			print_player(t_param *prm);
 
 /*	mlx_functions	*/
-/*	mlx_functions -> mlx_color.c */
+/*	mlx_functions -> get_color.c */
 int				get_color(t_img *xpm, int x, int y);
 int				get_fade_color(t_img *xpm, int x, int y);
 int				get_grey_color(t_param *prm, t_img *xpm, int x, int y);
 int				*get_red_color(void);
 int				get_darken_color(t_img *xpm, t_coord_int coord,
 					double dist, int *red_color);
+
+/*	mlx_functions -> get_color_2.c */
 int				darken_color(int color, t_coord wall, t_coord player);
 int				darken_color_floor(int color, int x);
 int				red_filter(t_param *prm, t_coord_int coord);
@@ -248,9 +277,11 @@ void			fd_to_color(t_param *prm, int fd, char *str);
 /*	parsing	-> fd_to_card.c */
 void			fd_to_card(t_param *prm, int fd, char *str);
 
-/*	parsing	-> fd_to_map.c */
+/*	parsing	-> fd_to_map_2.c */
 t_list			*fd_to_lst(t_param *prm, int fd);
 char			**lst_to_tab(t_param *prm, t_list *lst, int fd);
+
+/*	parsing	-> fd_to_map.c */
 void			fd_to_map(t_param *prm, int fd);
 
 /*	parsing -> get_next_nonnull_line.c */
@@ -322,6 +353,10 @@ int				has_hit_a_closed_door(t_param *prm, t_coord point);
 /*	utils -> destroy_img.c */
 void			destroy_images(t_param *prm);
 
+/*	utils -> enter_leave_win.c */
+int				leave_window(void *p);
+int				enter_window(void *p);
+
 /*	utils -> ft_lstsort.c */
 void			ft_lstsort(t_param *prm, t_list *lst,
 					int (*fcmp)(t_param *prm, t_list *a, t_list *b));
@@ -364,8 +399,5 @@ t_coord			prod_vect(double factor, t_coord vect);
 /* vector_manipulation -> projection_minimap.c */
 t_point			get_minimap_pos(t_param *prm, t_coord coord, int color);
 double			convert_angle(double angle);
-
-int				leave_window(void *p);
-int				enter_window(void *p);
 
 #endif

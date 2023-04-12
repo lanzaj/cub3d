@@ -6,7 +6,7 @@
 #    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/10 14:26:24 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/12 11:34:37 by mbocquel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,12 +76,17 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/game/print_game.c \
 				bonus/game/print_gun.c \
 				bonus/game/print_hearts.c \
-				bonus/game/print_sprites.c \
-				bonus/game/print_sprites2.c \
+				bonus/game/print_screen_1.c \
+				bonus/game/print_screen_2.c \
+				bonus/game/print_sprites_1.c \
+				bonus/game/print_sprites_2.c \
+				bonus/game/print_sprites_3.c \
+				bonus/game/print_sprites_4.c \
 				bonus/game/rotate.c \
 				bonus/minimap/print_minimap_utils.c \
 				bonus/minimap/print_minimap_window.c \
 				bonus/minimap/print_minimap.c \
+				bonus/mlx_functions/get_color_2.c \
 				bonus/mlx_functions/get_color.c \
 				bonus/mlx_functions/mlx_print_seg.c \
 				bonus/mlx_functions/mlx_utils.c \
@@ -99,6 +104,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/parsing/count_map.c \
 				bonus/parsing/fd_to_card.c \
 				bonus/parsing/fd_to_color.c \
+				bonus/parsing/fd_to_map_2.c \
 				bonus/parsing/fd_to_map.c \
 				bonus/parsing/get_next_nonnull_line.c \
 				bonus/parsing/init_player_pos.c \
@@ -108,6 +114,7 @@ SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/parsing/parsing_map.c \
 				bonus/parsing/parsing_utils.c \
 				bonus/utils/destroy_img.c \
+				bonus/utils/enter_leave_win.c \
 				bonus/utils/ft_exit.c \
 				bonus/utils/ft_lstsort.c \
 				bonus/utils/import_img.c \

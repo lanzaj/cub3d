@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 16:29:20 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/12 11:07:12 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,6 @@ void	print_mapi(char **map)
 		ft_putendl_fd(map[i], 1);
 		i++;
 	}
-}
-
-int	enter_window(void *p)
-{
-	t_param	*prm;
-
-	prm = (t_param *)p;
-	prm->in_focus = 1;
-	mlx_mouse_hide(prm->mlx, prm->win);
-	return (0);
-	(void)p;
-	(void)prm;
-}
-
-int	leave_window(void *p)
-{
-	t_param	*prm;
-
-	prm = (t_param *)p;
-	prm->in_focus = 0;
-	mlx_mouse_show(prm->mlx, prm->win);
-	return (0);
 }
 
 void	print_command_list(void)
