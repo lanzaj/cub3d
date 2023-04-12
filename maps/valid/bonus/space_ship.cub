@@ -1,44 +1,44 @@
-NO ./img/TECH_0A_dark.xpm
-SO ./img/TECH_0A_dark.xpm
-WE ./img/TECH_0A.xpm
-EA ./img/TECH_0A.xpm
+NO ./img/space_ship/TECH_0A_dark.xpm
+SO ./img/space_ship/TECH_0A_dark.xpm
+WE ./img/space_ship/TECH_0A.xpm
+EA ./img/space_ship/TECH_0A.xpm
 
-DO ./img/DOOR_2C.xpm
-W2 ./img/CONSOLE_1A.xpm
-W3 ./img/CONSOLE_1A.xpm
-W4 ./img/VENT_1B.xpm
-W5 ./img/TECH_2B.xpm
-W6 ./img/GRID_2B.xpm
-W7 ./img/LIGHT_1B.xpm
-W8 ./img/SUPPORT_1D.xpm
-W9 ./img/PIPES_2A.xpm
+DO ./img/space_ship/DOOR_2C.xpm
+W2 ./img/space_ship/CONSOLE_1C.xpm
+W3 ./img/space_ship/TECH_3E_dark.xpm
+W4 ./img/space_ship/VENT_1B.xpm
+W5 ./img/space_ship/TECH_2B.xpm
+W6 ./img/space_ship/GRID_1B.xpm
+W7 ./img/space_ship/LIGHT_1B.xpm
+W8 ./img/space_ship/SUPPORT_1D.xpm
+W9 ./img/space_ship/TECH_3D.xpm
 
-F0 ./img/front0A.xpm
-F1 ./img/front1A.xpm
-F2 ./img/front2A.xpm
-F3 ./img/front3A.xpm
+F0 ./img/space_ship/front0A.xpm
+F1 ./img/space_ship/front1A.xpm
+F2 ./img/space_ship/front2A.xpm
+F3 ./img/space_ship/front3A.xpm
 
-A0 ./img/attack0A.xpm
-A1 ./img/attack1A.xpm
-A2 ./img/attack2A.xpm
-A3 ./img/attack3A.xpm
+A0 ./img/space_ship/attack0A.xpm
+A1 ./img/space_ship/attack1A.xpm
+A2 ./img/space_ship/attack2A.xpm
+A3 ./img/space_ship/attack3A.xpm
 
-D0 ./img/die0A.xpm
-D1 ./img/die1A.xpm
-D2 ./img/die2A.xpm
-D3 ./img/die3A.xpm
+D0 ./img/space_ship/die0A.xpm
+D1 ./img/space_ship/die1A.xpm
+D2 ./img/space_ship/die2A.xpm
+D3 ./img/space_ship/die3A.xpm
 
-BA ./img/BARREL.xpm
-CA ./img/CABLES_1.xpm
-PV ./img/health_v1.xpm
+BA ./img/space_ship/BARREL.xpm
+CA ./img/space_ship/CABLES_1.xpm
+PV ./img/space_ship/health_v1.xpm
 
 F 55,50,50
 C 18,18,18
 
 111111111111151111111
 11000011111100CBBB00111
-110C00190111000R0000101
-110700D0R00D00113100101
+110C00190111000R000011
+110700D0R00D00113100111
 1B0000100C01B1111100DC111111
 110001161D111111110010100001
 100C00011000011111D110D000W1
