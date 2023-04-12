@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:33:14 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/12 11:33:16 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:40:26 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**lst_to_tab(t_param *prm, t_list *lst, int fd)
 	t_list	*current;
 
 	if (lst == NULL)
-		fd_to_map_error(prm, fd, "Error\nLst is NULL\n");
+		fd_to_map_error(prm, fd, "Error\nNo map found\n");
 	map = ft_calloc_gc(prm, 0, ft_lstsize(lst) + 2, sizeof(*map));
 	if (map == NULL)
 		fd_to_map_error(prm, fd, "Error\nCalloc failed\n");

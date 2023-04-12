@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 13:30:49 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:10:47 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**lst_to_tab(t_param *prm, t_list *lst, int fd)
 	t_list	*current;
 
 	if (lst == NULL)
-		fd_to_map_error(prm, fd, "Error\nLst is NULL\n");
+		fd_to_map_error(prm, fd, "Error\nNo map found\n");
 	map = ft_calloc_gc(prm, 0, ft_lstsize(lst) + 2, sizeof(*map));
 	if (map == NULL)
 		fd_to_map_error(prm, fd, "Error\nCalloc failed\n");
@@ -84,7 +84,9 @@ void	fd_to_map(t_param *prm, int fd)
 		if (str == NULL)
 			fd_to_map_error(prm, fd, "Error\nTexture or color missing\n");
 		trim_backslash_n(str);
-		trim_str(str);
+		str = trim_str(prm, str);
+		if (str == NULL)
+			fd_to_map_error(prm, fd, "Error\n");
 		fd_to_card(prm, fd, str);
 		fd_to_color(prm, fd, str);
 		i++;

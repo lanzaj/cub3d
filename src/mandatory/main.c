@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 13:46:02 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:11:53 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,3 @@ int	main(int argc, char *argv[])
 	mlx_loop(prm.mlx);
 	return (0);
 }
-
-/*int	main(void)
-{
-	char str[] = "NO./img/space_ship/TECH_0A_dark.xpmQ\\ ";
-	
-	trim_str(str);
-	printf("%s", str);
-	return (0);
-}
-*/

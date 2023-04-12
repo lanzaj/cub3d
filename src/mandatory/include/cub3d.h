@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 13:30:32 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:08:19 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void			parsing_map(t_param *prm, char *file_name);
 
 /*	parsing -> parsing_utils.c */
 void			trim_backslash_n(char *str);
-void			trim_str(char *str);
+char			*trim_str(t_param *prm, char *str);
 
 /*	rayracing */
 /*	rayracing -> find_first.c */

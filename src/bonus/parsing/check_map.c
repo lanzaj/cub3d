@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:52:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 15:27:56 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/12 16:00:44 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	check_map(t_param *prm, char **map)
 	check_if_enclosed_in_walls(prm, map);
 	init_player_pos(prm);
 	init_sprites(prm);
-	check_charset(prm, map, "0123456789DBCHRM", "Error\nTwo starting position\n");
+	check_charset(prm, map, "0123456789DBCHRM",
+		"Error\nToo many starting positions\n");
 }
