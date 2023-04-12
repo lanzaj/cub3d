@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player_pos.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:23:21 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/31 17:54:42 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:06:58 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	init_player_pos(t_param *prm)
 	int	y;
 
 	if (get_starting_pos(prm, &x, &y))
-		check_map_error(prm, "Error: No starting position\n");
+		check_map_error(prm, "Error\nNo starting position\n");
 	prm->pos_player.x = (double)x + 0.5;
 	prm->pos_player.y = (double)y + 0.5;
 	init_east_west_player_pos(prm, x, y);

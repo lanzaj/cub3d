@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 16:00:59 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:06:46 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char *argv[])
 {
 	t_param	prm;
 
-	if (argc != 2 && ft_printf_fd(2, "Error: wrong number of arguments\n"))
+	if (argc != 2 && ft_printf_fd(2, "Error\nWrong number of arguments\n"))
 		return (1);
 	ft_memset(&prm, 0, sizeof(t_param));
 	if (initiate_mlx(&prm, 1280, 720) || allocate_impact_tab(&prm))

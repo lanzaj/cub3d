@@ -1,7 +1,7 @@
-NO ./img/wood.xpm
-SO ./img
-WE ./img/MARBFAC2.xpm
-EA ./img/STONE3.xpm
+NO ./img/lab/LAB_1A_dark.xpm
+SO ./img/lab/LAB_1A_dark.x
+WE ./img/lab/LAB_1A.xpm
+EA ./img/lab/LAB_1A.xpm
 
 F 87,213,59
 C 116,208,241

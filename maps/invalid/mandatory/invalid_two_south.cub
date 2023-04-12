@@ -1,10 +1,11 @@
-NO ./img/wood.xpm
-SO ./img/wood.xpm
-WE ./img/MARBFAC2.xpm
-EA ./img/STONE3.xpm
-SO ./img/wood.xpm
+NO ./img/lab/LAB_1A_dark.xpm
+SO ./img/lab/LAB_1A_dark.xpm
+WE ./img/lab/LAB_1A.xpm
+EA ./img/lab/LAB_1A.xpm
 
 F 87,213,59
+
+SO ./img/lab/LAB_1A_dark.xpm
 C 116,208,241
 
 111111111111111111111111111111111

@@ -1,6 +1,6 @@
-NO ./img/bricks.xpm
-SO ./img/wood.xpm
-WE ./img/MARBFAC2.xpm
-EA ./img/STONE3.xpm
+NO ./img/lab/LAB_1A_dark.xpm
+SO ./img/lab/LAB_1A_dark.xpm
+WE ./img/lab/LAB_1A.xpm
+EA ./img/lab/LAB_1A.xpm
 
 F 87,213,59
