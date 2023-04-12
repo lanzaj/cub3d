@@ -1,10 +1,10 @@
-NO ./img/north.xpm
-SO ./img/south.xpm
-WE ./img/west.xpm
-EA ./img/east.xpm
+NO./img/space_ship/TECH_0A_dark.xpm
+SO        ./img/space_ship/TECH_0A_dark.xpm
+WE ./img/space_ship/TECH_0A.xpm
+EA         ./img/space_ship/TECH_0A.xpm
 
-F 140,140,140
-C 0,0,0
+F   140  , 140 , 140
+C 0  ,   0,0
 
 111111111111111111111111111111111
 100000000011000000000000111111111

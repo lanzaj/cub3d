@@ -13,10 +13,10 @@ W7 ./img/space_ship/LIGHT_1B.xpm
 W8 ./img/space_ship/SUPPORT_1D.xpm
 W9 ./img/space_ship/TECH_3D.xpm
 
-F0 ./img/space_ship/front0A.xpm
-F1 ./img/space_ship/front1A.xpm
-F2 ./img/space_ship/front2A.xpm
-F3 ./img/space_ship/front3A.xpm
+E0 ./img/space_ship/front0A.xpm
+E1 ./img/space_ship/front1A.xpm
+E2 ./img/space_ship/front2A.xpm
+E3 ./img/space_ship/front3A.xpm
 
 A0 ./img/space_ship/attack0A.xpm
 A1 ./img/space_ship/attack1A.xpm
@@ -29,7 +29,7 @@ D2 ./img/space_ship/die2A.xpm
 D3 ./img/space_ship/die3A.xpm
 
 BA ./img/space_ship/BARREL.xpm
-CA ./img/space_ship/CABLES_1.xpm
+HA ./img/space_ship/CABLES_1.xpm
 PV ./img/space_ship/health_v1.xpm
 
 F 55,50,50

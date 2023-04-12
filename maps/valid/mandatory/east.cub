@@ -1,7 +1,7 @@
-NO ./img/bricks.xpm
-SO ./img/wood.xpm
-WE ./img/MARBFAC2.xpm
-EA ./img/STONE3.xpm
+NO ./img/space_ship/TECH_0A_dark.xpm
+SO ./img/space_ship/TECH_0A_dark.xpm
+WE ./img/space_ship/TECH_0A.xpm
+EA ./img/space_ship/TECH_0A.xpm
 
 F 87,213,59
 C 116,208,241

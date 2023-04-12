@@ -6,7 +6,7 @@
 /*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:41:28 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/31 18:37:31 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:30:49 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	fd_to_map(t_param *prm, int fd)
 		if (str == NULL)
 			fd_to_map_error(prm, fd, "Error\nTexture or color missing\n");
 		trim_backslash_n(str);
+		trim_str(str);
 		fd_to_card(prm, fd, str);
 		fd_to_color(prm, fd, str);
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_to_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:06:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/26 23:07:50 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/12 13:28:42 by mbocquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ static int	import_color(int *color_element, char *str)
 
 void	fd_to_color(t_param *prm, int fd, char *str)
 {
-	if (!str || ft_strlen(str) < 4)
+	if (!str || ft_strlen(str) < 5)
 		fd_to_map_error(prm, fd, "Error\nInvalid line\n");
-	if (!ft_strncmp(str, "F ", 2) && prm->map.floor_color == -1
-		&& import_color(&(prm->map.floor_color), &str[2]))
+	if (!ft_strncmp(str, "F", 1) && prm->map.floor_color == -1
+		&& import_color(&(prm->map.floor_color), &str[1]))
 		fd_to_map_error(prm, fd, "Error\nInvalid floor color\n");
-	if (!ft_strncmp(str, "C ", 2) && prm->map.ceiling_color == -1
-		&& import_color(&(prm->map.ceiling_color), &str[2]))
+	if (!ft_strncmp(str, "C", 1) && prm->map.ceiling_color == -1
+		&& import_color(&(prm->map.ceiling_color), &str[1]))
 		fd_to_map_error(prm, fd, "Error\nInvalid ceiling color\n");
 }

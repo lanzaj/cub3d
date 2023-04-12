@@ -1,9 +1,8 @@
-   R         99999999999 9999999999999
-        NO           ./0.xpm
-SO         ./0.xpm
-WE ./0.xpm
-               EA ./0.xpm
-S    ./0.xpm
+              NO      ./img/space_ship/TECH_0A_dark.xpm
+SO ./img/space_ship/TECH_0A_dark.xpm
+WE         ./img/space_ship/TECH_0A.xpm
+EA ./img/space_ship/TECH_0A.xpm
+
 F   220,    128 ,    200
 C 225,30,0
                              1111111111111

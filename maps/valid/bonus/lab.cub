@@ -13,10 +13,10 @@ W7 ./img/lab/LAB_1A.xpm
 W8 ./img/lab/LAB_1A.xpm
 W9 ./img/lab/LAB_1A.xpm
 
-F0 ./img/lab/front0R.xpm
-F1 ./img/lab/front1R.xpm
-F2 ./img/lab/front2R.xpm
-F3 ./img/lab/front3R.xpm
+E0 ./img/lab/front0R.xpm
+E1 ./img/lab/front1R.xpm
+E2 ./img/lab/front2R.xpm
+E3 ./img/lab/front3R.xpm
 
 A0 ./img/lab/attack0R.xpm
 A1 ./img/lab/attack1R.xpm
@@ -29,7 +29,7 @@ D2 ./img/lab/die2R.xpm
 D3 ./img/lab/die3R.xpm
 
 BA ./img/lab/BARREL2.xpm
-CA ./img/lab/CABLES_1.xpm
+HA ./img/lab/CABLES_1.xpm
 PV ./img/lab/health_v2.xpm
 
 F 5,10,5

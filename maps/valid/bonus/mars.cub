@@ -13,10 +13,10 @@ W7 ./img/LIGHT_1B.xpm
 W8 ./img/SUPPORT_1D.xpm
 W9 ./img/PIPES_2A.xpm
 
-F0 ./img/front1.xpm
-F1 ./img/front2.xpm
-F2 ./img/front3.xpm
-F3 ./img/front4.xpm
+E0 ./img/front1.xpm
+E1 ./img/front2.xpm
+E2 ./img/front3.xpm
+E3 ./img/front4.xpm
 
 A0 ./img/attack1.xpm
 A1 ./img/attack1.xpm
@@ -29,7 +29,7 @@ D2 ./img/die4.xpm
 D3 ./img/die5.xpm
 
 BA ./img/BARREL2.xpm
-CA ./img/CABLES_1.xpm
+HA ./img/CABLES_1.xpm
 PV ./img/health_v2.xpm
 
 F 55,50,50
