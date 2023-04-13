@@ -1,44 +1,44 @@
 NO ./img/space_ship/TECH_0A_dark.xpm
 
-SO ./img/corrupt.xpm
+SO ./img/space_ship/TECH_0A.xpm
 WE ./img/space_ship/TECH_0A.xpm
-EA ./img/space_ship/TECH_0A.xpm
+EA ./img/space_ship/front1A.xpm
 
 
 E0 ./img/space_ship/front0A.xpm
-E1 ./img/space_ship/front1A.xpm
-E2 ./img/space_ship/front2A.xpm
-E3 ./img/space_ship/front3A.xpm
+E1 ./img/space_ship/front2A.xpm
+E2 ./img/space_ship/front3A.xpm
+E3 ./img/space_ship/attack0A.xpm
 
-A0 ./img/space_ship/attack0A.xpm
-A1 ./img/space_ship/attack1A.xpm
-A2 ./img/space_ship/attack2A.xpm
-A3 ./img/space_ship/attack3A.xpm
+A0 ./img/space_ship/attack1A.xpm
+A1 ./img/space_ship/attack2A.xpm
+A2 ./img/space_ship/attack3A.xpm
+A3 ./img/space_ship/die0A.xpm
 
-D0 ./img/space_ship/die0A.xpm
-D1 ./img/space_ship/die1A.xpm
-D2 ./img/space_ship/die2A.xpm
-D3 ./img/space_ship/die3A.xpm
+D0 ./img/space_ship/die1A.xpm
+D1 ./img/space_ship/die2A.xpm
+D2 ./img/space_ship/die3A.xpm
+D3 ./img/space_ship/BARREL.xpm
 
-BA ./img/space_ship/BARREL.xpm
-HA ./img/space_ship/CABLES_1.xpm
-PV ./img/space_ship/health_v1.xpm
+BA ./img/space_ship/CABLES_1.xpm
+HA ./img/space_ship/health_v1.xpm
+PV ./img/space_ship/DOOR_2C.xpm
 
 F 55,50,50
 C 18,18,18
 
-DO ./img/space_ship/DOOR_2C.xpm
+DO ./img/space_ship/TECH_3D.xpm
 
-W2 ./img/space_ship/TECH_3D.xpm
-W3 ./img/space_ship/TECH_5A.xpm
-W4 ./img/space_ship/CONSOLE_1C.xpm
+W2 ./img/space_ship/TECH_5A.xpm
+W3 ./img/space_ship/CONSOLE_1C.xpm
+W4 ./img/space_ship/SUPPORT_1D.xpm
 
-W5 ./img/space_ship/SUPPORT_1D.xpm
-W6 ./img/space_ship/CRATE_2E.xpm
+W5 ./img/space_ship/CRATE_2E.xpm
+W6 ./img/space_ship/GRID_1B_dard.xpm
 
-W7 ./img/space_ship/GRID_1B_dard.xpm
-W8 ./img/space_ship/VENT_1B_dark.xpm
-W9 ./img/space_ship/TECH_3E_dark.xpm
+W7 ./img/space_ship/VENT_1B_dark.xpm
+W8 ./img/space_ship/TECH_3E_dark.xpm
+W9 ./img/corrupt.xpm
 
   9181      11119111
  100002 7  500CBBB003

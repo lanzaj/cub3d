@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:20:17 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/08 13:11:16 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:32:07 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 void	init_life(t_param *prm)
 {
-	if (import_img(prm, &(prm->health_bar[0]), "./img/health0.xpm"))
-		ft_printf("error\n");
-	if (import_img(prm, &(prm->health_bar[1]), "./img/health1bis.xpm"))
-		ft_printf("error\n");
-	if (import_img(prm, &(prm->health_bar[2]), "./img/health2.xpm"))
-		ft_printf("error\n");
-	if (import_img(prm, &(prm->health_bar[3]), "./img/health3.xpm"))
-		ft_printf("error\n");
-	if (import_img(prm, &(prm->health_bar[4]), "./img/health4.xpm"))
-		ft_printf("error\n");
+	import_img(prm, &(prm->health_bar[0]), "./img/health0.xpm");
+	import_img(prm, &(prm->health_bar[1]), "./img/health1bis.xpm");
+	import_img(prm, &(prm->health_bar[2]), "./img/health2.xpm");
+	import_img(prm, &(prm->health_bar[3]), "./img/health3.xpm");
+	import_img(prm, &(prm->health_bar[4]), "./img/health4.xpm");
 	prm->n_life = LIFE_NUMBER;
 }
 
