@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/12 16:29:19 by mbocquel         ###   ########.fr        #
+#    Updated: 2023/04/13 10:41:18 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SOURCES =	mandatory/alloc_garbage/ft_alloc_gc.c \
 			mandatory/game/get_color_to_print.c \
 			mandatory/game/move_and_rotate.c \
 			mandatory/game/print_game.c \
-			mandatory/minimap/print_minimap.c \
 			mandatory/mlx_functions/mlx_print_seg.c \
 			mandatory/mlx_functions/mlx_utils.c \
 			mandatory/mlx_functions/mlx_color.c \

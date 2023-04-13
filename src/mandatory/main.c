@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 16:11:53 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/13 10:40:39 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	main(int argc, char *argv[])
 		return (ft_exit(&prm, EXIT_FAILURE));
 	parsing_map(&prm, argv[1]);
 	initiate_img_game(&prm);
-	initiate_img_minimap(&prm);
 	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
 	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
 	mlx_hook(prm.win, 3, 1L << 1, key_release, &prm);

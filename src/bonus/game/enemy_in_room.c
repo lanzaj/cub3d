@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_in_room.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:15:10 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/07 15:21:09 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/13 10:56:54 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,6 @@ t_bool	player_not_in_map(char **map)
 	}
 	return (TRUE);
 }
-
-/* void	print_map_flood(char **map)
-{
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{
-		printf("%s\n", map[y]);
-		y++;
-	}
-	printf("\n");
-} */
 
 t_bool	we_are_in_same_room(t_param *prm, t_sprite *sprite)
 {

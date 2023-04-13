@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:50:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/03/27 13:52:19 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/13 10:54:58 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	fd_to_map_error(t_param *prm, int fd, char *msg)
 		str = get_next_line(fd);
 	}
 	close(fd);
+	mlx_destroy_image(prm->mlx, prm->layer.front.img);
+	mlx_destroy_image(prm->mlx, prm->layer.back.img);
 	destroy_images(prm);
 	mlx_destroy_window(prm->mlx, prm->win);
 	mlx_destroy_display(prm->mlx);
