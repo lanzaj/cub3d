@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 18:06:46 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:42:22 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ int	initiate_mlx(t_param *prm, int width, int height)
 	}
 	prm->width = width;
 	prm->height = height;
-	import_img(prm, &prm->layer.loading, "./img/loading.xpm");
+	if (import_img(prm, &prm->layer.loading, "./img/loading.xpm"))
+	{
+		mlx_destroy_window(prm->mlx, prm->win);
+		mlx_destroy_display(prm->mlx);
+		return (ft_printf_fd(2, "Error\nAssets not imported\n"));
+	}
 	mlx_put_image_to_window(prm->mlx, prm->win, prm->layer.loading.img, 0, 0);
 	return (0);
 }
