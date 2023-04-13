@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sprites_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:01:22 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 11:13:21 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/13 10:00:07 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,11 @@ void	ai_enemies(t_param *prm, t_sprite *sprite, int seen)
 		sprite->ok_to_shoot = FALSE;
 }
 
-void	do_gun_damage(t_param *prm, t_sprite *sprite, double theta, int seen)
+void	do_gun_damage(t_param *prm, t_sprite *sprite, int dx, int seen)
 {
 	if ((sprite->type == 'B' || sprite->type == 'R') && seen
 		&& (prm->gun.frame_count == 1 && sprite->health > 0)
-		&& convert_angle(prm->view_ang - theta - PI / 2) >= PI
-		&& convert_angle(v_abs_dbl(prm->view_ang - theta)) <= SHOOT_ANG)
+		&& dx > (prm->width / 2) - 50 && dx < (prm->width / 2) + 50)
 		sprite->health--;
 	if (sprite->type == 'R' && sprite->last_health != sprite->health)
 	{

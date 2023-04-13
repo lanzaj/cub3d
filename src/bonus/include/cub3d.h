@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 15:53:51 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/13 09:58:29 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ double			get_angle_with_player_view(t_param *prm, t_coord sprite);
 void			explode(t_param *prm, t_sprite *sprite);
 void			ai_enemies(t_param *prm, t_sprite *sprite, int seen);
 void			do_gun_damage(t_param *prm, t_sprite *sprite,
-					double theta, int seen);
+					int dx, int seen);
 
 /*	game ->	print_sprites_2.c */
 void			kill_baril(t_param *prm, t_sprite *sprite,

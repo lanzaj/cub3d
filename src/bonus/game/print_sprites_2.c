@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_sprites_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbocquel <mbocquel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:13:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/12 11:18:16 by mbocquel         ###   ########.fr       */
+/*   Updated: 2023/04/13 09:58:19 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 	if (!sprite->dead && convert_angle(prm->view_ang - theta - PI / 2) >= PI)
 		seen = put_img_to_front(prm, xpm, dx, sprite);
 	ai_enemies(prm, sprite, seen);
-	do_gun_damage(prm, sprite, theta, seen);
+	do_gun_damage(prm, sprite, dx, seen);
 	kill_baril(prm, sprite, theta, dx);
 	collect_health(prm, sprite);
 	if (sprite->red_color > 0)
