@@ -6,7 +6,7 @@
 #    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2023/04/13 10:41:18 by jlanza           ###   ########.fr        #
+#    Updated: 2024/02/12 19:24:12 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SOURCES =	mandatory/alloc_garbage/ft_alloc_gc.c \
 SOURCES_BONUS =	bonus/alloc_garbage/ft_alloc_gc.c \
 				bonus/alloc_garbage/garbage_2.c \
 				bonus/alloc_garbage/garbage.c \
+				bonus/game/ai.c \
 				bonus/game/door_close.c \
 				bonus/game/door_open.c \
 				bonus/game/enemy_in_room.c \
@@ -134,7 +135,7 @@ DEPS_BONUS := $(OBJECTS_BONUS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -O3
 
 RM = rm -rf
 

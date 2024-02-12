@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/13 09:58:29 by jlanza           ###   ########.fr       */
+/*   Updated: 2024/02/12 19:25:23 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ void			print_garbage(t_param *prm);
 void			remove_from_garb(t_param *prm, void *ptr);
 
 /*	game */
+/*	game -> ai.c */
+void			update_shooting_frame(t_param *prm, int *shooting);
+void			ai_enemies(t_param *prm, t_sprite *sprite, int seen);
+void			do_gun_damage(t_param *prm, t_sprite *sprite, int targeted);
+
 /*	game -> door_close.c */
 void			change_door_status(t_param *prm);
 
@@ -174,11 +179,10 @@ int				fade_to_dark_start_screen(t_param *prm);
 
 /*	game ->	print_sprites_1.c */
 int				put_img_to_front(t_param *prm, t_img *xpm, int dx, t_sprite *s);
+void			put_target_to_front(t_param *prm, t_img *xpm, int dx,
+					t_sprite *s);
 double			get_angle_with_player_view(t_param *prm, t_coord sprite);
 void			explode(t_param *prm, t_sprite *sprite);
-void			ai_enemies(t_param *prm, t_sprite *sprite, int seen);
-void			do_gun_damage(t_param *prm, t_sprite *sprite,
-					int dx, int seen);
 
 /*	game ->	print_sprites_2.c */
 void			kill_baril(t_param *prm, t_sprite *sprite,

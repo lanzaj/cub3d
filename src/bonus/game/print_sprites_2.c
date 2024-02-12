@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:13:29 by mbocquel          #+#    #+#             */
-/*   Updated: 2023/04/13 09:58:19 by jlanza           ###   ########.fr       */
+/*   Updated: 2024/02/12 18:36:14 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,18 @@ void	print_sprite(t_param *prm, t_sprite *sprite, t_img *xpm)
 {
 	double	theta;
 	int		dx;
-	int		seen;
 
 	dx = 0;
-	seen = 0;
+	sprite->seen = 0;
+	sprite->targeted = 0;
 	theta = get_angle_with_player_view(prm, sprite->coord);
 	dx = (int)nearbyint((tan(convert_angle(prm->view_ang - theta))
 				* prm->width) / (2 * 0.5773502)) + (prm->width / 2);
 	kill_enemies(prm, sprite, theta, dx);
 	if (!sprite->dead && convert_angle(prm->view_ang - theta - PI / 2) >= PI)
-		seen = put_img_to_front(prm, xpm, dx, sprite);
-	ai_enemies(prm, sprite, seen);
-	do_gun_damage(prm, sprite, dx, seen);
+		put_target_to_front(prm, xpm, dx, sprite);
+	ai_enemies(prm, sprite, sprite->seen);
+	do_gun_damage(prm, sprite, sprite->targeted);
 	kill_baril(prm, sprite, theta, dx);
 	collect_health(prm, sprite);
 	if (sprite->red_color > 0)

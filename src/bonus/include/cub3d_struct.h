@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:46:52 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/11 15:56:36 by jlanza           ###   ########.fr       */
+/*   Updated: 2024/02/12 18:53:35 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,9 @@ typedef struct s_sprite
 	t_bool			follow;
 	t_bool			ok_to_shoot;
 	int				red_color;
-	int				has_been_seen;
+	t_bool			has_been_seen;
+	int				seen;
+	int				targeted;
 }				t_sprite;
 
 typedef struct s_gun
