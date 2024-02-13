@@ -13,8 +13,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../../../libft/src/libft.h"
-# include "../../../mlx_linux/mlx.h"
+# include "../../libft/src/libft.h"
+# include "../../mlx_linux/mlx.h"
 # include "cub3d_struct.h"
 # include <math.h>
 # include <sys/stat.h>

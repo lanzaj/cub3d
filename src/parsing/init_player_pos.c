@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:23:21 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/12 18:06:30 by jlanza           ###   ########.fr       */
+/*   Updated: 2023/04/12 18:06:58 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	init_player_pos(t_param *prm)
 	int	x;
 	int	y;
 
+	x = 0;
+	y = 0;
 	if (get_starting_pos(prm, &x, &y))
 		check_map_error(prm, "Error\nNo starting position\n");
 	prm->pos_player.x = (double)x + 0.5;
