@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:10 by jlanza            #+#    #+#             */
-/*   Updated: 2023/04/13 11:42:22 by jlanza           ###   ########.fr       */
+/*   Updated: 2024/02/13 12:39:34 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,25 @@ Ctrl       \e[0mShoot    \e[0;36m    F \e[0m  Hide / display fps\e[0m   #\n");
 #############################\n\n");
 }
 
+void	init_hook(t_param *prm)
+{
+	mlx_mouse_move(prm->mlx, prm->win, prm->width / 2, prm->height / 2);
+	mlx_hook(prm->win, 17, 1L << 0, close_win, prm);
+	mlx_hook(prm->win, 2, 1L << 0, key_press, prm);
+	mlx_hook(prm->win, 3, 1L << 1, key_release, prm);
+	mlx_hook(prm->win, 9, 1L << 21, enter_window, prm);
+	mlx_hook(prm->win, 10, 1L << 21, leave_window, prm);
+	mlx_hook(prm->win, 6, 1L << 6, handle_mouse_move, prm);
+	mlx_hook(prm->win, 4, 1L << 2, handle_mouse_click, prm);
+	mlx_loop_hook(prm->mlx, game_loop, prm);
+	mlx_loop(prm->mlx);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_param	prm;
 
-	if (argc != 2 && ft_printf_fd(2, "Error\nWrong number of arguments\n"))
+	if (argc > 2 && ft_printf_fd(2, "Error\nWrong number of arguments\n"))
 		return (1);
 	ft_memset(&prm, 0, sizeof(t_param));
 	if (initiate_mlx(&prm, 1280, 720) || allocate_impact_tab(&prm))
@@ -82,18 +96,12 @@ int	main(int argc, char *argv[])
 	initiate_img_minimap(&prm);
 	init_life(&prm);
 	init_gun(&prm);
-	parsing_map(&prm, argv[1]);
+	if (argc == 1)
+		parsing_map(&prm, "./maps/space_ship.cub");
+	else
+		parsing_map(&prm, argv[1]);
 	print_floor_and_sky(&prm, prm.map.ceiling_color, prm.map.floor_color);
 	print_command_list();
-	mlx_mouse_move(prm.mlx, prm.win, prm.width / 2, prm.height / 2);
-	mlx_hook(prm.win, 17, 1L << 0, close_win, &prm);
-	mlx_hook(prm.win, 2, 1L << 0, key_press, &prm);
-	mlx_hook(prm.win, 3, 1L << 1, key_release, &prm);
-	mlx_hook(prm.win, 9, 1L << 21, enter_window, &prm);
-	mlx_hook(prm.win, 10, 1L << 21, leave_window, &prm);
-	mlx_hook(prm.win, 6, 1L << 6, handle_mouse_move, &prm);
-	mlx_hook(prm.win, 4, 1L << 2, handle_mouse_click, &prm);
-	mlx_loop_hook(prm.mlx, game_loop, &prm);
-	mlx_loop(prm.mlx);
+	init_hook(&prm);
 	return (0);
 }
