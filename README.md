@@ -1,13 +1,13 @@
 # CUB3D
 
-This project is a wolfenstein-like game coded in C using raycasting. No game engine was used in this project.
+This project is a wolfenstein-like game coded in C using raycasting. No game engine was used.
 
 ![Alt Text](./readme/game.gif)
 
 ## Usage (linux)
 
-``` console
-$ make && ./cub3D
+```console
+make && ./cub3D
 ```
 
 ## Credits
