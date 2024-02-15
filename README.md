@@ -22,3 +22,5 @@ Textures :
 - https://imgur.com/nE5zw9q
 
 - https://little-martian.itch.io/retro-texture-pack
+
+Title screen generated with stable diffusion.
