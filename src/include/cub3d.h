@@ -6,7 +6,7 @@
 /*   By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:18:36 by jlanza            #+#    #+#             */
-/*   Updated: 2024/02/12 19:25:23 by jlanza           ###   ########.fr       */
+/*   Updated: 2024/03/22 17:34:13 by jlanza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@
 # define SHOOT_FRAME 3
 # define SHOOT_ANG 0.14f
 # define SHOOT_DST_SQ 25
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 
 /*	alloc_garbage	*/
 /*	alloc_garbage -> ft_alloc_gc.c */

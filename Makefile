@@ -6,7 +6,7 @@
 #    By: jlanza <jlanza@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 10:48:53 by mbocquel          #+#    #+#              #
-#    Updated: 2024/02/12 19:24:12 by jlanza           ###   ########.fr        #
+#    Updated: 2024/03/22 16:22:42 by jlanza           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ DEPS := $(OBJECTS:.o=.d)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -O3
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -O3 -march=native -flto
 
 RM = rm -rf
 
