@@ -28,7 +28,7 @@ Raycasting is efficient because it only calculates the visible walls and ignores
 ```
 or
 ```console
-./cub3d <path/to/map/file.cub>
+./cub3d <path/to/maps/file.cub>
 ```
 
 ## Usage
