@@ -14,9 +14,10 @@ Raycasting is efficient because it only calculates the visible walls and ignores
 ## Features
 
 - Loads any `.cub` map (several examples can be found in `./maps` directory)
-- Handles different colors for floor and ceiling, and different textures for walls according to their orientation.
-- Working doors.
-- Enemies.
+- Handles different colors for floor and ceiling, and different textures for walls according to their orientation
+- Working doors
+- Enemies
+- Health kit to gain life points
 
 ## Getting Started (linux)
 
@@ -28,7 +29,7 @@ Raycasting is efficient because it only calculates the visible walls and ignores
 ```
 or
 ```console
-./cub3d <path/to/maps/file.cub>
+./cub3D <path/to/maps/file.cub>
 ```
 
 ## Usage
@@ -39,6 +40,11 @@ or
 - Move sideways with `A` and `D`
 - Quit with `Escape`
 - Open doors with `space`
+- Shoot with `Ctrl` or `left click`
+- Sprint with `Shift`
+- Pause with `Tab`
+- Show / Hide fps with `F`
+- Show / Hide map with `M`
 
 
 ## Credits
